@@ -17,3 +17,6 @@
 /web/bundles/
 
 /.idea/
+/electron/dist
+/electron/node_modules
+/electron/*.tgz
