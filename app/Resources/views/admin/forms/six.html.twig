@@ -1,0 +1,64 @@
+{% extends 'admin/edit.html.twig' %}
+
+{% block body_content %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success js-flash">{{ message }}</div>
+    {% endfor %}
+    {{ form_start(form) }}
+
+        <div class="form-group">
+            <div class="col-sm-2">Team</div>
+            <div class="col-sm-10">{{ form_widget(form.children['team']) }}</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2">LF</div>
+            <div class="col-sm-2">{{ form_widget(form.children['number_1']) }}</div>
+            <div class="col-sm-4">{{ form_widget(form.children['name_1']) }}</div>
+            <div class="col-sm-4">{{ form_widget(form.children['firstname_1']) }}</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2">C</div>
+            <div class="col-sm-2">{{ form_widget(form.children['number_2']) }}</div>
+            <div class="col-sm-4">{{ form_widget(form.children['name_2']) }}</div>
+            <div class="col-sm-4">{{ form_widget(form.children['firstname_2']) }}</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2">RF</div>
+            <div class="col-sm-2">{{ form_widget(form.children['number_3']) }}</div>
+            <div class="col-sm-4">{{ form_widget(form.children['name_3']) }}</div>
+            <div class="col-sm-4">{{ form_widget(form.children['firstname_3']) }}</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2">D</div>
+            <div class="col-sm-2">{{ form_widget(form.children['number_4']) }}</div>
+            <div class="col-sm-4">{{ form_widget(form.children['name_4']) }}</div>
+            <div class="col-sm-4">{{ form_widget(form.children['firstname_4']) }}</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2">D</div>
+            <div class="col-sm-2">{{ form_widget(form.children['number_5']) }}</div>
+            <div class="col-sm-4">{{ form_widget(form.children['name_5']) }}</div>
+            <div class="col-sm-4">{{ form_widget(form.children['firstname_5']) }}</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2">Tor</div>
+            <div class="col-sm-2">{{ form_widget(form.children['number_6']) }}</div>
+            <div class="col-sm-4">{{ form_widget(form.children['name_6']) }}</div>
+            <div class="col-sm-4">{{ form_widget(form.children['firstname_6']) }}</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                {{ form_widget(form.save) }}
+            </div>
+        </div>
+
+        {{ form_rest(form) }}
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,33 @@
+<section class="livegame" data-background="{{ asset('img/bg.png') }}">
+    <section data-fullscreen>
+        <div class="greenbg caption" id="caption">{{ caption | default('') }}</div>
+        <div class="score">
+            <div>
+                <div class="logo">
+                    <img id="hometeam" src="" width="200" height="200" align="center">
+                </div>
+                <div class="goals">
+                    <span id="homescore">0</span>:<span id="awayscore">0</span>
+                </div>
+                <div class="logo">
+                    <img id="awayteam" src="" width="200" height="200" align="center">
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="greenbg clearfix ticker">
+                <div class="marquee" id="ticker"></div>
+                <div class="greenbg">Ticker:</div>
+            </div>
+            <div class="whitebg clearfix sponsoren">
+                {% if sponsoren | length == 0 %}
+                    Hier könnte Ihre Werbung stehen:<br>
+                    <a href="mailto:marketing@herner-ev.com">marketing@herner-ev.com</a>
+                {% endif %}
+                {% for sponsor in sponsoren %}
+                    <img data-src="{{ constant('SCHEMA') }}www.herner-ev.com/{{ sponsor }}" width="180" height="100">
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,68 @@
+{% extends 'admin/edit.html.twig' %}
+
+{% block body_content %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success js-flash">{{ message }}</div>
+    {% endfor %}
+    {{ form_start(form) }}
+
+        <div class="form-group">
+            <div class="col-sm-2">Teams</div>
+            <div class="col-sm-5">{{ form_widget(form.children['hometeam']) }}</div>
+            <div class="col-sm-5">{{ form_widget(form.children['awayteam']) }}</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2">Platz</div>
+            <div class="col-sm-5">{{ form_widget(form.children['homeplatz']) }}</div>
+            <div class="col-sm-5">{{ form_widget(form.children['awayplatz']) }}</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2">Punkte</div>
+            <div class="col-sm-5">{{ form_widget(form.children['homepunkte']) }}</div>
+            <div class="col-sm-5">{{ form_widget(form.children['awaypunkte']) }}</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2">Tore</div>
+            <div class="col-sm-2">{{ form_widget(form.children['hometore']) }}</div>
+            <div class="col-sm-2">{{ form_widget(form.children['homegegentore']) }}</div>
+            <div class="col-sm-2">&nbsp;</div>
+            <div class="col-sm-2">{{ form_widget(form.children['awaytore']) }}</div>
+            <div class="col-sm-2">{{ form_widget(form.children['awaygegentore']) }}</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2">Topscorer</div>
+            <div class="col-sm-3">{{ form_widget(form.children['homescorer']) }}</div>
+            <div class="col-sm-2">{{ form_widget(form.children['homescorerpunkte']) }}</div>
+            <div class="col-sm-3">{{ form_widget(form.children['awayscorer']) }}</div>
+            <div class="col-sm-2">{{ form_widget(form.children['awayscorerpunkte']) }}</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2">Torgefährlich</div>
+            <div class="col-sm-3">{{ form_widget(form.children['homegefahr']) }}</div>
+            <div class="col-sm-2">{{ form_widget(form.children['homegefahrpunkte']) }}</div>
+            <div class="col-sm-3">{{ form_widget(form.children['awaygefahr']) }}</div>
+            <div class="col-sm-2">{{ form_widget(form.children['awaygefahrpunkte']) }}</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2">Bad Boy</div>
+            <div class="col-sm-3">{{ form_widget(form.children['homebadboy']) }}</div>
+            <div class="col-sm-2">{{ form_widget(form.children['homebadboypunkte']) }}</div>
+            <div class="col-sm-3">{{ form_widget(form.children['awaybadboy']) }}</div>
+            <div class="col-sm-2">{{ form_widget(form.children['awaybadboypunkte']) }}</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                {{ form_widget(form.save) }}
+            </div>
+        </div>
+
+        {{ form_rest(form) }}
+    {{ form_end(form) }}
+{% endblock %}
