@@ -1,0 +1,29 @@
+.othergames table {
+    font-size: 18px;
+    background-color: rgba(30,30,30,.8);
+    color: #CCC;
+    width: 810px;
+    margin-top: 20px;
+}
+
+.othergames td {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 15px !important;
+    border-bottom: 0 !important;
+}
+
+.othergames img {
+    padding: 0 20px 0 20px;
+}
+
+.othergames h3 {
+    margin: 0;
+    font-size: 28px;
+    color: #6f6 !important;
+    text-shadow: 0 0 1px #000;
+}
+
+.othergames h3.finished {
+    color: #fff !important;
+}

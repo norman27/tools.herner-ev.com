@@ -1,0 +1,19 @@
+<section class="table" data-background="{{ asset('img/bg.png') }}" data-fullscreen>
+    <div class="greenbg caption" id="caption">{{ caption | default('') }}</div>
+    <table style="font-size: {{ font | default('22') }}px">
+        <tbody>
+        {% for table in tables %}
+            <tr>
+                <td align="middle">{{ loop.index }}</td>
+                <td>
+                    <img data-src="{{ constant('SCHEMA') }}www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/cache/50x50/{{ table.club.logo }}" align="left" class="clublogo" style="width:25px;height:25px">
+                    <span class="clubname">{% if 'herne' in table.club.name | lower %}<b>{% endif %}{{ table.club.name }}{% if 'herne' in table.club.name | lower %}</b>{% endif %}</span>
+                </td>
+                <td>{{ table.gamesWon + table.gamesWonOvertime + table.gamesWonPenalty + table.gamesDraw + table.gamesLost + table.gamesLostOvertime + table.gamesLostPenalty }}</td>
+                <td>{{ table.goalsFor }}:{{ table.goalsAgainst }}</td>
+                <td>{{ table.points }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</section>

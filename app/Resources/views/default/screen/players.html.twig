@@ -1,0 +1,18 @@
+<section data-background="{{ asset('img/bg.png') }}">
+    <section data-autoslide="1000">
+        <img data-src="{{ constant('SCHEMA') }}www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/herne.png" width="400" height="400">
+    </section>
+
+    {% for player in players %}
+        {% if player.number is defined %}
+        <section id="js-player-{{ player.number }}{{ idsuffix|default('') }}" class="players" data-fullscreen data-transition="convex" {% if not loop.last %}data-autoslide="{{ timer | default('5') }}000"{% endif %}>
+            <img src="{{ constant('SCHEMA') }}www.herner-ev.com/{{ player.imageAlternative|default(player.image) }}" height="512">
+            <div class="greenbg bottom clearfix">
+                <div><img data-src="{{ constant('SCHEMA') }}www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/herne.png" height="80"></div>
+                <div><h1>{% if player.number > 0 and player.number < 100 %}#{{ player.number }}{% endif %}</h1></div>
+                <div><h2>{{ player.name }}</h2></div>
+            </div>
+        </section>
+        {% endif %}
+    {% endfor %}
+</section>

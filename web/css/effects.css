@@ -1,0 +1,61 @@
+.effect-gummihuhn {
+    z-index: 1000;
+    top: 150px;
+    position: absolute;
+}
+
+.effect-broken {
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.js-effect-darken {
+    display: none;
+    z-index: 1000;
+    background-color: rgba(0,0,0,0.5);
+    width: 896px;
+    height: 512px;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.js-effect-goal {
+    transition: top 2s;
+    box-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 40px #000;
+    z-index: 1000;
+    width: 600px;
+    height: 420px;
+    padding: 10px;
+    position: absolute;
+    top: 542px;
+    left: 138px;
+}
+
+.js-effect-goal h2,
+.js-effect-goal h3 {
+    text-align: center;
+}
+
+.js-effect-penalty {
+    transition: top 2s;
+    box-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 40px #000;
+    z-index: 1000;
+    width: 600px;
+    height: 420px;
+    padding: 10px;
+    position: absolute;
+    top: 542px;
+    left: 138px;
+}
+
+.js-effect-penalty h1 {
+    text-align: center;
+}
+
+.js-effect-snowflake {
+    z-index: 1000;
+    position: absolute;
+}

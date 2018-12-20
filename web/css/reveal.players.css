@@ -1,0 +1,23 @@
+.players h1 {
+    font-size: 80px;
+    line-height: 80px;
+}
+
+.players h2 {
+    margin-bottom: 0;
+    line-height: 48px;
+    font-size: 48px;
+}
+
+.players > div {
+    padding: 10px 0 0 0;
+}
+
+.players > div > div {
+    float: left;
+    width: 150px;
+}
+
+.players > div > div:last-child {
+    width: 575px;
+}
