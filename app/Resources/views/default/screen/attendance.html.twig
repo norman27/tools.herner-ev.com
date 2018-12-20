@@ -1,0 +1,11 @@
+<section class="attendance" data-background="{{ asset('img/bg.png') }}" data-fullscreen>
+    <div class="greenbg caption" id="caption">Die Zuschauerzahl wird präsentiert von</div>
+    {% if sponsor | length == 0 %}
+        <div class="whitebg">Hier könnte Ihre Werbung stehen:<br>
+            <a href="mailto:marketing@herner-ev.com">marketing@herner-ev.com</a></div>
+    {% else %}
+        <img data-src="{{ asset('media/' ~ sponsor) }}">
+    {% endif %}
+    <br><br>
+    <h1 id="attendance" class="shake shake-chunk shake-constant">{{ attendance }}</h1>
+</section>

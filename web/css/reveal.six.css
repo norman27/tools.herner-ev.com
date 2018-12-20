@@ -1,0 +1,30 @@
+.six .clearfix {
+    margin-bottom: 50px;
+}
+
+.six .player {
+    float: left;
+    width: 200px;
+    margin-left: 50px;
+}
+
+.six .player > div {
+    height: 20px;
+    font-size: 18px;
+    float: left;
+}
+
+.six .player > div > div {
+    padding: 0 5px;
+}
+
+.six .player > div.number {
+    height: 46px;
+    font-size: 32px;
+    padding: 0 5px;
+}
+
+.six .logo {
+    float: left;
+    margin-left: 98px;
+}

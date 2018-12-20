@@ -1,0 +1,22 @@
+.table table {
+    background-color: rgba(30,30,30,.8);
+    color: #CCC;
+    width: 550px
+}
+
+.table thead {
+    color: #999;
+}
+
+.table td {
+    border-bottom: 0 !important;
+}
+
+.table .clubname {
+    line-height: 25px;
+    display: block;
+}
+
+.table .clublogo {
+    padding-right: 5px;
+}
