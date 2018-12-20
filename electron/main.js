@@ -22,19 +22,20 @@ function createWindow () {
   }
 
   if (externalDisplay) {
-    windowConfig.x = externalDisplay.bounds.x;
-    windowConfig.y = externalDisplay.bounds.y;
+    windowConfig.x = externalDisplay.bounds.x
+    windowConfig.y = externalDisplay.bounds.y
   }
 
   mainWindow = new BrowserWindow(windowConfig)
   mainWindow.loadFile('index.html')
-  //mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   mainWindow.on('closed', function () {
     mainWindow = null
   })
 }
 
+app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required')
 app.on('ready', createWindow)
 
 app.on('window-all-closed', function () {
