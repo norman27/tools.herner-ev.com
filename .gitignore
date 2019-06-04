@@ -17,8 +17,9 @@
 /web/bundles/
 /web/media/
 /web/sounds/
-
-/.idea/
 /electron/dist
 /electron/node_modules
 /electron/*.tgz
+
+.idea/
+public/js
