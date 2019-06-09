@@ -2,13 +2,6 @@
 
 use Symfony\Component\HttpFoundation\Request;
 
-// being able to have a parallel local installation on videowall
-if (in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'], true)) {
-    define('SCHEMA', '/assets/');
-} else {
-    define('SCHEMA', 'https://');
-}
-
 require __DIR__.'/../vendor/autoload.php';
 if (PHP_VERSION_ID < 70000) {
     include_once __DIR__.'/../var/bootstrap.php.cache';

@@ -1,11 +1,11 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "hev/leinwand-herner-ev-com",
     "license": "MIT",
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
         "psr-4": {
-            "AppBundle\\": "src/AppBundle"
+            "": "src/"
         },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
@@ -19,6 +19,7 @@
         "doctrine/orm": "^2.5",
         "friendsofsymfony/jsrouting-bundle": "^1.6",
         "incenteev/composer-parameter-handler": "^2.0",
+        "jbroadway/urlify": "^1.1",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
         "symfony/cache": "^3.4",
@@ -26,12 +27,11 @@
         "symfony/polyfill-apcu": "^1.0",
         "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "^3.4.0",
-        "twig/twig": "^1.0||^2.0"
+        "twig/twig": "^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.5",
-        "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0"
+        "phpunit/phpunit": "^7.5",
+        "sensio/generator-bundle": "^3.0"
     },
     "scripts": {
         "symfony-scripts": [
@@ -48,9 +48,9 @@
         "post-update-cmd": [
             "@symfony-scripts"
         ],
-	"test": [
-	    "phpunit"
-	]
+	    "test": [
+	        "phpunit"
+	    ]
     },
     "config": {
         "sort-packages": true
@@ -59,7 +59,7 @@
         "symfony-app-dir": "app",
         "symfony-bin-dir": "bin",
         "symfony-var-dir": "var",
-        "symfony-web-dir": "web",
+        "symfony-web-dir": "public",
         "symfony-tests-dir": "tests",
         "symfony-assets-install": "relative",
         "incenteev-parameters": {

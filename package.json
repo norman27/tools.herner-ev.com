@@ -1,13 +1,14 @@
 {
-  "name": "my-awesome-react-project",
+  "name": "hev-leinwand-herner-ev-com",
   "version": "1.0.0",
   "scripts": {
-    "build": "webpack --config webpack.config.js --display-modules",
+    "build:dev": "webpack --config webpack.config.js --mode development --display-modules",
+    "build:dev-watch": "webpack --config webpack.config.js --mode development --watch --display-modules",
+    "build:prod": "webpack --config webpack.config.js --mode production --display-modules",
     "start:dev": "webpack-dev-server",
     "test": "jest",
-    "test:watch": "npm test -- --watch"
+    "electron:dist": "electron-builder --project electron"
   },
-  "main": "index.js",
   "dependencies": {
     "@types/jest": "^24.0.13",
     "@types/node": "^12.0.4",
@@ -21,6 +22,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "electron-builder": "^20.43.0",
     "jest": "^24.8.0",
     "ts-loader": "^6.0.2",
     "typescript": "^3.5.1",
@@ -29,9 +31,12 @@
     "webpack-dev-server": "^3.5.0"
   },
   "jest": {
-    "testMatch": ["**/src-js/**/*.test.js"]
+    "testMatch": [
+      "**/src-js/**/*.test.js"
+    ]
   },
   "keywords": [],
   "author": "Norman Malessa",
-  "description": ""
+  "description": "Herner EV web projects",
+  "license": "MIT License"
 }

@@ -3,13 +3,6 @@
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
 
-// being able to have a parallel local installation on videowall
-if (in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'], true)) {
-    define('SCHEMA', '/assets/');
-} else {
-    define('SCHEMA', 'https://');
-}
-
 // If you don't want to setup permissions the proper way, just uncomment the following PHP line
 // read https://symfony.com/doc/current/setup.html#checking-symfony-application-configuration-and-setup
 // for more information

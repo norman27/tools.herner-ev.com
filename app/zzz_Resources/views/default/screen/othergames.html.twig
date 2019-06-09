@@ -12,14 +12,14 @@
             {% if hometeam is not null and awayteam is not null %}
                 <tr>
                     <td>
-                        <img id="home_{{ i }}_logo" align="left" data-src="{{ constant('SCHEMA') }}www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/cache/50x50/{{ hometeam.logo }}" width="50" height="50">
+                        <img id="home_{{ i }}_logo" align="left" data-src="https://www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/cache/50x50/{{ hometeam.logo }}" width="50" height="50">
                         <span id="home_{{ i }}_name">{% if 'herne' in hometeam.name | lower %}<b>{% endif %}{{ hometeam.name }}{% if 'herne' in hometeam.name | lower %}</b>{% endif %}</span>
                     </td>
                     <td align="center">
                         <h3 {% if finished %}class="finished"{% endif %}><span id="home_{{ i }}_score">{{ homescore }}</span>:<span id="away_{{ i }}_score">{{ awayscore }}</span></h3>
                     </td>
                     <td align="right">
-                        <img id="away_{{ i }}_logo" align="right" data-src="{{ constant('SCHEMA') }}www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/cache/50x50/{{ awayteam.logo }}" width="50" height="50">
+                        <img id="away_{{ i }}_logo" align="right" data-src="https://www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/cache/50x50/{{ awayteam.logo }}" width="50" height="50">
                         <span id="away_{{ i }}_name">{% if 'herne' in awayteam.name | lower %}<b>{% endif %}{{ awayteam.name }}{% if 'herne' in awayteam.name | lower %}</b>{% endif %}</span>
                     </td>
                 </tr>

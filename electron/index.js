@@ -17,8 +17,7 @@ function createWindow () {
       y: 0,
       movable: false,
       resizeable: false,
-      frame: false,
-      icon: 'favicon.ico'
+      frame: false
   }
 
   if (externalDisplay) {

@@ -7,13 +7,13 @@
             <!-- loading screen representing id=0 -->
             <section data-background="{{ asset('img/kohle.jpg') }}">
                 <section data-fullscreen>
-                    <img data-src="{{ constant('SCHEMA') }}www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/herne.png" width="400" height="400">
+                    <img data-src="https://www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/herne.png" width="400" height="400">
                 </section>
 
                 <section id="js-goalscorer" class="players" data-fullscreen data-transition="convex">
-                    <img src="{{ constant('SCHEMA') }}www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/herne.png" height="512">
+                    <img src="https://www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/herne.png" height="512">
                     <div class="greenbg bottom clearfix">
-                        <div><img src="{{ constant('SCHEMA') }}www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/herne.png" height="80"></div>
+                        <div><img src="https://www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/herne.png" height="80"></div>
                         <div><h1>#</h1></div>
                         <div><h2>name</h2></div>
                     </div>
@@ -33,10 +33,6 @@
 
 {% block meta %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <![endif]-->
 {% endblock %}
 
 {% block stylesheets %}
@@ -56,7 +52,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script>const SCHEMA = '{{ constant('SCHEMA') }}';</script>
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     <script src="{{ asset('js/head.min.js') }}"></script>

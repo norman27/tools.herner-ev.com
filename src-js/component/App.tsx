@@ -25,7 +25,7 @@ export default class App extends React.Component<IProps, IState> {
         var state = this.defaultState;
 
         //@see https://reactjs.org/docs/faq-ajax.html
-        fetch("/api/v1/state.json")
+        fetch("/screen/api/v1/state.json") //@TODO how to use symfony routing?
             .then(res => res.json())
             .then(
                 (result) => {

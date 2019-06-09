@@ -29,7 +29,7 @@ class Player extends React.Component<IProps, IState> {
         if (this.props.src === "") {
             this.stop();
         } else if (this.props.src !== prevProp.src) {
-            this.play();
+            this.play(event); //@TODO fix event
         }
 
         if (this.props.volume !== prevProp.volume) {
@@ -39,16 +39,18 @@ class Player extends React.Component<IProps, IState> {
 
     componentDidMount() {
         if (!this.state.isPlaying) {
-            this.play();
+            this.play(event); //@TODO fix event
             this.setState({isPlaying: true});
         }
     }
 
-    handleAllowAutoplay() {
-        this.play();
+    handleAllowAutoplay = (event) => {
+        event.stopPropagation();
+        this.play(event);
     }
 
-    play() {
+    // @see https://stackoverflow.com/questions/33973648/react-this-is-undefined-inside-a-component-function
+    play = (event) => {
         var node = document.getElementById('audio') as HTMLAudioElement;
         node.pause();
         node.src = this.props.src;

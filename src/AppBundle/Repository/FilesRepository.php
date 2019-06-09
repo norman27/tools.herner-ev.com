@@ -4,12 +4,12 @@ namespace AppBundle\Repository;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use URLify;
 
 class FilesRepository {
     const EXTENSION_JPG = 'jpg';
     const EXTENSION_JPEG = 'jpeg';
     const EXTENSION_PNG = 'png';
-    const EXTENSION_MP4 = 'mp4';
 
     /** @var string */
     private $rootDir = '';
@@ -23,7 +23,7 @@ class FilesRepository {
      * @return string
      */
     public function simplifyFilename($origName) {
-        return strtolower(str_replace(' ', '_', $origName));
+        return URLify::filter($origName, 60, '', true);
     }
 
     /**
@@ -68,33 +68,10 @@ class FilesRepository {
     }
 
     /**
-     * @return SplFileInfo[]
-     */
-    public function getAllVideos() {
-        $foundFiles = $this->getAllFiles();
-
-        foreach ($foundFiles as $name => $file) {
-            if (!$this->isVideo($file)) {
-                unset($foundFiles[$name]);
-            }
-        }
-
-        return $foundFiles;
-    }
-
-    /**
      * @param SplFileInfo $file
      * @return boolean
      */
     private function isImage(SplFileInfo $file) {
         return in_array(strtolower($file->getExtension()), [self::EXTENSION_JPG, self::EXTENSION_JPEG, self::EXTENSION_PNG]);
-    }
-
-    /**
-     * @param SplFileInfo $file
-     * @return boolean
-     */
-    private function isVideo(SplFileInfo $file) {
-        return in_array(strtolower($file->getExtension()), [self::EXTENSION_MP4]);
     }
 }

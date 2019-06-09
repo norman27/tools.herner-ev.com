@@ -10,11 +10,11 @@
                     {{ game.gametime }} Uhr
                 </td>
                 <td>
-                    <img align="left" data-src="{{ constant('SCHEMA') }}www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/cache/50x50/{{ game.hometeam.logo }}">
+                    <img align="left" data-src="https://www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/cache/50x50/{{ game.hometeam.logo }}">
                     {% if 'herne' in game.hometeam.name | lower %}<b>{% endif %}{{ game.hometeam.name }}{% if 'herne' in game.hometeam.name | lower %}</b>{% endif %}
                 </td>
                 <td align="right">
-                    <img align="right" data-src="{{ constant('SCHEMA') }}www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/cache/50x50/{{ game.awayteam.logo }}">
+                    <img align="right" data-src="https://www.herner-ev.com/components/com_hockeymanager_clubs/assets/img/cache/50x50/{{ game.awayteam.logo }}">
                     {% if 'herne' in game.awayteam.name | lower %}<b>{% endif %}{{ game.awayteam.name }}{% if 'herne' in game.awayteam.name | lower %}</b>{% endif %}
                 </td>
             </tr>
