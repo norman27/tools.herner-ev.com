@@ -12,7 +12,7 @@ interface IState {
 export default class App extends React.Component<IProps, IState> {
     private defaultState: IState = {
         audio: {
-            src: "/audio/silence.mp3",
+            track: "/audio/silence.mp3",
             volume: 80,
             lastChange: 0
         },
@@ -48,7 +48,7 @@ export default class App extends React.Component<IProps, IState> {
     }
 
     render() {
-        //@TODO first render these values are not yet fetched from API
+        //@TODO on first render these values are not yet fetched from API
         return (
             <div>
                 <Player {...this.state.audio} timestamp={this.state.timestamp} />

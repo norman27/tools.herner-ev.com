@@ -18,15 +18,44 @@ class AudioRepository
     }
 
     /**
-     * @param string $src
-     * @param int $volume
+     * Adjusts the track and changes the lastChange property
+     *
+     * @param string $track
+     * @return Audio
      */
-    public function set($src, $volume)
+    public function setTrack($track)
     {
-        $audio = new Audio($src, $volume);
         $item = $this->cache->getItem(self::CACHE_KEY);
+
+        /** @var Audio $audio */
+        $audio = $item->get();
+        $audio->track = $track;
+        $audio->lastChange = time();
+
         $item->set($audio);
         $this->cache->save($item);
+
+        return $audio;
+    }
+
+    /**
+     * Only adjusts the volume without changing the lastChange timestamp of audio settings
+     *
+     * @param int $volume
+     * @return Audio
+     */
+    public function setVolume($volume)
+    {
+        $item = $this->cache->getItem(self::CACHE_KEY);
+
+        /** @var Audio $audio */
+        $audio = $item->get();
+        $audio->volume = $volume;
+
+        $item->set($audio);
+        $this->cache->save($item);
+
+        return $audio;
     }
 
     /**

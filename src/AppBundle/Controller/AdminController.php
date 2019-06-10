@@ -19,32 +19,45 @@ use AppBundle\Repository\Screen\AudioRepository;
 class AdminController extends Controller
 {
     /**
-     * @Route("/admin/audio/{src}/{volume}", name="admin.audio", defaults={"src"=0,"volume"=80})
+     * @Route("/admin/audio/track/{track}", name="admin.audio.track", defaults={"track"=0})
      *
-     * @param Request $request
-     * @param string $src
+     * @param string $track
+     * @return JsonResponse
+     */
+    public function audioTrackAction($track)
+    {
+        //@TODO remove this stub
+
+        if ($track == '0') {
+            $track = '';
+        } elseif ($track == '1') {
+            $track = '/audio/silence.mp3';
+        } else {
+            $track = '/audio/the-unforgiven.mp3';
+        }
+
+        $repository = new AudioRepository($this->get('cache.app'));
+
+        return new JsonResponse([
+            $repository->setTrack($track)
+        ]);
+    }
+
+    /**
+     * @Route("/admin/audio/volume/{volume}", name="admin.audio.volume", defaults={"volume"=80})
+     *
      * @param string $volume
      * @return JsonResponse
      */
-    public function audioAction(Request $request, $src, $volume)
+    public function audioVolumeAction($volume)
     {
         //@TODO remove this stub
 
         $volume = (int) $volume;
-        if ($src == '0') {
-            $src = '';
-        } elseif ($src == '1') {
-            $src = '/audio/silence.mp3';
-        } else {
-            $src = '/audio/the-unforgiven.mp3';
-        }
-
         $repository = new AudioRepository($this->get('cache.app'));
-        $repository->set($src, $volume);
 
         return new JsonResponse([
-            'src' => $src,
-            'volume' => $volume
+            $repository->setVolume($volume)
         ]);
     }
 

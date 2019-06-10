@@ -1,15 +1,13 @@
 import * as React from "react";
 
-// @TODO with the current logic it is not possible to run the same track again without selecting silence in between
-
 interface AudioSettings {
-    src: string;
+    track: string;
     volume: number;
     lastChange: number;
 }
 
 interface IProps {
-    src: string,
+    track: string,
     volume: number,
     lastChange: number,
     timestamp: number
@@ -22,7 +20,7 @@ interface IState {
 
 const getTrack = (props: IProps): string => {
     // play silence if selected track is too old
-    return (props.lastChange + 10 > props.timestamp) ? props.src : '/audio/silence.mp3';
+    return (props.lastChange + 10 > props.timestamp) ? props.track : '/audio/silence.mp3';
 }
 
 class Player extends React.Component<IProps, IState> {
@@ -34,11 +32,18 @@ class Player extends React.Component<IProps, IState> {
         }
     }
 
+    componentDidMount() {
+        if (!this.state.isPlaying) {
+            this.play(event, getTrack(this.props));
+            this.setState({isPlaying: true});
+        }
+    }
+
     componentDidUpdate(prevProp: IProps) {
-        if (this.props.src === "") {
+        if (this.props.track === "") {
             this.stop();
-        } else if (this.props.src !== prevProp.src) {
-            this.play(event, getTrack(this.props)); //@TODO fix event
+        } else if (this.props.track !== prevProp.track || this.props.lastChange !== prevProp.lastChange) {
+            this.play(event, getTrack(this.props));
         }
 
         if (this.props.volume !== prevProp.volume) {
@@ -46,22 +51,12 @@ class Player extends React.Component<IProps, IState> {
         }
     }
 
-    componentDidMount() {
-        if (!this.state.isPlaying) {
-            this.play(event, getTrack(this.props)); //@TODO fix event
-            this.setState({isPlaying: true});
-        }
-    }
-
-    handleAllowAutoplay = (event) => {
+    handleAllowAutoplay = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
-        // play silence if selected track is too old
-        (this.props.lastChange + 10 > this.props.timestamp) ? this.props.src : '/audio/silence.mp3'
         this.play(event, getTrack(this.props));
     }
 
-    // @see https://stackoverflow.com/questions/33973648/react-this-is-undefined-inside-a-component-function
-    play = (event, track) => {
+    play = (event: any, track: string) => {
         var node = document.getElementById('audio') as HTMLAudioElement;
         node.pause();
         node.src = track;
@@ -71,9 +66,7 @@ class Player extends React.Component<IProps, IState> {
         if (promise !== undefined) {
             promise.then(_ => {
                 this.setState({isAutoplayAllowed: true});
-            }).catch(error => {
-                this.setState({isAutoplayAllowed: false});
-            });
+            }).catch(error => {});
         }
     }
 
@@ -82,12 +75,9 @@ class Player extends React.Component<IProps, IState> {
         node.pause();
     }
 
-    /**
-     * @param number volume Between 0-100
-     */
     setVolume(volume: number) {
         var node = document.getElementById('audio') as HTMLAudioElement;
-        node.volume = this.props.volume / 100;
+        node.volume = volume / 100;
     }
 
     render() {
