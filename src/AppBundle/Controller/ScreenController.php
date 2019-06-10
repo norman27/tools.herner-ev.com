@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use AppBundle\Repository\Screen\AudioRepository;
 
 class ScreenController extends Controller
 {
@@ -21,12 +22,11 @@ class ScreenController extends Controller
      */
     public function stateAction()
     {
+        $audioRepository = new AudioRepository($this->get('cache.app'));
+
         return new JsonResponse([
-            'audio' => [
-                //'src' => '/audio/the-unforgiven.mp3',
-                'src' => '/audio/silence.mp3',
-                'volume' => 80
-            ]
+            'audio' => $audioRepository->get(),
+            'timestamp' => time()
         ]);
     }
 }

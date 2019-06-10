@@ -6,7 +6,8 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use URLify;
 
-class FilesRepository {
+class FilesRepository
+{
     const EXTENSION_JPG = 'jpg';
     const EXTENSION_JPEG = 'jpeg';
     const EXTENSION_PNG = 'png';
@@ -14,7 +15,8 @@ class FilesRepository {
     /** @var string */
     private $rootDir = '';
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->rootDir = realpath(__DIR__ . '/../../../web/media') . '/';
     }
 
@@ -22,28 +24,32 @@ class FilesRepository {
      * @param string $origName
      * @return string
      */
-    public function simplifyFilename($origName) {
+    public function simplifyFilename($origName)
+    {
         return URLify::filter($origName, 60, '', true);
     }
 
     /**
      * @param string $filename
      */
-    public function delete($filename) {
+    public function delete($filename)
+    {
         unlink($this->rootDir . $filename);
     }
 
     /**
      * @return SplFileInfo[]
      */
-    public function getAllFiles() {
+    public function getAllFiles()
+    {
         $finder = new Finder();
 
         /** @var SplFileInfo[] $foundFiles */
         $foundFiles = $finder->files()->in(realpath($this->rootDir));
 
         $files = [];
-        foreach ($foundFiles as $file) {
+        foreach ($foundFiles as $file)
+        {
             $files[$file->getFilename()] = $file;
         }
 
@@ -55,11 +61,14 @@ class FilesRepository {
     /**
      * @return SplFileInfo[]
      */
-    public function getAllImages() {
+    public function getAllImages()
+    {
         $foundFiles = $this->getAllFiles();
 
-        foreach ($foundFiles as $name => $file) {
-            if (!$this->isImage($file)) {
+        foreach ($foundFiles as $name => $file)
+        {
+            if (!$this->isImage($file))
+            {
                 unset($foundFiles[$name]);
             }
         }
@@ -71,7 +80,11 @@ class FilesRepository {
      * @param SplFileInfo $file
      * @return boolean
      */
-    private function isImage(SplFileInfo $file) {
-        return in_array(strtolower($file->getExtension()), [self::EXTENSION_JPG, self::EXTENSION_JPEG, self::EXTENSION_PNG]);
+    private function isImage(SplFileInfo $file)
+    {
+        return in_array(
+            strtolower($file->getExtension()),
+            [self::EXTENSION_JPG, self::EXTENSION_JPEG, self::EXTENSION_PNG]
+        );
     }
 }

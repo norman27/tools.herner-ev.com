@@ -11,9 +11,13 @@ Afterwards you need to compile the frontend code:
 ```bash
 npm run build:prod
 ```
+To run the server for development use:
+```bash
+php bin/console server:run
+```
 
 ## Electron
-The following command will output an electron app to ./electron/dist
+The following command will output an electron app to `./electron/dist`
 ```bash
 npm run electron:dist
 ```

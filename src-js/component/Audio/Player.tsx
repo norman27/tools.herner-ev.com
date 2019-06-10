@@ -1,18 +1,28 @@
 import * as React from "react";
 
+// @TODO with the current logic it is not possible to run the same track again without selecting silence in between
+
 interface AudioSettings {
     src: string;
     volume: number;
+    lastChange: number;
 }
 
 interface IProps {
     src: string,
-    volume: number
+    volume: number,
+    lastChange: number,
+    timestamp: number
 }
 
-interface IState extends AudioSettings {
+interface IState {
     isPlaying: boolean,
     isAutoplayAllowed: boolean
+}
+
+const getTrack = (props: IProps): string => {
+    // play silence if selected track is too old
+    return (props.lastChange + 10 > props.timestamp) ? props.src : '/audio/silence.mp3';
 }
 
 class Player extends React.Component<IProps, IState> {
@@ -20,8 +30,7 @@ class Player extends React.Component<IProps, IState> {
         super(props);
         this.state = {
             isPlaying: false,
-            isAutoplayAllowed: false,
-            ...props
+            isAutoplayAllowed: false
         }
     }
 
@@ -29,7 +38,7 @@ class Player extends React.Component<IProps, IState> {
         if (this.props.src === "") {
             this.stop();
         } else if (this.props.src !== prevProp.src) {
-            this.play(event); //@TODO fix event
+            this.play(event, getTrack(this.props)); //@TODO fix event
         }
 
         if (this.props.volume !== prevProp.volume) {
@@ -39,21 +48,23 @@ class Player extends React.Component<IProps, IState> {
 
     componentDidMount() {
         if (!this.state.isPlaying) {
-            this.play(event); //@TODO fix event
+            this.play(event, getTrack(this.props)); //@TODO fix event
             this.setState({isPlaying: true});
         }
     }
 
     handleAllowAutoplay = (event) => {
         event.stopPropagation();
-        this.play(event);
+        // play silence if selected track is too old
+        (this.props.lastChange + 10 > this.props.timestamp) ? this.props.src : '/audio/silence.mp3'
+        this.play(event, getTrack(this.props));
     }
 
     // @see https://stackoverflow.com/questions/33973648/react-this-is-undefined-inside-a-component-function
-    play = (event) => {
+    play = (event, track) => {
         var node = document.getElementById('audio') as HTMLAudioElement;
         node.pause();
-        node.src = this.props.src;
+        node.src = track;
         var promise = node.play() as Promise<void>;
 
         // @see https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#example_scenarios

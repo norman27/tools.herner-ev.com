@@ -14,8 +14,40 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use AppBundle\Repository\ScreenRepository;
 use AppBundle\Repository\ForceReloadRepository;
 use AppBundle\Repository\EffectsRepository;
+use AppBundle\Repository\Screen\AudioRepository;
 
-class AdminController extends Controller {
+class AdminController extends Controller
+{
+    /**
+     * @Route("/admin/audio/{src}/{volume}", name="admin.audio", defaults={"src"=0,"volume"=80})
+     *
+     * @param Request $request
+     * @param string $src
+     * @param string $volume
+     * @return JsonResponse
+     */
+    public function audioAction(Request $request, $src, $volume)
+    {
+        //@TODO remove this stub
+
+        $volume = (int) $volume;
+        if ($src == '0') {
+            $src = '';
+        } elseif ($src == '1') {
+            $src = '/audio/silence.mp3';
+        } else {
+            $src = '/audio/the-unforgiven.mp3';
+        }
+
+        $repository = new AudioRepository($this->get('cache.app'));
+        $repository->set($src, $volume);
+
+        return new JsonResponse([
+            'src' => $src,
+            'volume' => $volume
+        ]);
+    }
+
     /**
      * @Route("/admin{trailingSlash}", name="admin", requirements={"trailingSlash" = "[/]{0,1}"}, defaults={"trailingSlash" = "/"})
      *

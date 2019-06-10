@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class FilesRepositoryTest extends TestCase
 {
-
     /** @var FilesRepository */
     private $filesRepository;
 

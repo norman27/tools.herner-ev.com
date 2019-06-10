@@ -4,16 +4,19 @@ import { Player, AudioSettings } from "./Audio/Player";
 interface IProps {}
 
 interface IState {
-    audio: AudioSettings
+    audio: AudioSettings,
+    timestamp: number,
     error?: string
 }
 
 export default class App extends React.Component<IProps, IState> {
     private defaultState: IState = {
         audio: {
-            src: "",
-            volume: 80
-        }
+            src: "/audio/silence.mp3",
+            volume: 80,
+            lastChange: 0
+        },
+        timestamp: 0
     }
 
     constructor(props: IProps) {
@@ -45,9 +48,10 @@ export default class App extends React.Component<IProps, IState> {
     }
 
     render() {
+        //@TODO first render these values are not yet fetched from API
         return (
             <div>
-                <Player {...this.state.audio} />
+                <Player {...this.state.audio} timestamp={this.state.timestamp} />
             </div>
         )
     }
