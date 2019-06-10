@@ -21,10 +21,5 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'public/js')
-    },
-    devServer: {
-        contentBase: path.join(__dirname, 'public'),
-        port: 9000,
-        writeToDisk: true
     }
 }
