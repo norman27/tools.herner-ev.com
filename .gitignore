@@ -3,7 +3,6 @@ app/config/parameters.yml
 electron/dist/
 node_modules/
 public/bundles/
-public/js/
 var/
 !var/cache/.gitkeep
 !var/logs/.gitkeep

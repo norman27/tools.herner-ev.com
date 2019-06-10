@@ -1,0 +1,156 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body_content %}
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Active</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for screen in screens %}
+            <tr>
+                <td>
+                    <a href="{{ path('admin.edit', { id: screen.id }) }}" title="edit">
+                        <i class="fa fa-wrench"></i> {{ screen.name }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('admin.activate', { id: screen.id }) }}" class="js-activate" title="activate">
+                        <button type="button" class="btn btn-{% if screen.active %}default{% else %}success{% endif %}"><i class="fa fa-desktop"></i></button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block body %}
+    <header class="app-header navbar">
+        <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            <img class="navbar-brand-full" src="/img/brand/hev-admin-logo.svg" width="89" height="25" alt="HEV Admin">
+            <img class="navbar-brand-minimized" src="/img/brand/hev-admin-logo-minimal.svg" width="30" height="30" alt="HEV Admin">
+        </a>
+        <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img class="img-avatar" src="img/avatars/6.jpg" alt="{{ app.user.username }}">
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <div class="dropdown-header text-center">
+                        <strong>Account</strong>
+                    </div>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-lock"></i> Logout</a>
+                </div>
+            </li>
+        </ul>
+        <button class="navbar-toggler aside-menu-toggler d-md-down-none" type="button" data-toggle="aside-menu-lg-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <button class="navbar-toggler aside-menu-toggler d-lg-none" type="button" data-toggle="aside-menu-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </header>
+    <div class="app-body">
+        <div class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav">
+                    <li class="nav-title">Applikationen</li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="nav-icon far fa-window-maximize"></i> Leinwand</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="screens.html">
+                                    <i class="nav-icon far fa-window-restore"></i> Screens</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="effekte.html">
+                                    <i class="nav-icon far fa-save"></i> Dateien</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="effekte.html">
+                                    <i class="nav-icon far fa-snowflake"></i> Effekte</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="audio.html">
+                                    <i class="nav-icon far fa-play-circle"></i> Audio</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="nav-icon far fa-grin-stars"></i> Nachwuchs</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="tables/tables.html">
+                                    <i class="nav-icon far fa-calendar-plus"></i> Trainingspläne</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-title">Extras</li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="nav-icon far fa-hourglass"></i> Cronjobs</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.html" target="_top">
+                                    <i class="nav-icon far fa-chart-bar"></i> Report</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+        </div>
+        <main class="main">
+            <div class="container-fluid">
+                <div id="ui-view"></div>
+            </div>
+        </main>
+        <aside class="aside-menu">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#calendar" role="tab">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="calendar" role="tabpanel">
+                    <div class="list-group list-group-accent">
+                        <div class="list-group-item list-group-item-accent-secondary bg-light text-center font-weight-bold text-muted text-uppercase small">Nächste Spiele</div>
+                        <div class="list-group-item list-group-item-accent-warning list-group-item-divider">
+                            <div><strong>Herne</strong> Tilburg</div>
+                            <small class="text-muted mr-3">
+                                <i class="far fa-calendar"></i>&nbsp; 04.12.2011</small>
+                            <small class="text-muted">
+                                <i class="far fa-map"></i>&nbsp; Herne</small>
+                        </div>
+                        <div class="list-group-item list-group-item-accent-info">
+                            <div>Duisburg <strong>Herne</strong></div>
+                            <small class="text-muted mr-3">
+                                <i class="far fa-calendar"></i>&nbsp; 05.12.2012</small>
+                            <small class="text-muted">
+                                <i class="far fa-map"></i>&nbsp; Duisburg</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+{% endblock %}

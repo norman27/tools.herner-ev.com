@@ -66,7 +66,8 @@ class AdminController extends Controller
      *
      * @return Response
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         return $this->render('admin/index.html.twig', [
             'screens' => $this->getScreenRepository()->getAllForActiveCategory(),
             'categoryName' => $this->getScreenRepository()->getCategoryTranslated()

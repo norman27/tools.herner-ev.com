@@ -10,10 +10,16 @@
     "electron:dist": "electron-builder --project electron"
   },
   "dependencies": {
+    "@coreui/coreui": "^2.1.11",
+    "@fortawesome/fontawesome-free": "^5.9.0",
     "@types/jest": "^24.0.13",
     "@types/node": "^12.0.4",
     "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "perfect-scrollbar": "^1.4.0",
+    "popper.js": "^1.15.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
@@ -22,8 +28,14 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "css-loader": "^2.1.1",
     "electron-builder": "^20.43.0",
+    "file-loader": "^4.0.0",
     "jest": "^24.8.0",
+    "mini-css-extract-plugin": "^0.7.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
     "ts-loader": "^6.0.2",
     "typescript": "^3.5.1",
     "webpack": "^4.32.2",
@@ -37,5 +49,5 @@
   "keywords": [],
   "author": "Norman Malessa",
   "description": "Herner EV web projects",
-  "license": "MIT License"
+  "license": "MIT"
 }

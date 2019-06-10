@@ -1,13 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block meta %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-{% endblock %}
-
 {% block javascripts %}
-    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
+    {{ parent() }}
+    <script src="{{ asset('bundles/webpack/js/screen.js') }}"></script>
 {% endblock %}
 
 {% block body %}
