@@ -6,24 +6,24 @@
 # The above will handle all files NOT found below
 #
 # These files are text and should be normalized (Convert crlf => lf)
-*.css           eol=lf
-*.scss          eol=lf
-*.htm           eol=lf
-*.html          eol=lf
-*.twig          eol=lf
-*.js            eol=lf
-*.json          eol=lf
-*.jsx           eol=lf
-*.ts            eol=lf
-*.tsx           eol=lf
-*.php           eol=lf
-*.sh            eol=lf
-*.lock          eol=lf
-*.dist          eol=lf
-*.md            eol=lf
-*.svg           eol=lf
-*.xml           eol=lf
-*.yml           eol=lf
+*.css           text
+*.scss          text
+*.htm           text
+*.html          text
+*.twig          text
+*.js            text
+*.json          text
+*.jsx           text
+*.ts            text
+*.tsx           text
+*.php           text
+*.sh            text
+*.lock          text
+*.dist          text
+*.md            text
+*.svg           text
+*.xml           text
+*.yml           text
 
 # These files are binary and should be left untouched
 # (binary is a macro for -text -diff)
