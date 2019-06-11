@@ -16,6 +16,11 @@ To run the server for development use:
 php bin/console server:run
 ```
 
+### Frontend Routing
+We use the FOSJsRoutingBundle for frontend routing. This means all routes being used need to be exposed.
+Whenever exposed routes change you need to execute `composer dump-js-routes` to regenerate the config
+used by the frontend router.
+
 ## Electron
 The following command will output an electron app to `./electron/dist`
 ```bash
