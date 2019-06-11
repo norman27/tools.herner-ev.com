@@ -12,7 +12,7 @@ class FilesRepositoryTest extends TestCase
 
     public function setUp()
     {
-        $this->filesRepository = new FilesRepository();
+        $this->filesRepository = new FilesRepository('');
     }
 
     public function test_simplifyFilename_removesSpaces()
