@@ -1,0 +1,41 @@
+{% extends 'admin/base.html.twig' %}
+{% import 'admin/macro/bytesToSize.html.twig' as bytes %}
+
+{% block body_content %}
+    <div class="card">
+        <div class="card-header">
+            <i class="far fa-list-alt"></i> Dateien
+        </div>
+        <div class="card-body">
+            <table class="table table-responsive-sm table-striped">
+                <thead>
+                    <tr>
+                        <th>Datei</th>
+                        <th>Größe</th>
+                        <th>Aktion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in files %}
+                    <tr>
+                        <td>{{ file.getFileName }}</td>
+                        <td>{{ bytes.bytesToSize(file.getSize) }}</td>
+                        <td><a href="{{ path('admin.files.delete', {filename: file.getFileName}) }}" class="btn btn-default"><i class="fa fa-trash"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <i class="far fa-save"></i> Upload
+        </div>
+        <div class="card-body">
+            {{ form_start(form) }}
+                {{ form_rest(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

@@ -3,77 +3,142 @@
 {% set title = 'HEV Admin' %}
 {% set bodyClasses = 'app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show' %}
 
-{% block body %}
-    <div id="wrapper">
-        <nav class="navbar navbar-default navbar-static-top" role="navigation">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">Leinwand Admin - {{ categoryName|default('') }}</a>
-            </div>
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="{{ path('admin') }}"><i class="fa fa-desktop fa-fw"></i> Screens</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin.effects') }}" class="js-modal-link"><i class="fa fa-bomb fa-fw"></i> Effekte</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin.files') }}"><i class="fa fa-files-o fa-fw"></i> Dateien</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin.category') }}"><i class="fa fa-exchange fa-fw"></i> Kategorie</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin.reload') }}"><i class="fa fa-refresh fa-fw"></i> Reload</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('homepage') }}" target="_blank"><i class="fa fa-external-link fa-fw"></i> Leinwand</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    {% block body_content %}{% endblock %}
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-{% endblock %}
-
 {% block stylesheets %}
     <link href="{{ asset('bundles/webpack/css/admin.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
     <script src="{{ asset('bundles/webpack/js/admin.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <header class="app-header navbar">
+        <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            <img class="navbar-brand-full" src="/img/brand/hev-admin-logo.svg" width="89" height="25" alt="HEV Admin">
+            <img class="navbar-brand-minimized" src="/img/brand/hev-admin-logo-minimal.svg" width="30" height="30" alt="HEV Admin">
+        </a>
+        <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img class="img-avatar" src="img/avatars/6.jpg" alt="{{ app.user.username }}">
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <div class="dropdown-header text-center">
+                        <strong>Account</strong>
+                    </div>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-lock"></i> Logout</a>
+                </div>
+            </li>
+        </ul>
+        <button class="navbar-toggler aside-menu-toggler d-md-down-none" type="button" data-toggle="aside-menu-lg-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <button class="navbar-toggler aside-menu-toggler d-lg-none" type="button" data-toggle="aside-menu-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </header>
+    <div class="app-body">
+        <div class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav">
+                    <li class="nav-title">Applikationen</li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="nav-icon far fa-window-maximize"></i> Leinwand</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="screens.html">
+                                    <i class="nav-icon far fa-window-restore"></i> Screens</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('admin.files') }}">
+                                    <i class="nav-icon far fa-save"></i> Dateien</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="effekte.html">
+                                    <i class="nav-icon far fa-snowflake"></i> Effekte</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('admin.audio') }}">
+                                    <i class="nav-icon far fa-play-circle"></i> Audio</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="nav-icon far fa-grin-stars"></i> Nachwuchs</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="tables/tables.html">
+                                    <i class="nav-icon far fa-calendar-plus"></i> Trainingspläne</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li class="nav-title">Extras</li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="nav-icon far fa-hourglass"></i> Cronjobs</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.html" target="_top">
+                                    <i class="nav-icon far fa-chart-bar"></i> Report</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+        </div>
+        <main class="main">
+            <div class="container-fluid">
+                <div id="ui-view">
+                    <div>
+                        <div class="animated fadeIn">
+                            {% block body_content %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <aside class="aside-menu">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#calendar" role="tab">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="calendar" role="tabpanel">
+                    <div class="list-group list-group-accent">
+                        <div class="list-group-item list-group-item-accent-secondary bg-light text-center font-weight-bold text-muted text-uppercase small">Nächste Spiele</div>
+                        <div class="list-group-item list-group-item-accent-warning list-group-item-divider">
+                            <div><strong>Herne</strong> Tilburg</div>
+                            <small class="text-muted mr-3">
+                                <i class="far fa-calendar"></i>&nbsp; 04.12.2011</small>
+                            <small class="text-muted">
+                                <i class="far fa-map"></i>&nbsp; Herne</small>
+                        </div>
+                        <div class="list-group-item list-group-item-accent-info">
+                            <div>Duisburg <strong>Herne</strong></div>
+                            <small class="text-muted mr-3">
+                                <i class="far fa-calendar"></i>&nbsp; 05.12.2012</small>
+                            <small class="text-muted">
+                                <i class="far fa-map"></i>&nbsp; Duisburg</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
 {% endblock %}

@@ -33,7 +33,7 @@ module.exports = {
     entry: {
         'js/screen': './src-js/screen/index.tsx',
         'js/admin': './src-js/admin/index.tsx',
-        'css/admin': './src-js/admin/style.scss'
+        'css/admin': './src-js/admin/scss/admin.scss'
     },
     module: {
         rules: [

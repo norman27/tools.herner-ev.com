@@ -1,0 +1,45 @@
+@import 'variables';
+
+// @see https://fontawesome.com/icons?d=gallery&s=regular&m=free
+@import '../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '../../../node_modules/@fortawesome/fontawesome-free/scss/regular.scss';
+
+// @see https://coreui.io/demo/#main.html
+@import '../../../node_modules/@coreui/coreui/scss/coreui.scss';
+
+// additions
+.sidebar {
+  .nav-link {
+    .far {
+      color: $gray-600;
+    }
+  }
+}
+.app-body {
+  .main {
+    margin-top: 1.5rem;
+  }
+}
+
+// overwrites
+.sidebar {
+  .nav-dropdown-items {
+    padding-left: 1.5rem;
+  }
+}
+.sidebar-minimized {
+  .sidebar {
+    .nav-dropdown-items {
+      padding-left: 0;
+    }
+  }
+}
+.aside-menu {
+  .nav-tabs {
+    .nav-link {
+      &.active {
+        color: $color-brand-green;
+      }
+    }
+  }
+}

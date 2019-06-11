@@ -19,6 +19,74 @@ use AppBundle\Repository\Screen\AudioRepository;
 class AdminController extends Controller
 {
     /**
+     * @Route("/admin{trailingSlash}", name="admin.index", requirements={"trailingSlash" = "[/]{0,1}"}, defaults={"trailingSlash" = "/"})
+     *
+     * @return Response
+     */
+    public function indexAction()
+    {
+        return $this->render('admin/index.html.twig');
+    }
+
+    /**
+     * @Route("/admin/files", name="admin.files")
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function filesAction(Request $request)
+    {
+        $files = new FilesRepository($this->getParameter('media_directory'));
+        $form = $this->createForm(FileUploadForm::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            /** @var UploadedFile $file */
+            $file = $form->getData()['file'];
+
+            $file->move(
+                $this->getParameter('media_directory'),
+                $files->simplifyFilename($file->getClientOriginalName())
+            );
+
+            return $this->redirect($this->generateUrl('admin.files'));
+        }
+
+        return $this->render('admin/files.html.twig', [
+            'files' => $files->getAllFiles(),
+            'form' => $form->createView(),
+            'categoryName' => $this->getScreenRepository()->getCategoryTranslated()
+        ]);
+    }
+
+    /**
+     * @Route("/admin/files/delete/{filename}", name="admin.files.delete", requirements={"filename" = "[a-z0-9._-]+"})
+     *
+     * @param string $filename
+     * @return Response
+     */
+    public function filesDeleteAction($filename)
+    {
+        $files = new FilesRepository($this->getParameter('media_directory'));
+        $files->delete($filename);
+
+        return $this->redirect($this->generateUrl('admin.files'));
+    }
+
+    /**
+     * @Route("/admin/audio", name="admin.audio")
+     *
+     * @return Response
+     */
+    public function audioAction()
+    {
+        return $this->render('admin/audio.html.twig');
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
      * @Route("/admin/audio/track/{track}", name="admin.audio.track", defaults={"track"=0})
      *
      * @param string $track
@@ -58,19 +126,6 @@ class AdminController extends Controller
 
         return new JsonResponse([
             $repository->setVolume($volume)
-        ]);
-    }
-
-    /**
-     * @Route("/admin{trailingSlash}", name="admin", requirements={"trailingSlash" = "[/]{0,1}"}, defaults={"trailingSlash" = "/"})
-     *
-     * @return Response
-     */
-    public function indexAction()
-    {
-        return $this->render('admin/index.html.twig', [
-            'screens' => $this->getScreenRepository()->getAllForActiveCategory(),
-            'categoryName' => $this->getScreenRepository()->getCategoryTranslated()
         ]);
     }
 
@@ -160,49 +215,6 @@ class AdminController extends Controller
             'form' => $form->createView(),
             'categoryName' => $this->getScreenRepository()->getCategoryTranslated()
         ]);
-    }
-
-    /**
-     * @Route("/admin/files", name="admin.files")
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function filesAction(Request $request) {
-        $files = new FilesRepository();
-        $form = $this->createForm(FileUploadForm::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $file */
-            $file = $form->getData()['file'];
-
-            $file->move(
-                $this->getParameter('media_directory'),
-                $files->simplifyFilename($file->getClientOriginalName())
-            );
-
-            return $this->redirect($this->generateUrl('admin.files'));
-        }
-
-        return $this->render('admin/files.html.twig', [
-            'files' => $files->getAllFiles(),
-            'form' => $form->createView(),
-            'categoryName' => $this->getScreenRepository()->getCategoryTranslated()
-        ]);
-    }
-
-    /**
-     * @Route("/admin/files/delete/{filename}", name="admin.files.delete", requirements={"filename" = "[a-z0-9._-]+"})
-     *
-     * @param string $filename
-     * @return Response
-     */
-    public function filesDeleteAction($filename) {
-        $files = new FilesRepository();
-        $files->delete($filename);
-
-        return $this->redirect($this->generateUrl('admin.files'));
     }
 
     /**

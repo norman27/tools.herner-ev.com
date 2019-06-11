@@ -15,9 +15,12 @@ class FilesRepository
     /** @var string */
     private $rootDir = '';
 
-    public function __construct()
+    /**
+     * @param string $directory
+     */
+    public function __construct($directory)
     {
-        $this->rootDir = realpath(__DIR__ . '/../../../web/media') . '/';
+        $this->rootDir = realpath($directory);
     }
 
     /**
