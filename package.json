@@ -5,6 +5,7 @@
     "build:dev": "webpack --config webpack.config.js --mode development --display-modules",
     "build:dev-watch": "webpack --config webpack.config.js --mode development --watch --display-modules",
     "build:prod": "webpack --config webpack.config.js --mode production --display-modules",
+    "fos-routes": "php bin/console fos:js-routing:dump --format=json --target=var/fos_js_routes.json",
     "start:dev": "webpack-dev-server",
     "test": "jest",
     "electron:dist": "electron-builder --project electron"
@@ -43,7 +44,7 @@
   },
   "jest": {
     "testMatch": [
-      "**/src-js/**/*.test.js"
+      "**/src-js/**/*.test.(js|tsx)"
     ]
   },
   "keywords": [],

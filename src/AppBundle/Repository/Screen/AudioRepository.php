@@ -63,11 +63,16 @@ class AudioRepository
      */
     public function get()
     {
-        $audio = $this->cache->getItem(self::CACHE_KEY);
-        if ($audio->isHit())
+        $item = $this->cache->getItem(self::CACHE_KEY);
+        if ($item->isHit())
         {
-            return $audio->get();
+            return $item->get();
         }
-        return new Audio();
+
+        // if no cache present, create one
+        $audio = new Audio();
+        $item->set($audio);
+        $this->cache->save($item);
+        return $audio;
     }
 }

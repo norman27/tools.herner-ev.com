@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Player, AudioSettings } from "./Audio/Player";
+import { Routing } from "../../routing/Routing";
 
 interface IProps {}
 
@@ -28,7 +29,7 @@ export default class App extends React.Component<IProps, IState> {
         var state = this.defaultState;
 
         //@see https://reactjs.org/docs/faq-ajax.html
-        fetch("/screen/api/v1/state.json") //@TODO how to use symfony routing?
+        fetch(Routing.generate("screen_api"))
             .then(res => res.json())
             .then(
                 (result) => {
