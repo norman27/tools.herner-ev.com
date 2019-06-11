@@ -1,6 +1,6 @@
-import * as React from "react";
-import { Player, AudioSettings } from "./Audio/Player";
-import { Routing } from "../../routing/Routing";
+import * as React from 'react';
+import { Player, AudioSettings } from './Audio/Player';
+import { Routing } from '../../routing/Routing';
 
 interface IProps {}
 
@@ -13,7 +13,7 @@ interface IState {
 export default class App extends React.Component<IProps, IState> {
     private defaultState: IState = {
         audio: {
-            track: "/audio/silence.mp3",
+            track: '/audio/silence.mp3',
             volume: 80,
             lastChange: 0
         },
@@ -29,7 +29,7 @@ export default class App extends React.Component<IProps, IState> {
         var state = this.defaultState;
 
         //@see https://reactjs.org/docs/faq-ajax.html
-        fetch(Routing.generate("screen_api"))
+        fetch(Routing.generate('screen_api'))
             .then(res => res.json())
             .then(
                 (result) => {

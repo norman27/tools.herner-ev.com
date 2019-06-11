@@ -6,8 +6,7 @@
         "target": "es6",
         "jsx": "react",
         "allowJs": true,
-        // required for FOSJsRoutingBundle
-        "esModuleInterop": true
+        "esModuleInterop": true // required for FOSJsRoutingBundle
     },
     "include": [
         "./src-js/**/*"

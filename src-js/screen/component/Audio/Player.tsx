@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 interface AudioSettings {
     track: string;
@@ -40,7 +40,7 @@ class Player extends React.Component<IProps, IState> {
     }
 
     componentDidUpdate(prevProp: IProps) {
-        if (this.props.track === "") {
+        if (this.props.track === '') {
             this.stop();
         } else if (this.props.track !== prevProp.track || this.props.lastChange !== prevProp.lastChange) {
             this.play(event, getTrack(this.props));
