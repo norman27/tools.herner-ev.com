@@ -24,6 +24,7 @@ export default class Settings extends React.Component<IProps, IState> {
     }
 
     handleChangeVolume = (event: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({volume: event.target.value});
         this.postVolume(event.target.value);
     }
 
@@ -32,8 +33,9 @@ export default class Settings extends React.Component<IProps, IState> {
             this.setState({volume: "0", formerVolume: this.state.volume});
             this.postVolume("0");
         } else {
-            this.setState({volume: this.state.formerVolume});
-            this.postVolume(this.state.formerVolume);
+            let formerVolume = (this.state.formerVolume === "0") ? '80' : this.state.formerVolume;
+            this.setState({volume: formerVolume});
+            this.postVolume(formerVolume);
         }
     }
 
@@ -45,8 +47,7 @@ export default class Settings extends React.Component<IProps, IState> {
             }
         }).then(response => {
             if (response.status >= 200 && response.status < 300) {
-                return response;
-                window.location.reload(); //@TODO just show notification
+                return response; //@TODO just show notification
             } else {
                 //@TODO just show notification
                 console.log('Somthing happened wrong');
@@ -61,7 +62,7 @@ export default class Settings extends React.Component<IProps, IState> {
             <div className="row">
                 <div className="form-group col-sm-6">
                     <label htmlFor="volume-settings">Volume</label>
-                    <input type="range" min="0" max="100" step="10" defaultValue={this.state.volume}
+                    <input type="range" min="0" max="100" step="10" value={this.state.volume}
                             id="volume-settings"
                             name="volume-settings"
                             className="form-control"
