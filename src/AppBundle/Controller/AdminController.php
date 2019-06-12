@@ -81,7 +81,25 @@ class AdminController extends Controller
      */
     public function audioAction()
     {
-        return $this->render('admin/audio.html.twig');
+        $audioRepository = new AudioRepository($this->get('cache.app'));
+        return $this->render('admin/audio.html.twig', [
+            'volume' => $audioRepository->get()->volume
+        ]);
+    }
+
+    /**
+     * @Route("/admin/audio/volume/{volume}", name="admin.audio.volume", options={"expose"=true}, defaults={"volume"=80}, methods={"POST"})
+     *
+     * @param string $volume
+     * @return JsonResponse
+     */
+    public function audioVolumeAction($volume)
+    {
+        $repository = new AudioRepository($this->get('cache.app'));
+
+        return new JsonResponse([
+            $repository->setVolume((int) $volume)
+        ]);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -108,24 +126,6 @@ class AdminController extends Controller
 
         return new JsonResponse([
             $repository->setTrack($track)
-        ]);
-    }
-
-    /**
-     * @Route("/admin/audio/volume/{volume}", name="admin.audio.volume", defaults={"volume"=80})
-     *
-     * @param string $volume
-     * @return JsonResponse
-     */
-    public function audioVolumeAction($volume)
-    {
-        //@TODO remove this stub
-
-        $volume = (int) $volume;
-        $repository = new AudioRepository($this->get('cache.app'));
-
-        return new JsonResponse([
-            $repository->setVolume($volume)
         ]);
     }
 

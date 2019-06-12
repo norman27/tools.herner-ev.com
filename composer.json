@@ -52,7 +52,7 @@
 	        "phpunit"
 	    ],
         "dump-js-routes": [
-            "php bin/console fos:js-routing:dump --format=json --target=src-js/fos_js_routes.json"
+            "php bin/console fos:js-routing:dump --format=json --target=src-js/routing/fos_js_routes.json"
         ]
     },
     "config": {

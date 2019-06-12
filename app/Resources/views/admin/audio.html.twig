@@ -2,20 +2,22 @@
 {% import 'admin/macro/bytesToSize.html.twig' as bytes %}
 
 {% block body_content %}
-    <div class="card">
-        <div class="card-header">
-            <i class="far fa-sun"></i> Einstellungen
-        </div>
-        <div class="card-body">
-            Volume 0 10 20 30 40 50 60 70 80 90 100
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-header">
-            <i class="far fa-play-circle"></i> Musik
-        </div>
-        <div class="card-body">
+    <div class="col">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active show" data-toggle="tab" href="#tab-music" role="tab">
+                    <i class="far fa-play-circle"></i> Musik</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tab-audio-settings" role="tab">
+                    <i class="fas fa-cog"></i> Einstellungen</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active show" id="tab-music" role="tabpanel">
+                TODO
+            </div>
+            <div class="tab-pane" id="tab-audio-settings" role="tabpanel" id="" data-volume="{{ volume }}">{# React #}</div>
         </div>
     </div>
 {% endblock %}

@@ -3,4 +3,12 @@ require('../../node_modules/popper.js/dist/umd/popper.min.js');
 require('../../node_modules/bootstrap/dist/js/bootstrap.min.js');
 require('../../node_modules/@coreui/coreui/dist/js/coreui.min.js');
 
-console.log('admin');
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import Settings from './component/audio/Settings';
+
+const audioSettings = document.getElementById('tab-audio-settings');
+if(audioSettings) {
+    const volume = audioSettings.dataset.volume;
+    ReactDOM.render(<Settings volume={volume} />, audioSettings);
+}
