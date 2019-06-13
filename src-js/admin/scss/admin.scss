@@ -44,3 +44,8 @@
     }
   }
 }
+@media (max-width: map-get($grid-breakpoints, 'sm')) {
+  .main .container-fluid {
+    padding: 0 15px;
+  }
+}

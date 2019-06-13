@@ -1,11 +1,11 @@
 <?php
 
-namespace AppBundle\Repository\Screen;
+namespace AppBundle\Audio;
 
 use Symfony\Component\Cache\Adapter\AdapterInterface;
-use AppBundle\Entity\Screen\Audio;
+use falahati\PHPMP3\MpegAudio;
 
-class AudioRepository
+final class AudioRepository
 {
     const CACHE_KEY = 'screen.audio.repository';
 
@@ -18,16 +18,36 @@ class AudioRepository
     }
 
     /**
+     * @return AudioTrack[]
+     */
+    public function getAvailableTracks()
+    {
+        // @TODO fill with real data
+        // @TODO cache metadata
+        $files = ['hockey-organ-1.mp3', 'silence.mp3'];
+        $tracks = [];
+        foreach ($files as $file) {
+            $tracks[$file] = new AudioTrack(
+                $file,
+                MpegAudio::fromFile(realpath(__DIR__ . '/../../../public/audio/' . $file))->getTotalDuration()
+            );
+        }
+        ksort($tracks);
+
+        return array_values($tracks);
+    }
+
+    /**
      * Adjusts the track and changes the lastChange property
      *
      * @param string $track
-     * @return Audio
+     * @return AudioSettings
      */
     public function setTrack($track)
     {
         $item = $this->cache->getItem(self::CACHE_KEY);
 
-        /** @var Audio $audio */
+        /** @var AudioSettings $audio */
         $audio = $item->get();
         $audio->track = $track;
         $audio->lastChange = time();
@@ -42,13 +62,13 @@ class AudioRepository
      * Only adjusts the volume without changing the lastChange timestamp of audio settings
      *
      * @param int $volume
-     * @return Audio
+     * @return AudioSettings
      */
     public function setVolume($volume)
     {
         $item = $this->cache->getItem(self::CACHE_KEY);
 
-        /** @var Audio $audio */
+        /** @var AudioSettings $audio */
         $audio = $item->get();
         $audio->volume = $volume;
 
@@ -59,7 +79,7 @@ class AudioRepository
     }
 
     /**
-     * @return Audio
+     * @return AudioSettings
      */
     public function get()
     {
@@ -70,7 +90,7 @@ class AudioRepository
         }
 
         // if no cache present, create one
-        $audio = new Audio();
+        $audio = new AudioSettings();
         $item->set($audio);
         $this->cache->save($item);
         return $audio;

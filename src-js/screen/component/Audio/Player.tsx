@@ -20,7 +20,7 @@ interface IState {
 
 const getTrack = (props: IProps): string => {
     // play silence if selected track is too old
-    return (props.lastChange + 10 > props.timestamp) ? props.track : '/audio/silence.mp3';
+    return (props.lastChange + 10 > props.timestamp) ? props.track : 'silence.mp3';
 }
 
 class Player extends React.Component<IProps, IState> {
@@ -59,7 +59,7 @@ class Player extends React.Component<IProps, IState> {
     play = (event: any, track: string) => {
         var node = document.getElementById('audio') as HTMLAudioElement;
         node.pause();
-        node.src = track;
+        node.src = '/audio/' + track;
         var promise = node.play() as Promise<void>;
 
         // @see https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#example_scenarios

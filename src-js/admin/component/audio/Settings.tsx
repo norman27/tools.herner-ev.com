@@ -55,6 +55,8 @@ export default class Settings extends React.Component<IProps, IState> {
         }).catch(err => err);
     }
 
+    //@TODO implement stop button
+
     render() {
         const iconMuted = 'far fa-lg fa-bell' + ((this.isMuted()) ? '-slash' : '');
 

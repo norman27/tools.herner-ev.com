@@ -13,7 +13,7 @@ interface IState {
 export default class App extends React.Component<IProps, IState> {
     private defaultState: IState = {
         audio: {
-            track: '/audio/silence.mp3',
+            track: 'silence.mp3',
             volume: 80,
             lastChange: 0
         },
@@ -30,12 +30,13 @@ export default class App extends React.Component<IProps, IState> {
 
         //@see https://reactjs.org/docs/faq-ajax.html
         fetch(Routing.generate('screen_api'))
-            .then(res => res.json())
+            .then(response => response.json())
             .then(
                 (result) => {
                     this.setState(result);
                 },
                 (error) => {
+                    // @TODO do we need this?
                     this.setState({...this.defaultState, error});
                 }
             );

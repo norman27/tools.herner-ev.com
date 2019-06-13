@@ -1,11 +1,11 @@
 <?php
 
-namespace AppBundle\Entity\Screen;
+namespace AppBundle\Audio;
 
-class Audio
+final class AudioSettings
 {
     /**
-     * @var string The url of the track to play
+     * @var string The filename of the running track
      */
     public $track;
 

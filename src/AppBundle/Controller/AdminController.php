@@ -14,13 +14,12 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use AppBundle\Repository\ScreenRepository;
 use AppBundle\Repository\ForceReloadRepository;
 use AppBundle\Repository\EffectsRepository;
-use AppBundle\Repository\Screen\AudioRepository;
+use AppBundle\Audio\AudioRepository;
 
 class AdminController extends Controller
 {
     /**
      * @Route("/admin{trailingSlash}", name="admin.index", requirements={"trailingSlash" = "[/]{0,1}"}, defaults={"trailingSlash" = "/"})
-     *
      * @return Response
      */
     public function indexAction()
@@ -29,8 +28,62 @@ class AdminController extends Controller
     }
 
     /**
+     * @Route("/admin/audio", name="admin.audio")
+     * @return Response
+     */
+    public function audioAction()
+    {
+        $audioRepository = new AudioRepository($this->get('cache.app'));
+        $audio = $audioRepository->get();
+        return $this->render('admin/audio.html.twig', [
+            'volume' => $audio->volume,
+            'track' => $audio->track
+        ]);
+    }
+
+    /**
+     * @Route("/admin/audio/tracks", name="admin.get.audio.tracks", options={"expose"=true})
+     * @return Response
+     */
+    public function getAudioTracks() {
+        $audioRepository = new AudioRepository($this->get('cache.app'));
+        return new JsonResponse([
+            'tracks' => $audioRepository->getAvailableTracks()
+        ]);
+    }
+
+    /**
+     * @Route("/admin/audio/volume/{volume}", name="admin.audio.volume", options={"expose"=true}, defaults={"volume"=80}, methods={"POST"})
+     * @param string $volume
+     * @return JsonResponse
+     */
+    public function postAudioVolumeAction($volume)
+    {
+        $repository = new AudioRepository($this->get('cache.app'));
+        return new JsonResponse([
+            $repository->setVolume((int) $volume)
+        ]);
+    }
+
+    /**
+     * @Route("/admin/audio/track/{track}", name="admin.audio.track", options={"expose"=true}, defaults={"track"=""}, methods={"POST"})
+     * @param string $track
+     * @return JsonResponse
+     */
+    public function postAudioTrackAction($track)
+    {
+        $repository = new AudioRepository($this->get('cache.app'));
+        return new JsonResponse([
+            $repository->setTrack($track)
+        ]);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    /**
      * @Route("/admin/files", name="admin.files")
-     *
      * @param Request $request
      * @return Response
      */
@@ -62,7 +115,6 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/files/delete/{filename}", name="admin.files.delete", requirements={"filename" = "[a-z0-9._-]+"})
-     *
      * @param string $filename
      * @return Response
      */
@@ -75,63 +127,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/audio", name="admin.audio")
-     *
-     * @return Response
-     */
-    public function audioAction()
-    {
-        $audioRepository = new AudioRepository($this->get('cache.app'));
-        return $this->render('admin/audio.html.twig', [
-            'volume' => $audioRepository->get()->volume
-        ]);
-    }
-
-    /**
-     * @Route("/admin/audio/volume/{volume}", name="admin.audio.volume", options={"expose"=true}, defaults={"volume"=80}, methods={"POST"})
-     *
-     * @param string $volume
-     * @return JsonResponse
-     */
-    public function audioVolumeAction($volume)
-    {
-        $repository = new AudioRepository($this->get('cache.app'));
-
-        return new JsonResponse([
-            $repository->setVolume((int) $volume)
-        ]);
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * @Route("/admin/audio/track/{track}", name="admin.audio.track", defaults={"track"=0})
-     *
-     * @param string $track
-     * @return JsonResponse
-     */
-    public function audioTrackAction($track)
-    {
-        //@TODO remove this stub
-
-        if ($track == '0') {
-            $track = '';
-        } elseif ($track == '1') {
-            $track = '/audio/silence.mp3';
-        } else {
-            $track = '/audio/the-unforgiven.mp3';
-        }
-
-        $repository = new AudioRepository($this->get('cache.app'));
-
-        return new JsonResponse([
-            $repository->setTrack($track)
-        ]);
-    }
-
-    /**
      * @Route("/admin/effects/{effect}", name="admin.effects", defaults={"effect"=null})
-     *
      * @param string $effect
      * @return Response
      */
@@ -145,7 +141,6 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/category/{category}", name="admin.category", defaults={"category"=null})
-     *
      * @param string $category
      * @return Response
      */
@@ -169,7 +164,6 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/reload/{force}", name="admin.reload", defaults={"force"=null})
-     *
      * @param string $force
      * @return Response
      */
@@ -184,7 +178,6 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/edit/{id}", name="admin.edit")
-     *
      * @param Request $request
      * @param mixed $id
      * @return Response
@@ -219,7 +212,6 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/activate/{id}", name="admin.activate")
-     *
      * @param int $id
      * @return JsonResponse
      */
