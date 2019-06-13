@@ -6,7 +6,7 @@ require('../../node_modules/@coreui/coreui/dist/js/coreui.min.js');
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Settings from './component/audio/Settings';
-import Tracks from './component/audio/Tracks';
+import TrackTable from './component/audio/TrackTable';
 
 //@TODO handle this better (sourrounding app?)
 const audioSettings = document.getElementById('tab-audio-settings');
@@ -18,5 +18,5 @@ if(audioSettings) {
 const audioTrack = document.getElementById('tab-audio-track');
 if(audioTrack) {
     const track = audioTrack.dataset.volume;
-    ReactDOM.render(<Tracks />, audioTrack);
+    ReactDOM.render(<TrackTable />, audioTrack);
 }
