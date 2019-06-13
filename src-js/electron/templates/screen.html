@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html style="padding:0; margin:0; border:0;">
+<head>
+    <meta charset="UTF-8">
+    <title>Leinwand</title>
+    <script>
+        const ipc = require('electron').ipcRenderer;
+        ipc.on('force-reload', (event, message) => {
+            document.getElementById('screen-frame').src = 'https://leinwand.herner-ev.com';
+        })
+    </script>
+</head>
+<body style="padding:0; margin:0; border:0; line-height: 0;">
+    <iframe id="screen-frame" name="iframe" src="https://leinwand.herner-ev.com" width="896px" height="512" scrolling="no" frameborder="0" class="wrapper"></iframe>
+</body>
+</html>

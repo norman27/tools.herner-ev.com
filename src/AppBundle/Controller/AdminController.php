@@ -12,7 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Form\Admin\FileUploadForm;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use AppBundle\Repository\ScreenRepository;
-use AppBundle\Repository\ForceReloadRepository;
 use AppBundle\Repository\EffectsRepository;
 use AppBundle\Audio\AudioRepository;
 
@@ -148,31 +147,12 @@ class AdminController extends Controller
         $repository = $this->getScreenRepository();
 
         if ($category !== null) {
-            $oldCategory = $repository->getCategory();
             $repository->setCategory((int) $category);
-
-            if ($oldCategory != $category) {
-                $this->getForceReloadRepository()->setForceReload(true);
-            }
         }
 
         return $this->render('admin/category.html.twig', [
             'category' => $repository->getCategory(),
             'categoryName' => $repository->getCategoryTranslated()
-        ]);
-    }
-
-    /**
-     * @Route("/admin/reload/{force}", name="admin.reload", defaults={"force"=null})
-     * @param string $force
-     * @return Response
-     */
-    public function reloadAction($force) {
-        if ($force == 1) {
-            $this->getForceReloadRepository()->setForceReload(true);
-        }
-        return $this->render('admin/reload.html.twig', [
-            'categoryName' => $this->getScreenRepository()->getCategoryTranslated()
         ]);
     }
 
@@ -236,13 +216,6 @@ class AdminController extends Controller
      */
     private function getScreenRepository() {
         return new ScreenRepository($this->getDoctrine());
-    }
-
-    /**
-     * @return ForceReloadRepository
-     */
-    private function getForceReloadRepository() {
-        return new ForceReloadRepository();
     }
 
     /**

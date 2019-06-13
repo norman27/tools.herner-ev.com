@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use AppBundle\Repository\ScreenRepository;
-use AppBundle\Repository\ForceReloadRepository;
 
 class DefaultController extends Controller {
     /**
@@ -39,7 +38,6 @@ class DefaultController extends Controller {
                 'attendance' => 0
             ],
             'activeScreen' => 0,
-            'forceReload' => 0,
             'lastChange' => 0,
             'effect' => [
                 0 => '',
@@ -49,11 +47,6 @@ class DefaultController extends Controller {
             'livegame' => [],
             'othergames' => []
         ];
-
-        if ($this->getForceReloadRepository()->isForceReload()) { //@TODO might be done with default getter instead of if
-            $refreshData['forceReload'] = 1;
-            $this->getForceReloadRepository()->setForceReload(false); //@TODO provide clear method
-        }
 
         $effects = $this->getEffectsRepository();
         if ($effects->hasEffect()) {
@@ -106,13 +99,6 @@ class DefaultController extends Controller {
      */
     private function getScreenRepository() {
         return new ScreenRepository($this->getDoctrine());
-    }
-
-    /**
-     * @return ForceReloadRepository
-     */
-    private function getForceReloadRepository() {
-        return new ForceReloadRepository();
     }
 
     /**

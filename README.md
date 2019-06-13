@@ -22,6 +22,10 @@ Whenever exposed routes change you need to execute `composer dump-js-routes` to 
 used by the frontend router.
 
 ## Electron
+For development testing simply run:
+```bash
+npm run electron:start
+```
 The following command will output an electron app to `./electron/dist`
 ```bash
 npm run electron:dist

@@ -8,7 +8,8 @@
     "fos-routes": "php bin/console fos:js-routing:dump --format=json --target=var/fos_js_routes.json",
     "start:dev": "webpack-dev-server",
     "test": "jest",
-    "electron:dist": "electron-builder --project electron"
+    "electron:start": "cd src-js/electron && cross-env ENV=development electron .",
+    "electron:dist": "electron-builder --project src-js/electron"
   },
   "dependencies": {
     "@coreui/coreui": "^2.1.11",
@@ -29,7 +30,9 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
+    "electron": "^5.0.3",
     "electron-builder": "^20.43.0",
     "file-loader": "^4.0.0",
     "jest": "^24.8.0",
