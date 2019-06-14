@@ -5,10 +5,10 @@ const notifications = (state = [], action) => {
         case 'ADD_NOTIFICATION':
             switch(action.style) {
                 case 'success':
-                    NotificationManager.success(action.text);
+                    NotificationManager.success(action.text, null, 2000);
                     break;
                 case 'error':
-                    NotificationManager.error(action.text);
+                    NotificationManager.error(action.text, null, 2000);
                     break;
             }
             return [
