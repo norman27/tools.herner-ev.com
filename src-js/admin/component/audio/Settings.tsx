@@ -58,7 +58,7 @@ export default class Settings extends React.Component<IProps, IState> {
     //@TODO implement stop button
 
     render() {
-        const iconMuted = 'far fa-lg fa-bell' + ((this.isMuted()) ? '-slash' : '');
+        const iconMuted = 'fas fa-lg fa-fw fa-volume-' + ((this.isMuted()) ? 'mute' : 'up');
 
         return (
             <div className="row">
@@ -75,7 +75,7 @@ export default class Settings extends React.Component<IProps, IState> {
                     <label>Aktionen</label>
                     <div className="controls">
                         <div className="input-group">
-                            <button className="btn btn-light" type="button" onClick={this.handleMuteToggle}>
+                            <button className="btn btn-light mr-1" type="button" onClick={this.handleMuteToggle}>
                                 <i className={ iconMuted } />
                             </button>
                             <button className="btn btn-light" type="button"><i className="far fa-stop-circle fa-lg" /></button>
