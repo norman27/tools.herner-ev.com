@@ -1,5 +1,6 @@
 const electron = require('electron');
 const { app, BrowserWindow } = require('electron');
+const path = require('path');
 const ipc = electron.ipcMain;
 
 let screenWindow;
@@ -20,13 +21,15 @@ function createScreenWindow () {
 
     let windowConfig = {
         width: 896,
-        height: 515,
+        height: 512,
         useContentSize: true,
         x: 0,
         y: 0,
         movable: false,
         resizeable: false,
         frame: false,
+        backgroundColor: '#000000',
+        icon: path.join(__dirname, 'icons/png/64x64.png'),
         webPreferences: {
             nodeIntegration: true
         }
@@ -69,6 +72,7 @@ function createAdminWindow () {
         movable: true,
         resizeable: true,
         frame: true,
+        icon: path.join(__dirname, 'icons/png/64x64.png'),
         webPreferences: {
             nodeIntegration: true
         }
