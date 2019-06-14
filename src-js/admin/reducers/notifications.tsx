@@ -1,7 +1,16 @@
+import { NotificationManager } from 'react-notifications';
+
 const notifications = (state = [], action) => {
     switch (action.type) {
         case 'ADD_NOTIFICATION':
-            console.log('received ADD_NOTIFICATION: ' + action.text + ', ' + action.style);
+            switch(action.style) {
+                case 'success':
+                    NotificationManager.success(action.text);
+                    break;
+                case 'error':
+                    NotificationManager.error(action.text);
+                    break;
+            }
             return [
                 ...state,
                 {
