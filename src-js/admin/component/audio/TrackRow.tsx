@@ -31,7 +31,7 @@ export default class TrackRow extends React.Component<IProps> {
                 <td>
                     <button className="btn btn-light" type="button"
                         onClick={(event: React.MouseEvent<HTMLButtonElement>) => this.handleClickTrack(event, this.props.track)}>
-                            <i className="far fa-play-circle" /><span className="d-none d-sm-block"> Abspielen</span>
+                            <i className="far fa-play-circle" />
                     </button>
                 </td>
             </tr>
