@@ -2,7 +2,9 @@ import * as React from 'react';
 import { Routing } from '../../../routing/Routing';
 import TrackRow from './TrackRow';
 
-interface IProps {}
+interface IProps {
+    dispatch: (Notification) => void
+}
 
 interface IState {
     tracks: Track[]
@@ -38,7 +40,7 @@ export default class TrackTable extends React.Component<IProps, IState> {
                 </thead>
                 <tbody>
                     {this.state.tracks.map((value: Track, index) => {
-                        return <TrackRow {...value} />
+                        return <TrackRow dispatch={this.props.dispatch} {...value} key={index} />
                     })}
                 </tbody>
             </table>

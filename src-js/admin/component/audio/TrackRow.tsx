@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Routing } from '../../../routing/Routing';
 
 interface IProps extends Track {
+    dispatch: (Notification) => void,
     track: string,
     duration: number
 }
@@ -15,10 +16,9 @@ export default class TrackRow extends React.Component<IProps> {
             }
         }).then(response => {
             if (response.status >= 200 && response.status < 300) {
-                return response; //@TODO just show notification
+                this.props.dispatch({type: 'ADD_NOTIFICATION', text: 'Musik gestartet', style: 'success'});
             } else {
-                //@TODO just show notification
-                console.log('Somthing happened wrong');
+                this.props.dispatch({type: 'ADD_NOTIFICATION', text: 'Fehler beim Abspielen', style: 'error'});
             }
         }).catch(err => err);
     }

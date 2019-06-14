@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Routing } from '../../../routing/Routing';
 
 interface IProps {
+    dispatch: (Notification) => void,
     volume: string
 }
 
@@ -47,10 +48,9 @@ export default class Settings extends React.Component<IProps, IState> {
             }
         }).then(response => {
             if (response.status >= 200 && response.status < 300) {
-                return response; //@TODO just show notification
+                this.props.dispatch({type: 'ADD_NOTIFICATION', text: 'Einstellungen gespeichert', style: 'success'});
             } else {
-                //@TODO just show notification
-                console.log('Somthing happened wrong');
+                this.props.dispatch({type: 'ADD_NOTIFICATION', text: 'Fehler beim Speichern', style: 'error'});
             }
         }).catch(err => err);
     }
