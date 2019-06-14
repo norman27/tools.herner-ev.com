@@ -21,7 +21,7 @@ function createScreenWindow () {
 
     let windowConfig = {
         width: 896,
-        height: 512,
+        height: 515,
         useContentSize: true,
         x: 0,
         y: 0,
@@ -29,7 +29,7 @@ function createScreenWindow () {
         resizeable: false,
         frame: false,
         backgroundColor: '#000000',
-        icon: path.join(__dirname, 'icons/png/64x64.png'),
+        icon: path.join(__dirname, 'icons/64x64.png'),
         webPreferences: {
             nodeIntegration: true
         }
@@ -72,7 +72,7 @@ function createAdminWindow () {
         movable: true,
         resizeable: true,
         frame: true,
-        icon: path.join(__dirname, 'icons/png/64x64.png'),
+        icon: path.join(__dirname, 'icons/64x64.png'),
         webPreferences: {
             nodeIntegration: true
         }
