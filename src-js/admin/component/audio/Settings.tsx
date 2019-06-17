@@ -40,7 +40,24 @@ export default class Settings extends React.Component<IProps, IState> {
         }
     }
 
+    handleClickStop = (event: React.MouseEvent<HTMLButtonElement>) => {
+        // @TODO API communication is a retourning pattern
+        fetch(Routing.generate('admin.audio.track', {track: ''}), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (response.status >= 200 && response.status < 300) {
+                this.props.dispatch({type: 'ADD_NOTIFICATION', text: 'Musik angehalten', style: 'success'});
+            } else {
+                this.props.dispatch({type: 'ADD_NOTIFICATION', text: 'Fehler beim Anhalten', style: 'error'});
+            }
+        }).catch(err => err);
+    }
+
     postVolume(volume: string) {
+        // @TODO API communication is a retourning pattern
         fetch(Routing.generate('admin.audio.volume', {volume: volume}), {
             method: 'POST',
             headers: {
@@ -54,8 +71,6 @@ export default class Settings extends React.Component<IProps, IState> {
             }
         }).catch(err => err);
     }
-
-    //@TODO implement stop button
 
     render() {
         const iconMuted = 'fas fa-lg fa-fw fa-volume-' + ((this.isMuted()) ? 'mute' : 'up');
@@ -78,7 +93,9 @@ export default class Settings extends React.Component<IProps, IState> {
                             <button className="btn btn-light mr-1" type="button" onClick={this.handleMuteToggle}>
                                 <i className={ iconMuted } />
                             </button>
-                            <button className="btn btn-light" type="button"><i className="far fa-stop-circle fa-lg" /></button>
+                            <button className="btn btn-light" type="button" onClick={this.handleClickStop}>
+                                <i className="far fa-stop-circle fa-lg" />
+                            </button>
                         </div>
                     </div>
                 </div>

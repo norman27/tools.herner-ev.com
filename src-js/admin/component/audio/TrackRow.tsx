@@ -9,6 +9,7 @@ interface IProps extends Track {
 
 export default class TrackRow extends React.Component<IProps> {
     handleClickTrack = (event: React.MouseEvent<HTMLButtonElement>, track: string) => {
+        // @TODO API communication is a retourning pattern
         fetch(Routing.generate('admin.audio.track', {track: track}), {
             method: 'POST',
             headers: {
