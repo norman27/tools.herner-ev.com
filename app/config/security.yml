@@ -31,7 +31,7 @@ security:
             # @see https://symfony.com/doc/current/security.html#logging-out
             logout:
                 path:   /logout
-                target: /login
+                target: /admin
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
