@@ -63,13 +63,10 @@ function createAdminWindow () {
 
     let windowConfig = {
         width: 1200,
-        height: 900,
+        height: 860,
         useContentSize: true,
         x: 20,
         y: 20,
-        movable: true,
-        resizeable: true,
-        frame: true,
         icon: path.join(__dirname, 'icons/64x64.png'),
         webPreferences: {
             nodeIntegration: true
