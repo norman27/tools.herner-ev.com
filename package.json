@@ -8,8 +8,8 @@
     "fos-routes": "php bin/console fos:js-routing:dump --format=json --target=var/fos_js_routes.json",
     "start:dev": "webpack-dev-server",
     "test": "jest",
-    "electron:start": "cd src-js/electron && cross-env ENV=development electron .",
-    "electron:dist": "electron-builder --project src-js/electron"
+    "electron:start": "cd src-js/electron && cross-env NODE_ENV=development URL=http://127.0.0.1:8000 electron .",
+    "electron:dist": "cross-env URL=https://leinwand.herner-ev.com electron-builder --project src-js/electron"
   },
   "dependencies": {
     "@coreui/coreui": "^2.1.11",

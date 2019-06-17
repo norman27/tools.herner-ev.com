@@ -6,8 +6,6 @@ const ipc = electron.ipcMain;
 let screenWindow;
 let adminWindow;
 
-// @TODO on dev load 127.0.0.1
-
 ipc.on('admin-trigger-force-reload', function (event, arg) {
     screenWindow.webContents.send('force-reload', true);
 });
@@ -43,7 +41,7 @@ function createScreenWindow () {
     screenWindow = new BrowserWindow(windowConfig);
     screenWindow.loadFile('templates/screen.html');
 
-    if (process.env.ENV === 'development') {
+    if (process.env.NODE_ENV === 'development') {
         screenWindow.webContents.openDevTools();
     }
 
@@ -64,8 +62,8 @@ function createAdminWindow () {
     })
 
     let windowConfig = {
-        width: 900,
-        height: 600,
+        width: 1200,
+        height: 900,
         useContentSize: true,
         x: 20,
         y: 20,
@@ -86,7 +84,7 @@ function createAdminWindow () {
     adminWindow = new BrowserWindow(windowConfig);
     adminWindow.loadFile('templates/admin.html');
 
-    if (process.env.ENV === 'development') {
+    if (process.env.NODE_ENV === 'development') {
         adminWindow.webContents.openDevTools();
     }
 
