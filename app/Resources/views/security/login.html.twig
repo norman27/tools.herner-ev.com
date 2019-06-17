@@ -10,12 +10,17 @@
 {% block body %}
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <div class="card-group">
                     <div class="card p-4">
                         <div class="card-body">
                             <h1><img src="{{ asset('img/brand/hev-admin-logo.svg') }}" /></h1>
                             <p class="text-muted">Bitte loggen Sie sich ein</p>
+                            {% if error %}
+                                <p class="text-white bg-danger p-2">
+                                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                                </p>
+                            {% endif %}
                             <form action="{{ path('login') }}" method="post">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -39,15 +44,6 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                    <div class="card text-white bg-{% if error %}danger{% else %}success{% endif %} py-5 d-md-down-none" style="width:44%">
-                        <div class="card-body text-center">
-                            <div>
-                                {% if error %}
-                                    {{ error.messageKey|trans(error.messageData, 'security') }}
-                                {% endif %}
-                            </div>
                         </div>
                     </div>
                 </div>
