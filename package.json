@@ -51,7 +51,7 @@
   },
   "jest": {
     "testMatch": [
-      "**/src-js/**/*.test.(js|tsx)"
+      "**/src-js/**/*.test.(js|jsx|ts|tsx)"
     ]
   },
   "keywords": [],
