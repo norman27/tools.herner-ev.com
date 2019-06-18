@@ -1,11 +1,12 @@
 /// <reference path="../../types.ts" />
 
 import * as React from 'react';
+import { Dispatch } from 'redux';
 import { Routing } from '../../../routing/Routing';
 import TrackRow from './TrackRow';
 
 type Props = {
-    dispatch: (Notification) => void
+    dispatch: Dispatch<NotificationActionType>
 }
 
 type State = {

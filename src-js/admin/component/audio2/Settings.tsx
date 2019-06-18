@@ -1,8 +1,8 @@
 /// <reference path="../../types.ts" />
 
 import * as React from 'react';
-import { Routing } from '../../../routing/Routing';
 import { Dispatch } from 'redux';
+import { Routing } from '../../../routing/Routing';
 
 type Props = {
     dispatch: Dispatch<NotificationActionType>,
@@ -22,7 +22,7 @@ const getInitialState = (props: Props): State => {
 }
 
 // @TODO this might need to go to a more central place
-export const apiPost = (url: string, successMessage: string): void => {
+export const apiPost = (dispatch: Dispatch<NotificationActionType>, url: string, successMessage: string): void => {
     fetch(url, {
         method: 'POST',
         headers: {
@@ -30,9 +30,9 @@ export const apiPost = (url: string, successMessage: string): void => {
         }
     }).then(response => {
         if (response.status === 200) {
-            this.props.dispatch({type: 'ADD_NOTIFICATION', text: successMessage, style: 'success'});
+            dispatch({type: 'ADD_NOTIFICATION', text: successMessage, style: 'success'});
         } else {
-            this.props.dispatch({type: 'ADD_NOTIFICATION', text: 'Fehler', style: 'error'});
+            dispatch({type: 'ADD_NOTIFICATION', text: 'Fehler', style: 'error'});
         }
     }).catch(err => err);
 }
@@ -61,11 +61,11 @@ export class Settings extends React.Component<Props, State> {
     }
 
     handleClickStop = (event: React.MouseEvent<HTMLButtonElement>) => {
-        apiPost(Routing.generate('admin.audio.track', {track: ''}), 'Musik gestoppt');
+        apiPost(this.props.dispatch, Routing.generate('admin.audio.track', {track: ''}), 'Musik gestoppt');
     }
 
     setVolume(volume: string) {
-        apiPost(Routing.generate('admin.audio.volume', {volume: volume}), 'Einstellungen gespeichert');
+        apiPost(this.props.dispatch, Routing.generate('admin.audio.volume', {volume: volume}), 'Einstellungen gespeichert');
     }
 
     render() {

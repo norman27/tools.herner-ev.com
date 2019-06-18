@@ -1,8 +1,10 @@
+// @TODO this file should be named .ts instead of .tsx
+
 import { NotificationManager } from 'react-notifications';
 
-const notifications = (state = [], action) => {
+const NotificationReducer = (state = [], action) => {
     switch (action.type) {
-        case 'ADD_NOTIFICATION':
+        case 'ADD_NOTIFICATION': // @TODO maybe ADD_SUCCESS_NOTIFICATION, ...
             switch(action.style) {
                 case 'success':
                     NotificationManager.success(action.text, null, 2000);
@@ -11,12 +13,11 @@ const notifications = (state = [], action) => {
                     NotificationManager.error(action.text, null, 2000);
                     break;
             }
-            return [
+            return [ // @TODO can we return just state?
                 ...state,
                 {
                     text: action.text,
                     style: action.style,
-                    completed: false
                 }
             ];
         default:
@@ -24,4 +25,4 @@ const notifications = (state = [], action) => {
     }
 }
 
-export default notifications
+export default NotificationReducer
