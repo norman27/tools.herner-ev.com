@@ -5,11 +5,11 @@ import { Dispatch } from 'redux';
 import { Routing } from '../../../routing/Routing';
 import { apiPost } from './Settings';
 
-interface IProps extends Track {
+interface Props extends Track {
     dispatch: Dispatch<NotificationActionType>
 }
 
-export default class TrackRow extends React.Component<IProps> {
+export default class TrackRow extends React.Component<Props> {
     handleClickTrack = (event: React.MouseEvent<HTMLButtonElement>, track: string): void => {
         apiPost(this.props.dispatch, Routing.generate('admin.audio.track', {track: track}), 'Musik gestartet');
     }

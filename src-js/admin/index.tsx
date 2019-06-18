@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 import App from './component/App';
 import NotificationReducer from './reducers/NotificationReducer';
 
-const store = createStore(notifications);
+const store = createStore(NotificationReducer);
 
 ReactDOM.render(
     <Provider store={store}>
