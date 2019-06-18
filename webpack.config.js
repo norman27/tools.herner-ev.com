@@ -31,9 +31,10 @@ class Without {
 
 module.exports = {
     entry: {
-        'js/screen': './src-js/screen/index.tsx',
+        'css/admin': './src-js/admin/scss/admin.scss',
         'js/admin': './src-js/admin/index.tsx',
-        'css/admin': './src-js/admin/scss/admin.scss'
+        'css/screen': './src-js/screen/scss/screen.scss',
+        'js/screen': './src-js/screen/index.tsx'
     },
     module: {
         rules: [

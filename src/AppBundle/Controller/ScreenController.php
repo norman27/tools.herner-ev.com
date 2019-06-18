@@ -10,11 +10,19 @@ use AppBundle\Audio\AudioRepository;
 class ScreenController extends Controller
 {
     /**
-     * @Route("/screen", options={"expose"=true}, name="screen_overview")
+     * @Route("/screen", name="screen.index")
      */
     public function indexAction()
     {
         return $this->render('screen/index.html.twig');
+    }
+
+    /**
+     * @Route("/screen/frame", name="screen.frame")
+     */
+    public function frameAction()
+    {
+        return $this->render('screen/frame.html.twig');
     }
 
     /**
