@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+//@TODO move this to its own .d.ts file
 interface AudioSettings {
     track: string;
     volume: number;

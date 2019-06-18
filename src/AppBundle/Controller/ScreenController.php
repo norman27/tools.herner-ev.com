@@ -26,6 +26,14 @@ class ScreenController extends Controller
 
         return new JsonResponse([
             'audio' => $audioRepository->get(),
+            'effect' => [],
+            'screen' => [
+                'type' => 'text',
+                'data' => [
+                    'title' => 'Willkommen',
+                    'message' => 'in der Hannibal Arena'
+                ]
+            ],
             'timestamp' => time()
         ]);
     }
