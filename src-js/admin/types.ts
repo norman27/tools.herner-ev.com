@@ -1,6 +1,6 @@
 type NotificationActionType =
-    | { type: "ADD_NOTIFICATION", text: string, style: "error" }
-    | { type: "ADD_NOTIFICATION", text: string, style: "success" }
+    | { type: "ADD_ERROR_NOTIFICATION", text: string }
+    | { type: "ADD_SUCCESS_NOTIFICATION", text: string }
 
 type Track = {
     track: string,

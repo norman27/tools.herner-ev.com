@@ -30,9 +30,9 @@ export const apiPost = (dispatch: Dispatch<NotificationActionType>, url: string,
         }
     }).then(response => {
         if (response.status === 200) {
-            dispatch({type: 'ADD_NOTIFICATION', text: successMessage, style: 'success'});
+            dispatch({type: 'ADD_SUCCESS_NOTIFICATION', text: successMessage});
         } else {
-            dispatch({type: 'ADD_NOTIFICATION', text: 'Fehler', style: 'error'});
+            dispatch({type: 'ADD_ERROR_NOTIFICATION', text: 'Fehler'});
         }
     }).catch(err => err);
 }
