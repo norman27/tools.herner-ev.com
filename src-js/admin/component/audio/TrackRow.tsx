@@ -9,7 +9,7 @@ interface Props extends Track {
     dispatch: Dispatch<NotificationActionType>
 }
 
-export default class TrackRow extends React.Component<Props> {
+class TrackRow extends React.Component<Props> {
     handleClickTrack = (event: React.MouseEvent<HTMLButtonElement>, track: string): void => {
         apiPost(this.props.dispatch, Routing.generate('admin.audio.track', {track: track}), 'Musik gestartet');
     }
@@ -29,3 +29,5 @@ export default class TrackRow extends React.Component<Props> {
         )
     }
 }
+
+export { TrackRow }

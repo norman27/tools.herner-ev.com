@@ -7,14 +7,14 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import App from './component/App';
-import NotificationReducer from './reducers/NotificationReducer';
+import { ConnectedApp } from './component/App';
+import { NotificationReducer } from './reducers/NotificationReducer';
 
 const store = createStore(NotificationReducer);
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <ConnectedApp />
     </Provider>,
     document.getElementById('app')
 )

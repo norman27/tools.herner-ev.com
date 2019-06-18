@@ -1,14 +1,11 @@
 import * as React from 'react';
 
-interface IProps {
+type Props = {
     title: string,
     message: string
 }
 
-interface IState {
-}
-
-class Text extends React.Component<IProps, IState> {
+class Text extends React.Component<Props> {
     render() {
         return (
             <div>

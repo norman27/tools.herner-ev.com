@@ -2,5 +2,6 @@ import FOSRouting from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources
 
 const routes = require('./fos_js_routes.json');
 FOSRouting.setRoutingData(routes);
+const Routing = FOSRouting;
 
-export const Routing = FOSRouting;
+export { Routing }

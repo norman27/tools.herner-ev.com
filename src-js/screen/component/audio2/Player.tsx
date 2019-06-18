@@ -1,31 +1,24 @@
 import * as React from 'react';
 
-//@TODO move this to its own .d.ts file
-interface AudioSettings {
-    track: string;
-    volume: number;
-    lastChange: number;
-}
-
-interface IProps {
+interface Props {
     track: string,
     volume: number,
     lastChange: number,
     timestamp: number
 }
 
-interface IState {
+interface State {
     isPlaying: boolean,
     isAutoplayAllowed: boolean
 }
 
-const getTrack = (props: IProps): string => {
+const getTrack = (props: Props): string => {
     // play silence if selected track is too old
     return (props.lastChange + 10 > props.timestamp) ? props.track : 'silence.mp3';
 }
 
-class Player extends React.Component<IProps, IState> {
-    state: IState = {
+class Player extends React.Component<Props, State> {
+    state: State = {
         isPlaying: false,
         isAutoplayAllowed: false
     }
@@ -37,7 +30,7 @@ class Player extends React.Component<IProps, IState> {
         }
     }
 
-    componentDidUpdate(prevProp: IProps) {
+    componentDidUpdate(prevProp: Props) {
         if (this.props.track === '') {
             this.stop();
         } else if (this.props.track !== prevProp.track || this.props.lastChange !== prevProp.lastChange) {
@@ -90,4 +83,4 @@ class Player extends React.Component<IProps, IState> {
     }
 }
 
-export { Player, AudioSettings }
+export { Player }

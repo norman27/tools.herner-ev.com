@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { Routing } from '../../../routing/Routing';
-import TrackRow from './TrackRow';
+import { TrackRow } from './TrackRow';
 
 type Props = {
     dispatch: Dispatch<NotificationActionType>
@@ -13,7 +13,7 @@ type State = {
     tracks: Track[]
 }
 
-export default class TrackTable extends React.Component<Props, State> {
+class TrackTable extends React.Component<Props, State> {
     state: State = {
         tracks: []
     }
@@ -47,3 +47,5 @@ export default class TrackTable extends React.Component<Props, State> {
         )
     }
 }
+
+export { TrackTable }

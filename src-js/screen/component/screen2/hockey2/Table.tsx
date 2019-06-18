@@ -1,12 +1,6 @@
 import * as React from 'react';
 
-interface IProps {
-}
-
-interface IState {
-}
-
-class Table extends React.Component<IProps, IState> {
+class Table extends React.Component<{}> {
     render() {
         return (
             <table>

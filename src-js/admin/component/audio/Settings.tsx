@@ -22,7 +22,7 @@ const getInitialState = (props: Props): State => {
 }
 
 // @TODO this might need to go to a more central place
-export const apiPost = (dispatch: Dispatch<NotificationActionType>, url: string, successMessage: string): void => {
+const apiPost = (dispatch: Dispatch<NotificationActionType>, url: string, successMessage: string): void => {
     fetch(url, {
         method: 'POST',
         headers: {
@@ -37,7 +37,7 @@ export const apiPost = (dispatch: Dispatch<NotificationActionType>, url: string,
     }).catch(err => err);
 }
 
-export class Settings extends React.Component<Props, State> {
+class Settings extends React.Component<Props, State> {
     state = getInitialState(this.props)
 
     isMuted() {
@@ -99,3 +99,5 @@ export class Settings extends React.Component<Props, State> {
         )
     }
 }
+
+export { Settings, apiPost }

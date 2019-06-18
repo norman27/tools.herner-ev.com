@@ -13,4 +13,4 @@ const NotificationReducer = (state = [], action) => {
     return state;
 }
 
-export default NotificationReducer
+export { NotificationReducer }

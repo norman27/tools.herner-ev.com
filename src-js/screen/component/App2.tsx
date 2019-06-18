@@ -1,26 +1,28 @@
+/// <reference path="../types.ts" />
+
 import * as React from 'react';
-import { Player, AudioSettings } from './Audio/Player'; //@TODO maybe better naming and splitting?
-import { Effect, EffectSettings } from './Effect/Effect';
-import { Screen, ScreenSettings } from './Screen/Screen';
+import { Player } from './Audio/Player'; //@TODO maybe better naming and splitting?
+import { Effect } from './effect/Effect';
+import { Screen } from './screen/Screen';
 import { Routing } from '../../routing/Routing';
 
-interface IProps {}
-
-interface IState {
+interface State {
     audio: AudioSettings,
     effect: EffectSettings,
     screen: ScreenSettings,
     timestamp: number,
 }
 
-export default class App extends React.Component<IProps, IState> {
-    state: IState = {
+class App extends React.Component<{}, State> {
+    state: State = {
         audio: {
             track: 'silence.mp3',
             volume: 80,
             lastChange: 0
         },
-        effect: {},
+        effect: {
+            name: ''
+        },
         screen: {
             type: 'image', // @TODO add another default for preloading
             data: []
@@ -60,3 +62,5 @@ export default class App extends React.Component<IProps, IState> {
         )
     }
 }
+
+export { App }

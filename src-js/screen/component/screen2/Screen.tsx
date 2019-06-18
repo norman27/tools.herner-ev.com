@@ -1,21 +1,11 @@
+/// <reference path="../../types.ts" />
+
 import * as React from 'react';
-import { Table } from './Hockey/Table';
-import { FadingImages } from './Media/FadingImages';
-import { Text } from './Media/Text';
+import { Table } from './hockey/Table';
+import { FadingImages } from './media/FadingImages';
+import { Text } from './media/Text';
 
-//@TODO move this to its own .d.ts file
-interface ScreenSettings {
-    type: string,
-    data: any
-}
-
-interface IProps extends ScreenSettings {
-}
-
-interface IState {
-}
-
-class Screen extends React.Component<IProps, IState> {
+class Screen extends React.Component<ScreenSettings> {
     render() {
         return (
             <div>
@@ -34,4 +24,4 @@ class Screen extends React.Component<IProps, IState> {
     }
 }
 
-export { Screen, ScreenSettings }
+export { Screen }

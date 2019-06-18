@@ -1,12 +1,6 @@
 import * as React from 'react';
 
-interface IProps {
-}
-
-interface IState {
-}
-
-class FadingImages extends React.Component<IProps, IState> {
+class FadingImages extends React.Component<{}> {
     render() {
         return (
             <div>

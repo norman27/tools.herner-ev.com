@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { NotificationContainer } from 'react-notifications';
 import { Settings } from './Audio/Settings';
-import TrackTable from './Audio/TrackTable';
+import { TrackTable } from './Audio/TrackTable';
 
 const App = ({ dispatch }) => {
     //@TODO handle this better
@@ -24,4 +24,6 @@ const App = ({ dispatch }) => {
     )
 }
 
-export default connect()(App);
+const ConnectedApp = connect()(App);
+
+export { ConnectedApp }
