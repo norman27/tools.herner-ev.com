@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { NotificationContainer } from 'react-notifications';
-import Settings from './audio/Settings';
+import { Settings } from './audio/Settings';
 import TrackTable from './audio/TrackTable';
 
 const App = ({ dispatch }) => {

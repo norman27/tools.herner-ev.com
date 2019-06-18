@@ -1,24 +1,44 @@
+/// <reference path="../../types.ts" />
+
 import * as React from 'react';
 import { Routing } from '../../../routing/Routing';
+import { Dispatch } from 'redux';
 
-interface IProps {
-    dispatch: (Notification) => void,
+type Props = {
+    dispatch: Dispatch<NotificationActionType>,
     volume: string
 }
 
-interface IState {
+type State = {
     volume: string,
     formerVolume: string
 }
 
-export default class Settings extends React.Component<IProps, IState> {
-    constructor(props: IProps) {
-        super(props);
-        this.state = {
-            volume: props.volume,
-            formerVolume: props.volume
-        }
+const getInitialState = (props: Props): State => {
+    return {
+        volume: props.volume,
+        formerVolume: props.volume
     }
+}
+
+// @TODO this might need to go to a more central place
+export const apiPost = (url: string, successMessage: string): void => {
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => {
+        if (response.status === 200) {
+            this.props.dispatch({type: 'ADD_NOTIFICATION', text: successMessage, style: 'success'});
+        } else {
+            this.props.dispatch({type: 'ADD_NOTIFICATION', text: 'Fehler', style: 'error'});
+        }
+    }).catch(err => err);
+}
+
+export class Settings extends React.Component<Props, State> {
+    state = getInitialState(this.props)
 
     isMuted() {
         return (this.state.volume === '0');
@@ -26,50 +46,26 @@ export default class Settings extends React.Component<IProps, IState> {
 
     handleChangeVolume = (event: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({volume: event.target.value});
-        this.postVolume(event.target.value);
+        this.setVolume(event.target.value);
     }
 
     handleMuteToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
         if (!this.isMuted()) {
             this.setState({volume: "0", formerVolume: this.state.volume});
-            this.postVolume("0");
+            this.setVolume("0");
         } else {
             let formerVolume = (this.state.formerVolume === "0") ? '80' : this.state.formerVolume;
             this.setState({volume: formerVolume});
-            this.postVolume(formerVolume);
+            this.setVolume(formerVolume);
         }
     }
 
     handleClickStop = (event: React.MouseEvent<HTMLButtonElement>) => {
-        // @TODO API communication is a retourning pattern
-        fetch(Routing.generate('admin.audio.track', {track: ''}), {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            if (response.status >= 200 && response.status < 300) {
-                this.props.dispatch({type: 'ADD_NOTIFICATION', text: 'Musik angehalten', style: 'success'});
-            } else {
-                this.props.dispatch({type: 'ADD_NOTIFICATION', text: 'Fehler beim Anhalten', style: 'error'});
-            }
-        }).catch(err => err);
+        apiPost(Routing.generate('admin.audio.track', {track: ''}), 'Musik gestoppt');
     }
 
-    postVolume(volume: string) {
-        // @TODO API communication is a retourning pattern
-        fetch(Routing.generate('admin.audio.volume', {volume: volume}), {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            if (response.status >= 200 && response.status < 300) {
-                this.props.dispatch({type: 'ADD_NOTIFICATION', text: 'Einstellungen gespeichert', style: 'success'});
-            } else {
-                this.props.dispatch({type: 'ADD_NOTIFICATION', text: 'Fehler beim Speichern', style: 'error'});
-            }
-        }).catch(err => err);
+    setVolume(volume: string) {
+        apiPost(Routing.generate('admin.audio.volume', {volume: volume}), 'Einstellungen gespeichert');
     }
 
     render() {

@@ -25,12 +25,9 @@ const getTrack = (props: IProps): string => {
 }
 
 class Player extends React.Component<IProps, IState> {
-    constructor(props: IProps) {
-        super(props);
-        this.state = {
-            isPlaying: false,
-            isAutoplayAllowed: false
-        }
+    state: IState = {
+        isPlaying: false,
+        isAutoplayAllowed: false
     }
 
     componentDidMount() {

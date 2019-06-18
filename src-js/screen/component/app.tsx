@@ -11,11 +11,10 @@ interface IState {
     effect: EffectSettings,
     screen: ScreenSettings,
     timestamp: number,
-    error?: string
 }
 
 export default class App extends React.Component<IProps, IState> {
-    private defaultState: IState = {
+    state: IState = {
         audio: {
             track: 'silence.mp3',
             volume: 80,
@@ -29,15 +28,8 @@ export default class App extends React.Component<IProps, IState> {
         timestamp: 0
     }
 
-    constructor(props: IProps) {
-        super(props);
-        this.state = this.defaultState
-    }
-
     refreshStateFromApi(): void {
-        var state = this.defaultState;
-
-        //@see https://reactjs.org/docs/faq-ajax.html
+        // @TODO api is a returning pattern
         fetch(Routing.generate('screen_api'))
             .then(response => response.json())
             .then(
@@ -46,7 +38,6 @@ export default class App extends React.Component<IProps, IState> {
                 },
                 (error) => {
                     // @TODO do we need this?
-                    this.setState({...this.defaultState, error});
                 }
             );
     }

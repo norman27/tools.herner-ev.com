@@ -1,27 +1,16 @@
+/// <reference path="../../types.ts" />
+
 import * as React from 'react';
 import { Routing } from '../../../routing/Routing';
+import { apiPost } from './Settings';
 
-interface IProps extends Track {
-    dispatch: (Notification) => void,
-    track: string,
-    duration: number
+interface Props extends Track {
+    dispatch: (Notification) => void
 }
 
-export default class TrackRow extends React.Component<IProps> {
-    handleClickTrack = (event: React.MouseEvent<HTMLButtonElement>, track: string) => {
-        // @TODO API communication is a retourning pattern
-        fetch(Routing.generate('admin.audio.track', {track: track}), {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            if (response.status >= 200 && response.status < 300) {
-                this.props.dispatch({type: 'ADD_NOTIFICATION', text: 'Musik gestartet', style: 'success'});
-            } else {
-                this.props.dispatch({type: 'ADD_NOTIFICATION', text: 'Fehler beim Abspielen', style: 'error'});
-            }
-        }).catch(err => err);
+export default class TrackRow extends React.Component<Props> {
+    handleClickTrack = (event: React.MouseEvent<HTMLButtonElement>, track: string): void => {
+        apiPost(Routing.generate('admin.audio.track', {track: track}), 'Musik gestartet');
     }
 
     render() {

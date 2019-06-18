@@ -1,21 +1,20 @@
+/// <reference path="../../types.ts" />
+
 import * as React from 'react';
 import { Routing } from '../../../routing/Routing';
 import TrackRow from './TrackRow';
 
-interface IProps {
+type Props = {
     dispatch: (Notification) => void
 }
 
-interface IState {
+type State = {
     tracks: Track[]
 }
 
-export default class TrackTable extends React.Component<IProps, IState> {
-    constructor(props: IProps) {
-        super(props);
-        this.state = {
-            tracks: []
-        }
+export default class TrackTable extends React.Component<Props, State> {
+    state: State = {
+        tracks: []
     }
 
     componentDidMount() {
