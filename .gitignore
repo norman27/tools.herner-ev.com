@@ -4,8 +4,8 @@ electron/dist/
 electron/package-lock.json
 node_modules/
 public/bundles/
-public/var/
-!public/var/screen/.gitkeep
+public/media/screen/
+!public/media/screen/.gitkeep
 var/
 !var/cache/.gitkeep
 !var/logs/.gitkeep
