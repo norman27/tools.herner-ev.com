@@ -1,7 +1,0 @@
-{
-  "name": "hev-leinwand-herner-ev-com",
-  "version": "1.0.0",
-  "build": {
-    "artifactName": "hev-screen-${version}.${ext}"
-  }
-}

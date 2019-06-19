@@ -1,10 +1,11 @@
 .idea/
 app/config/parameters.yml
+electron/dist/
+electron/package-lock.json
 node_modules/
 public/bundles/
 public/media/
 !public/media/.gitkeep
-src-js/electron/dist/
 var/
 !var/cache/.gitkeep
 !var/logs/.gitkeep
