@@ -56,7 +56,7 @@ class AdminController extends Controller
      * @param string $volume
      * @return JsonResponse
      */
-    public function postAudioVolumeAction($volume)
+    public function postAudioVolumeAction($volume) // @TODO this should be more something like "change"
     {
         $repository = new AudioRepository($this->get('cache.app'));
         return new JsonResponse([
@@ -69,17 +69,13 @@ class AdminController extends Controller
      * @param string $track
      * @return JsonResponse
      */
-    public function postAudioTrackAction($track)
+    public function postAudioTrackAction($track) // @TODO this should be more something like "change"
     {
         $repository = new AudioRepository($this->get('cache.app'));
         return new JsonResponse([
             $repository->setTrack($track)
         ]);
     }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
     /**
      * @Route("/admin/files", name="admin.files")
@@ -88,27 +84,26 @@ class AdminController extends Controller
      */
     public function filesAction(Request $request)
     {
-        $files = new FilesRepository($this->getParameter('media_directory'));
+        $files = new FilesRepository($this->getParameter('media_screen_directory'));
         $form = $this->createForm(FileUploadForm::class);
-        $form->handleRequest($request);
+        /*$form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            /** @var UploadedFile $file */
+            /** @var UploadedFile $file *
             $file = $form->getData()['file'];
 
             $file->move(
-                $this->getParameter('media_directory'),
+                $this->getParameter('media_screen_directory'),
                 $files->simplifyFilename($file->getClientOriginalName())
             );
 
             return $this->redirect($this->generateUrl('admin.files'));
-        }
+        }*/
 
         return $this->render('admin/files.html.twig', [
             'files' => $files->getAllFiles(),
             'form' => $form->createView(),
-            'categoryName' => $this->getScreenRepository()->getCategoryTranslated()
         ]);
     }
 
@@ -119,41 +114,30 @@ class AdminController extends Controller
      */
     public function filesDeleteAction($filename)
     {
-        $files = new FilesRepository($this->getParameter('media_directory'));
+        $files = new FilesRepository($this->getParameter('media_screen_directory'));
         $files->delete($filename);
 
         return $this->redirect($this->generateUrl('admin.files'));
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
     /**
      * @Route("/admin/effects/{effect}", name="admin.effects", defaults={"effect"=null})
      * @param string $effect
      * @return Response
      */
-    public function effectsAction(Request $request, $effect) {
-        if ($effect !== null) {
-            $this->getEffectsRepository()->setEffect($effect, $request->get('data', ''));
+    public function effectsAction(Request $request, $effect)
+    {
+        if ($effect !== null)
+        {
+            $repository = new EffectsRepository();
+            $repository->setEffect($effect, $request->get('data', ''));
             return new JsonResponse(1);
         }
         return $this->render('admin/effects.html.twig', []);
-    }
-
-    /**
-     * @Route("/admin/category/{category}", name="admin.category", defaults={"category"=null})
-     * @param string $category
-     * @return Response
-     */
-    public function categoryAction($category) {
-        $repository = $this->getScreenRepository();
-
-        if ($category !== null) {
-            $repository->setCategory((int) $category);
-        }
-
-        return $this->render('admin/category.html.twig', [
-            'category' => $repository->getCategory(),
-            'categoryName' => $repository->getCategoryTranslated()
-        ]);
     }
 
     /**
@@ -163,7 +147,7 @@ class AdminController extends Controller
      * @return Response
      */
     public function editAction(Request $request, $id) {
-        $repository = $this->getScreenRepository();
+        $repository = new ScreenRepository($this->getDoctrine());
         $em         = $this->getDoctrine()->getManager();
         $screen     = $repository->getById($id);
         $formClass  = 'AppBundle\Form\\' . ucfirst($screen->screenType) .  'Form';
@@ -186,7 +170,6 @@ class AdminController extends Controller
 
         return $this->render($template, [
             'form' => $form->createView(),
-            'categoryName' => $this->getScreenRepository()->getCategoryTranslated()
         ]);
     }
 
@@ -196,11 +179,10 @@ class AdminController extends Controller
      * @return JsonResponse
      */
     public function activateAction($id) {
-        $repository = $this->getScreenRepository();
+        $repository = new ScreenRepository($this->getDoctrine());
         $em         = $this->getDoctrine()->getManager();
-        $activeCat  = (int) $this->getScreenRepository()->getCategory();
 
-        $query = $em->createQuery('UPDATE AppBundle:Screen s SET s.active = 0 WHERE s.category = ' . $activeCat);
+        $query = $em->createQuery('UPDATE AppBundle:Screen s SET s.active = 0');
         $query->execute();
 
         $screen = $repository->getById($id);
@@ -209,19 +191,5 @@ class AdminController extends Controller
         $em->flush();
 
         return new JsonResponse(1);
-    }
-
-    /**
-     * @return ScreenRepository
-     */
-    private function getScreenRepository() {
-        return new ScreenRepository($this->getDoctrine());
-    }
-
-    /**
-     * @return EffectsRepository
-     */
-    private function getEffectsRepository() {
-        return new EffectsRepository();
     }
 }

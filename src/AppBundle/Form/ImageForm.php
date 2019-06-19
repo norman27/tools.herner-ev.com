@@ -17,7 +17,8 @@ class ImageForm extends EntityManagerAwareForm {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $files = new FilesRepository();
-        $images = array_combine(array_keys($files->getAllImages()), array_keys($files->getAllImages()));
+        //@TODO remove duplicate call
+        $images = array_combine(array_keys($files->getAllFiles()), array_keys($files->getAllFiles()));
 
         $builder->add('images', CollectionType::class, [
                 'attr' => ['class' => 'js-addable-list'],

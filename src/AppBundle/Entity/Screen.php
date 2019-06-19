@@ -31,9 +31,6 @@ class Screen {
     /** @ORM\Column(type="smallint") */
     public $active;
 
-    /** @ORM\Column(type="smallint") */
-    public $category;
-
     /** @ORM\Column(type="datetime") */
     public $lastChange;
 

@@ -2,37 +2,43 @@
 {% import 'admin/macro/bytesToSize.html.twig' as bytes %}
 
 {% block body_content %}
-    <div class="card">
-        <div class="card-header">
-            <i class="far fa-list-alt"></i> Dateien
-        </div>
-        <div class="card-body">
-            <table class="table table-responsive-sm table-striped">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active show" data-toggle="tab" href="#tab-files" role="tab">
+                <i class="far fa-list-alt"></i> Dateien</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab-files-upload" role="tab">
+                <i class="far fa-save"></i> Upload</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active show" id="tab-files" role="tabpanel">
+            <table class="table">
                 <thead>
-                    <tr>
-                        <th>Datei</th>
-                        <th>Größe</th>
-                        <th>Aktion</th>
-                    </tr>
+                <tr>
+                    <th>Vorschau</th>
+                    <th>Datei</th>
+                    <th>Größe</th>
+                    <th>Aktion</th>
+                </tr>
                 </thead>
                 <tbody>
-                    {% for file in files %}
+                {% for file in files %}
                     <tr>
+                        <td><img src="{{ asset('media/screen/' ~ file.getFileName) }}" alt="{{ file.getFileName }}" style="width:100px" class="img-thumbnail"></td>
                         <td>{{ file.getFileName }}</td>
                         <td>{{ bytes.bytesToSize(file.getSize) }}</td>
-                        <td><a href="{{ path('admin.files.delete', {filename: file.getFileName}) }}" class="btn btn-default"><i class="fa fa-trash"></i></a></td>
+                        <td><a class="btn btn-light" type="button" href="{{ path('admin.files.delete', {filename: file.getFileName}) }}" class="btn btn-default"><i class="fa fa-trash"></i></a></td>
                     </tr>
-                    {% endfor %}
+                {% endfor %}
                 </tbody>
             </table>
         </div>
-    </div>
-
-    <div class="card">
-        <div class="card-header">
-            <i class="far fa-save"></i> Upload
-        </div>
-        <div class="card-body">
+        <div class="tab-pane" id="tab-files-upload" role="tabpanel">
+            <p class="alert alert-info">
+                <i class="fas fa-info-circle"></i> Es werden nur JPEG oder PNG Dateien in der Größe 896x512 Pixel erlaubt.
+            </p>
             {{ form_start(form) }}
                 {{ form_rest(form) }}
             {{ form_end(form) }}

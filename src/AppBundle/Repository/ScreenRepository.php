@@ -7,8 +7,6 @@ use AppBundle\Entity\Screen;
 use Symfony\Component\Cache\Simple\FilesystemCache;
 
 class ScreenRepository {
-    const CACHE_KEY = 'screen.active_category';
-
     const CATEGORY_ERSTE = 0;
     const CATEGORY_NACHWUCHS = 1;
 
@@ -30,7 +28,7 @@ class ScreenRepository {
      * @return Screen[]
      */
     public function getAllForActiveCategory() {
-        return $this->filterGet(['category' => $this->getCategory()]);
+        return $this->filterGet([]);
     }
 
     /**
@@ -48,30 +46,5 @@ class ScreenRepository {
     private function filterGet(array $filters) {
         $repository = $this->doctrine->getRepository(Screen::class);
         return $repository->findBy($filters);
-    }
-
-    /**
-     * @return int
-     */
-    public function getCategory() {
-        return $this->cache->get(self::CACHE_KEY, self::CATEGORY_ERSTE);
-    }
-
-    /**
-     * @return string
-     */
-    public function getCategoryTranslated() {
-        if ($this->getCategory() === self::CATEGORY_NACHWUCHS) {
-            return 'Nachwuchs';
-        }
-
-        return 'Erste Mannschaft';
-    }
-
-    /**
-     * @param int $category
-     */
-    public function setCategory($category) {
-        $this->cache->set(self::CACHE_KEY, $category);
     }
 }

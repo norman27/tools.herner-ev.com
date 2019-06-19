@@ -53,30 +53,15 @@ class FilesRepository
         $files = [];
         foreach ($foundFiles as $file)
         {
-            $files[$file->getFilename()] = $file;
+            if ($this->isImage($file))
+            {
+                $files[$file->getFilename()] = $file;
+            }
         }
 
         ksort($files);
 
         return $files;
-    }
-
-    /**
-     * @return SplFileInfo[]
-     */
-    public function getAllImages()
-    {
-        $foundFiles = $this->getAllFiles();
-
-        foreach ($foundFiles as $name => $file)
-        {
-            if (!$this->isImage($file))
-            {
-                unset($foundFiles[$name]);
-            }
-        }
-
-        return $foundFiles;
     }
 
     /**
