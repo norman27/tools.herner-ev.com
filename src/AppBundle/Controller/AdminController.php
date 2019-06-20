@@ -86,6 +86,8 @@ class AdminController extends Controller
     {
         $files = new FilesRepository($this->getParameter('media_screen_directory'));
         $form = $this->createForm(FileUploadForm::class);
+
+        // @TODO check file type and size
         /*$form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
@@ -120,33 +122,45 @@ class AdminController extends Controller
         return $this->redirect($this->generateUrl('admin.files'));
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
     /**
-     * @Route("/admin/effects/{effect}", name="admin.effects", defaults={"effect"=null})
-     * @param string $effect
+     * @Route("/admin/effects", name="admin.effects")
      * @return Response
      */
-    public function effectsAction(Request $request, $effect)
+    public function effectsAction()
     {
-        if ($effect !== null)
-        {
-            $repository = new EffectsRepository();
-            $repository->setEffect($effect, $request->get('data', ''));
-            return new JsonResponse(1);
-        }
-        return $this->render('admin/effects.html.twig', []);
+        return $this->render('admin/effects.html.twig');
     }
 
     /**
-     * @Route("/admin/edit/{id}", name="admin.edit")
+     * @Route("/admin/effects/{effect}", name="admin.effects.activate")
+     * @param Request $request
+     * @param string $effect
+     * @return Response
+     */
+    public function effectsActivateAction(Request $request, $effect)
+    {
+        $repository = new EffectsRepository();
+        $repository->setEffect($effect, $request->get('data', '')); // @TODO explicitly set data in request
+        return new JsonResponse(1);
+    }
+
+    /**
+     * @Route("/admin/screens", name="admin.screens")
+     * @return Response
+     */
+    public function screensAction()
+    {
+        return $this->render('admin/screens.html.twig', []);
+    }
+
+    /**
+     * @Route("/admin/screens/edit/{id}", name="admin.screens.edit")
      * @param Request $request
      * @param mixed $id
      * @return Response
      */
-    public function editAction(Request $request, $id) {
+    public function editAction(Request $request, $id)
+    {
         $repository = new ScreenRepository($this->getDoctrine());
         $em         = $this->getDoctrine()->getManager();
         $screen     = $repository->getById($id);
@@ -154,7 +168,8 @@ class AdminController extends Controller
         $form       = $this->createForm($formClass, $screen->config, ['entity_manager' => $em]);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $screen->config = $form->getData();
             $em->persist($screen);
             $em->flush();
@@ -164,7 +179,8 @@ class AdminController extends Controller
         }
 
         $template = 'admin/forms/' . $screen->screenType . '.html.twig';
-        if (!$this->get('templating')->exists('admin/forms/' . $screen->screenType . '.html.twig')) {
+        if (!$this->get('templating')->exists('admin/forms/' . $screen->screenType . '.html.twig'))
+        {
             $template = 'admin/edit.html.twig';
         }
 
@@ -174,13 +190,14 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/activate/{id}", name="admin.activate")
+     * @Route("/admin/screens/activate/{id}", name="admin.screens.activate")
      * @param int $id
      * @return JsonResponse
      */
-    public function activateAction($id) {
+    public function activateAction($id)
+    {
         $repository = new ScreenRepository($this->getDoctrine());
-        $em         = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery('UPDATE AppBundle:Screen s SET s.active = 0');
         $query->execute();

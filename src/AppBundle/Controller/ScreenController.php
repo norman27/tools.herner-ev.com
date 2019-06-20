@@ -36,6 +36,7 @@ class ScreenController extends Controller
             'audio' => $audioRepository->get(),
             'effect' => [],
             'screen' => [
+                // @TODO implement this
                 'type' => 'text',
                 'data' => [
                     'title' => 'Willkommen',
