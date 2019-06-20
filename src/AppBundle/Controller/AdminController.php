@@ -27,7 +27,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/audio", name="admin.audio")
+     * @Route("/admin/audio", name="admin.audio", options={"expose"=true})
      * @return Response
      */
     public function audioAction()
