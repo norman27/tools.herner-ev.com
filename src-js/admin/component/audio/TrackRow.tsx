@@ -11,7 +11,7 @@ interface Props extends Track {
 
 class TrackRow extends React.Component<Props> {
     handleClickTrack = (event: React.MouseEvent<HTMLButtonElement>, track: string): void => {
-        apiPost(this.props.dispatch, Routing.generate('admin.audio.track', {track: track}), 'Musik gestartet');
+        apiPost(this.props.dispatch, Routing.generate('admin.screen.audio.track', {track: track}), 'Musik gestartet');
     }
 
     render() {

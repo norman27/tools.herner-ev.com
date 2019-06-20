@@ -1,5 +1,5 @@
 {% extends 'admin/base.html.twig' %}
-{% import 'admin/macro/bytesToSize.html.twig' as bytes %}
+{% import 'admin/screen/macro/bytesToSize.html.twig' as bytes %}
 
 {% block body_content %}
     <ul class="nav nav-tabs" role="tablist">
@@ -29,7 +29,7 @@
                         <td><img src="{{ asset('media/screen/' ~ file.getFileName) }}" alt="{{ file.getFileName }}" style="width:100px" class="img-thumbnail"></td>
                         <td>{{ file.getFileName }}</td>
                         <td>{{ bytes.bytesToSize(file.getSize) }}</td>
-                        <td><a class="btn btn-light" type="button" href="{{ path('admin.files.delete', {filename: file.getFileName}) }}" class="btn btn-default"><i class="fa fa-trash"></i></a></td>
+                        <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.files.delete', {filename: file.getFileName}) }}" class="btn btn-default"><i class="fa fa-trash"></i></a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

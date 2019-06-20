@@ -61,11 +61,11 @@ class Settings extends React.Component<Props, State> {
     }
 
     handleClickStop = (event: React.MouseEvent<HTMLButtonElement>) => {
-        apiPost(this.props.dispatch, Routing.generate('admin.audio.track', {track: ''}), 'Musik gestoppt');
+        apiPost(this.props.dispatch, Routing.generate('admin.screen.audio.track', {track: ''}), 'Musik gestoppt');
     }
 
     setVolume(volume: string) {
-        apiPost(this.props.dispatch, Routing.generate('admin.audio.volume', {volume: volume}), 'Einstellungen gespeichert');
+        apiPost(this.props.dispatch, Routing.generate('admin.screen.audio.volume', {volume: volume}), 'Einstellungen gespeichert');
     }
 
     render() {

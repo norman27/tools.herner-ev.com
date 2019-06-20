@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Admin;
 
 use AppBundle\Repository\FilesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,33 +15,27 @@ use AppBundle\Repository\ScreenRepository;
 use AppBundle\Repository\EffectsRepository;
 use AppBundle\Audio\AudioRepository;
 
-class AdminController extends Controller
+/**
+ * @Route("/admin/screen")
+ */
+class ScreenController extends Controller
 {
     /**
-     * @Route("/admin{trailingSlash}", name="admin.index", requirements={"trailingSlash" = "[/]{0,1}"}, defaults={"trailingSlash" = "/"})
-     * @return Response
-     */
-    public function indexAction()
-    {
-        return $this->render('admin/index.html.twig');
-    }
-
-    /**
-     * @Route("/admin/audio", name="admin.audio", options={"expose"=true})
+     * @Route("/audio", name="admin.screen.audio", options={"expose"=true})
      * @return Response
      */
     public function audioAction()
     {
         $audioRepository = new AudioRepository($this->get('cache.app'));
         $audio = $audioRepository->get();
-        return $this->render('admin/audio.html.twig', [
+        return $this->render('admin/screen/audio.html.twig', [
             'volume' => $audio->volume,
             'track' => $audio->track
         ]);
     }
 
     /**
-     * @Route("/admin/audio/tracks", name="admin.get.audio.tracks", options={"expose"=true})
+     * @Route("/audio/tracks", name="admin.screen.audio.tracks", options={"expose"=true})
      * @return Response
      */
     public function getAudioTracks() {
@@ -52,7 +46,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/audio/volume/{volume}", name="admin.audio.volume", options={"expose"=true}, defaults={"volume"=80}, methods={"POST"})
+     * @Route("/audio/volume/{volume}", name="admin.screen.audio.volume", options={"expose"=true}, defaults={"volume"=80}, methods={"POST"})
      * @param string $volume
      * @return JsonResponse
      */
@@ -65,7 +59,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/audio/track/{track}", name="admin.audio.track", options={"expose"=true}, defaults={"track"=""}, methods={"POST"})
+     * @Route("/audio/track/{track}", name="admin.screen.audio.track", options={"expose"=true}, defaults={"track"=""}, methods={"POST"})
      * @param string $track
      * @return JsonResponse
      */
@@ -78,7 +72,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/files", name="admin.files")
+     * @Route("/files", name="admin.screen.files")
      * @param Request $request
      * @return Response
      */
@@ -103,14 +97,14 @@ class AdminController extends Controller
             return $this->redirect($this->generateUrl('admin.files'));
         }*/
 
-        return $this->render('admin/files.html.twig', [
+        return $this->render('admin/screen/files.html.twig', [
             'files' => $files->getAllFiles(),
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/admin/files/delete/{filename}", name="admin.files.delete", requirements={"filename" = "[a-z0-9._-]+"})
+     * @Route("/files/delete/{filename}", name="admin.screen.files.delete", requirements={"filename" = "[a-z0-9._-]+"})
      * @param string $filename
      * @return Response
      */
@@ -119,20 +113,20 @@ class AdminController extends Controller
         $files = new FilesRepository($this->getParameter('media_screen_directory'));
         $files->delete($filename);
 
-        return $this->redirect($this->generateUrl('admin.files'));
+        return $this->redirect($this->generateUrl('admin.screen.files'));
     }
 
     /**
-     * @Route("/admin/effects", name="admin.effects")
+     * @Route("/effects", name="admin.screen.effects")
      * @return Response
      */
     public function effectsAction()
     {
-        return $this->render('admin/effects.html.twig');
+        return $this->render('admin/screen/effects.html.twig');
     }
 
     /**
-     * @Route("/admin/effects/{effect}", name="admin.effects.activate")
+     * @Route("/effects/{effect}", name="admin.screen.effects.activate")
      * @param Request $request
      * @param string $effect
      * @return Response
@@ -145,16 +139,16 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/screens", name="admin.screens")
+     * @Route("/screens", name="admin.screen.screens")
      * @return Response
      */
     public function screensAction()
     {
-        return $this->render('admin/screens.html.twig', []);
+        return $this->render('admin/screen/screens.html.twig', []);
     }
 
     /**
-     * @Route("/admin/screens/edit/{id}", name="admin.screens.edit")
+     * @Route("/screens/edit/{id}", name="admin.screen.screens.edit")
      * @param Request $request
      * @param mixed $id
      * @return Response
@@ -175,13 +169,13 @@ class AdminController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Gespeichert!');
-            return $this->redirectToRoute('admin.edit', ['id' => $id]);
+            return $this->redirectToRoute('admin.screen.screens.edit', ['id' => $id]);
         }
 
-        $template = 'admin/forms/' . $screen->screenType . '.html.twig';
-        if (!$this->get('templating')->exists('admin/forms/' . $screen->screenType . '.html.twig'))
+        $template = 'admin/screen/forms/' . $screen->screenType . '.html.twig';
+        if (!$this->get('templating')->exists('admin/screen/forms/' . $screen->screenType . '.html.twig'))
         {
-            $template = 'admin/edit.html.twig';
+            $template = 'admin/screen/edit.html.twig';
         }
 
         return $this->render($template, [
@@ -190,7 +184,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/screens/activate/{id}", name="admin.screens.activate")
+     * @Route("/screens/activate/{id}", name="admin.screen.screens.activate")
      * @param int $id
      * @return JsonResponse
      */

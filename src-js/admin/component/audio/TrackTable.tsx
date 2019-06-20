@@ -19,7 +19,7 @@ class TrackTable extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        fetch(Routing.generate('admin.get.audio.tracks'))
+        fetch(Routing.generate('admin.screen.audio.tracks'))
             .then(response => response.json())
             .then(
                 (result) => {

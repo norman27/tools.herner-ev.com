@@ -6,12 +6,13 @@ import { Audio } from './Audio/Audio';
 import { Routing } from '../../routing/Routing';
 
 const App = ({ dispatch }) => {
+    console.log(Routing.generate('admin.screen.audio'));
     return (
         <div>
             <NotificationContainer />
             {(function() {
                 switch(window.location.pathname) {
-                    case Routing.generate('admin.audio'):
+                    case Routing.generate('admin.screen.audio'):
                         return <Audio dispatch={dispatch} />;
                     default:
                         return null;
