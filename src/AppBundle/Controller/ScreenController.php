@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Screen\Effect\EffectsRepository;
+use AppBundle\Screen\ScreensRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -27,24 +28,18 @@ class ScreenController extends Controller
     }
 
     /**
-     * @Route("/screen/api/v1/state.json", options={"expose"=true}, name="screen_api")
+     * @Route("/screen/state.json", options={"expose"=true}, name="screen_api")
      * @param AudioRepository $audioRepository
      * @param EffectsRepository $effectsRepository
+     * @param ScreensRepository $screensRepository
      * @return JsonResponse
      */
-    public function stateAction(AudioRepository $audioRepository, EffectsRepository $effectsRepository)
+    public function stateAction(AudioRepository $audioRepository, EffectsRepository $effectsRepository, ScreensRepository $screensRepository)
     {
         return new JsonResponse([
             'audio' => $audioRepository->get(),
             'effect' => $effectsRepository->get(),
-            'screen' => [
-                // @TODO implement this
-                'type' => 'text',
-                'data' => [
-                    'title' => 'Willkommen',
-                    'message' => 'in der Hannibal Arena'
-                ]
-            ],
+            'screen' => $screensRepository->getActive(),
             'timestamp' => time()
         ]);
     }

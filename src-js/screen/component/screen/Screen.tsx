@@ -10,13 +10,13 @@ class Screen extends React.Component<ScreenSettings> {
         return (
             <div>
                 {(() => {
-                    switch(this.props.type) {
+                    switch(this.props.screenType) {
                         case 'images':
                             return <FadingImages />;
                         case 'table':
                             return <Table />;
                         case 'text':
-                            return <Text {...this.props.data} />;
+                            return <Text {...this.props.config} />;
                     }
                 })()}
             </div>

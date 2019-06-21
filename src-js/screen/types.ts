@@ -9,6 +9,6 @@ type EffectSettings = {
 }
 
 type ScreenSettings = {
-    type: string,
-    data: any
+    screenType: string,
+    config: any
 }

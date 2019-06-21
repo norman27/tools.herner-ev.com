@@ -36,6 +36,14 @@ class ScreensRepository
     }
 
     /**
+     * @return Screen
+     */
+    public function getActive()
+    {
+        return current($this->filterGet(['active' => Screen::IS_ACTIVE], null, 1));
+    }
+
+    /**
      * @param int $id
      */
     public function activate(int $id)
@@ -62,11 +70,14 @@ class ScreensRepository
 
     /**
      * @param array $filters
+     * @param array|null $orderBy
+     * @param int|null $limit
+     * @param int|null $offset
      * @return Screen[]
      */
-    private function filterGet(array $filters)
+    private function filterGet(array $filters, array $orderBy = null, int $limit = null, int $offset = null)
     {
         $repository = $this->doctrine->getRepository(Screen::class);
-        return $repository->findBy($filters);
+        return $repository->findBy($filters, $orderBy, $limit, $offset);
     }
 }

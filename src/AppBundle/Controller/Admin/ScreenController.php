@@ -3,16 +3,10 @@
 namespace AppBundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
-use AppBundle\Screen\Audio\AudioRepository;
-use AppBundle\Admin\Form\FileUploadForm;
-use AppBundle\Entity\Screen;
 use AppBundle\Screen\Effect\EffectsRepository;
-use AppBundle\Screen\FilesRepository;
 use AppBundle\Screen\ScreensRepository;
 
 /**
@@ -20,43 +14,6 @@ use AppBundle\Screen\ScreensRepository;
  */
 class ScreenController extends Controller
 {
-    /**
-     * @Route("/files", name="admin.screen.files")
-     * @param Request $request
-     * @param FilesRepository $repository
-     * @return Response
-     */
-    public function filesAction(Request $request, FilesRepository $repository)
-    {
-        $form = $this->createForm(FileUploadForm::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            /** @var UploadedFile $file */
-            $file = $form->getData()['file'];
-            $repository->upload($file);
-            return $this->redirect($this->generateUrl('admin.screen.files'));
-        }
-
-        return $this->render('admin/screen/files.html.twig', [
-            'files' => $repository->getAll(),
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/files/delete/{filename}", name="admin.screen.files.delete", requirements={"filename" = "[a-z0-9._-]+"})
-     * @param string $filename
-     * @param FilesRepository $repository
-     * @return Response
-     */
-    public function filesDeleteAction($filename, FilesRepository $repository)
-    {
-        $repository->delete($filename);
-        return $this->redirect($this->generateUrl('admin.screen.files'));
-    }
-
     /**
      * @Route("/effects", name="admin.screen.effects")
      * @param EffectsRepository $repository
@@ -79,7 +36,6 @@ class ScreenController extends Controller
     public function effectsActivateAction($effect, Request $request, EffectsRepository $repository)
     {
         $repository->setEffect($effect, $request->get('data', []));
-
         return $this->redirect($this->generateUrl('admin.screen.effects'));
     }
 
@@ -135,11 +91,11 @@ class ScreenController extends Controller
      * @Route("/screens/activate/{id}", name="admin.screen.screens.activate")
      * @param string $id
      * @param ScreensRepository $repository
-     * @return JsonResponse
+     * @return Response
      */
     public function activateAction($id, ScreensRepository $repository)
     {
         $repository->activate((int) $id);
-        return new JsonResponse(1);
+        return $this->redirect($this->generateUrl('admin.screen.screens'));
     }
 }
