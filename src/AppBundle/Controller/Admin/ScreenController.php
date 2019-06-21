@@ -6,13 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\Screen;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
-use AppBundle\Admin\Form\FileUploadForm;
-use AppBundle\Screen\ScreenRepository;
-use AppBundle\Screen\FilesRepository;
-use AppBundle\Repository\EffectsRepository;
 use AppBundle\Audio\AudioRepository;
+use AppBundle\Admin\Form\FileUploadForm;
+use AppBundle\Entity\Screen;
+use AppBundle\Repository\EffectsRepository;
+use AppBundle\Screen\FilesRepository;
+use AppBundle\Screen\ScreenRepository;
 
 /**
  * @Route("/admin/screen")
@@ -77,27 +78,21 @@ class ScreenController extends Controller
      */
     public function filesAction(Request $request)
     {
-        $files = new FilesRepository($this->getParameter('media_screen_directory'));
-        $form = $this->createForm(FileUploadForm::class);
+        $repository = new FilesRepository($this->getParameter('media_screen_directory'));
 
-        // @TODO check file type and size
-        /*$form->handleRequest($request);
+        $form = $this->createForm(FileUploadForm::class);
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            /** @var UploadedFile $file *
+            /** @var UploadedFile $file */
             $file = $form->getData()['file'];
-
-            $file->move(
-                $this->getParameter('media_screen_directory'),
-                $files->simplifyFilename($file->getClientOriginalName())
-            );
-
-            return $this->redirect($this->generateUrl('admin.files'));
-        }*/
+            $repository->upload($file);
+            return $this->redirect($this->generateUrl('admin.screen.files'));
+        }
 
         return $this->render('admin/screen/files.html.twig', [
-            'files' => $files->getAllFiles(),
+            'files' => $repository->getAll(),
             'form' => $form->createView(),
         ]);
     }

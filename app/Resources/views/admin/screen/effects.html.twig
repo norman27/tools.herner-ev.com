@@ -1,60 +1,60 @@
 {% extends 'admin/base.html.twig' %}
 
 {% block body_content %}
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active show" data-toggle="tab" href="#tab-effects" role="tab">
-                <i class="far fa-list-alt"></i> Effekte</a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane active show" id="tab-effects" role="tabpanel">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Effekt</th>
-                    <th>Option</th>
-                    <th>Aktion</th>
-                </tr>
-                </thead>
-                <tbody>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <i class="far fa-list-alt"></i>Effekte</div>
+                <div class="card-body">
+                <table class="table">
+                    <thead>
                     <tr>
-                        <td>Strafzeit</td>
-                        <td>---</td>
-                        <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.effects.activate', {effect: 'penalty'}) }}" class="btn btn-default"><i class="fa fa-play-circle"></i></a></td>
+                        <th>Effekt</th>
+                        <th>Option</th>
+                        <th>Aktion</th>
                     </tr>
-                    <tr>
-                        <td>Tor</td>
-                        <td>---</td>
-                        <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.effects.activate', {effect: 'goal'}) }}" class="btn btn-default"><i class="fa fa-play-circle"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Torschütze</td>
-                        <td><input type="text" /></td>
-                        <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.effects.activate', {effect: 'goalscorer'}) }}" class="btn btn-default"><i class="fa fa-play-circle"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Abdunkeln</td>
-                        <td>---</td>
-                        <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.effects.activate', {effect: 'darken'}) }}" class="btn btn-default"><i class="fa fa-play-circle"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Gebrochenes Glas</td>
-                        <td>---</td>
-                        <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.effects.activate', {effect: 'broken'}) }}" class="btn btn-default"><i class="fa fa-play-circle"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Gummihuhn</td>
-                        <td>---</td>
-                        <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.effects.activate', {effect: 'rubberduck'}) }}" class="btn btn-default"><i class="fa fa-play-circle"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td>Schneeflocken</td>
-                        <td>---</td>
-                        <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.effects.activate', {effect: 'snowflakes'}) }}" class="btn btn-default"><i class="fa fa-play-circle"></i></a></td>
-                    </tr>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Strafzeit</td>
+                            <td>---</td>
+                            <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.effects.activate', {effect: 'penalty'}) }}" class="btn btn-default"><i class="fa fa-play-circle"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td>Tor</td>
+                            <td>---</td>
+                            <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.effects.activate', {effect: 'goal'}) }}" class="btn btn-default"><i class="fa fa-play-circle"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td>Torschütze</td>
+                            <td><input type="text" /></td>
+                            <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.effects.activate', {effect: 'goalscorer'}) }}" class="btn btn-default"><i class="fa fa-play-circle"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td>Abdunkeln</td>
+                            <td>---</td>
+                            <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.effects.activate', {effect: 'darken'}) }}" class="btn btn-default"><i class="fa fa-play-circle"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td>Gebrochenes Glas</td>
+                            <td>---</td>
+                            <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.effects.activate', {effect: 'broken'}) }}" class="btn btn-default"><i class="fa fa-play-circle"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td>Gummihuhn</td>
+                            <td>---</td>
+                            <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.effects.activate', {effect: 'rubberduck'}) }}" class="btn btn-default"><i class="fa fa-play-circle"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td>Schneeflocken</td>
+                            <td>---</td>
+                            <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.effects.activate', {effect: 'snowflakes'}) }}" class="btn btn-default"><i class="fa fa-play-circle"></i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

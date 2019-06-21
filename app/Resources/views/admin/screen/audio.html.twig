@@ -1,18 +1,22 @@
 {% extends 'admin/base.html.twig' %}
 
 {% block body_content %}
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active show" data-toggle="tab" href="#tab-audio-track" role="tab">
-                <i class="far fa-play-circle"></i> Musik</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#tab-audio-settings" role="tab">
-                <i class="fas fa-cog"></i> Einstellungen</a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane active show" id="tab-audio-track" role="tabpanel" data-track="{{ track }}">{# React #}</div> {# @TODO use data-attribute? #}
-        <div class="tab-pane" id="tab-audio-settings" role="tabpanel" data-volume="{{ volume }}">{# React #}</div> {# @TODO use data-attribute? #}
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-cog"></i>Einstellungen</div>
+                <div class="card-body" id="tab-audio-settings" data-volume="{{ volume }}">{# React #}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <i class="far fa-play-circle"></i>Musik</div>
+                <div class="card-body" id="tab-audio-track" data-track="{{ track }}">{# React #}</div> {# @TODO is data-attribute used? #}
+            </div>
+        </div>
     </div>
 {% endblock %}
