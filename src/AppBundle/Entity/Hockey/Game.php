@@ -1,8 +1,9 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Hockey;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Club;
 
 /**
  * @ORM\Entity
@@ -22,12 +23,14 @@ class Game {
     /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Club")
      * @ORM\JoinColumn(name="hometeam", referencedColumnName="id")
+     * @var Club
      */
     public $hometeam;
 
     /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Club")
      * @ORM\JoinColumn(name="awayteam", referencedColumnName="id")
+     * @var Club
      */
     public $awayteam;
 

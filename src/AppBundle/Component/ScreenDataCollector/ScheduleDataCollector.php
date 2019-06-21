@@ -3,7 +3,7 @@
 namespace AppBundle\Component\ScreenDataCollector;
 
 use AppBundle\Entity\Screen;
-use AppBundle\Entity\Game;
+use AppBundle\Entity\Hockey\Game;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
 class ScheduleDataCollector implements DataCollectorInterface {

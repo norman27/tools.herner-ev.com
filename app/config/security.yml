@@ -2,13 +2,13 @@
 security:
 
     encoders:
-        AppBundle\Entity\User:
+        AppBundle\Entity\Admin\User:
             algorithm: bcrypt
 
     providers:
         admin_db_provider:
             entity:
-                class: AppBundle:User
+                class: AppBundle:Admin\User
 
     firewalls:
         admin:
