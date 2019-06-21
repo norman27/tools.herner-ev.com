@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Hockey\Game;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +19,11 @@ class AsideController extends Controller
 {
     /**
      * @Route("/games", name="admin.aside.games", options={"expose"=true})
+     * @param ManagerRegistry $managerRegistry
      * @return Response
      */
-    public function getGamesTracks() {
-        $repository = $this->getDoctrine()->getRepository(Game::class);
+    public function getGamesTracks(ManagerRegistry $managerRegistry) {
+        $repository = $managerRegistry->getRepository(Game::class);
         /** @var Game[] $games */
         $games = $repository->findBy(['state' => 1], ['gamedate' => 'ASC', 'gametime' => 'ASC'], 10);
 

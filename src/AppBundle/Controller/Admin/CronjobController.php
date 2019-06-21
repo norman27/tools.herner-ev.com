@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CronjobController extends Controller
 {
     /**
-     * @Route("{trailingSlash}", name="admin.screen.index", requirements={"trailingSlash" = "[/]{0,1}"}, defaults={"trailingSlash" = "/"})
+     * @Route("", name="admin.screen.index")
      * @return Response
      */
     public function indexAction()

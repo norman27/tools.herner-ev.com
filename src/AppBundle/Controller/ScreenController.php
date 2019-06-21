@@ -28,12 +28,12 @@ class ScreenController extends Controller
 
     /**
      * @Route("/screen/api/v1/state.json", options={"expose"=true}, name="screen_api")
+     * @param AudioRepository $audioRepository
+     * @param EffectsRepository $effectsRepository
+     * @return JsonResponse
      */
-    public function stateAction()
+    public function stateAction(AudioRepository $audioRepository, EffectsRepository $effectsRepository)
     {
-        $audioRepository = new AudioRepository($this->get('cache.app'));
-        $effectsRepository = new EffectsRepository($this->get('cache.app'));
-
         return new JsonResponse([
             'audio' => $audioRepository->get(),
             'effect' => $effectsRepository->get(),

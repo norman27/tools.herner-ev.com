@@ -2,16 +2,16 @@
 
 namespace AppBundle\Screen\Effect;
 
-use Symfony\Component\Cache\Adapter\AdapterInterface;
+use Psr\Cache\CacheItemPoolInterface;
 
 class EffectsRepository
 {
     const CACHE_KEY = 'screen.effects.repository';
 
-    /** @var AdapterInterface */
+    /** @var CacheItemPoolInterface */
     private $cache;
 
-    public function __construct(AdapterInterface $cache)
+    public function __construct(CacheItemPoolInterface $cache)
     {
         $this->cache = $cache;
     }

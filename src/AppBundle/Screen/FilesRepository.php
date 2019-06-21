@@ -12,12 +12,17 @@ class FilesRepository
     /** @var string */
     private $directory = '';
 
-    /**
-     * @param string $directory
-     */
-    public function __construct($directory)
+    public function __construct()
     {
-        $this->directory = realpath($directory) . '/';
+        $this->directory = realpath(
+                __DIR__
+                . DIRECTORY_SEPARATOR . '..'
+                . DIRECTORY_SEPARATOR . '..'
+                . DIRECTORY_SEPARATOR . '..'
+                . DIRECTORY_SEPARATOR . 'public'
+                . DIRECTORY_SEPARATOR . 'media'
+                . DIRECTORY_SEPARATOR . 'screen'
+            ) . '/';
     }
 
     /**

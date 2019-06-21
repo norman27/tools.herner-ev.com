@@ -2,17 +2,17 @@
 
 namespace AppBundle\Screen\Audio;
 
-use Symfony\Component\Cache\Adapter\AdapterInterface;
+use Psr\Cache\CacheItemPoolInterface;
 use falahati\PHPMP3\MpegAudio;
 
 final class AudioRepository
 {
     const CACHE_KEY = 'screen.audio.repository';
 
-    /** @var AdapterInterface */
+    /** @var CacheItemPoolInterface */
     private $cache;
 
-    public function __construct(AdapterInterface $cache)
+    public function __construct(CacheItemPoolInterface $cache)
     {
         $this->cache = $cache;
     }
@@ -29,7 +29,7 @@ final class AudioRepository
         foreach ($files as $file) {
             $tracks[$file] = new AudioTrack(
                 $file,
-                MpegAudio::fromFile(realpath(__DIR__ . '/../../../../public/audio/' . $file))->getTotalDuration()
+                (int) MpegAudio::fromFile(realpath(__DIR__ . '/../../../../public/audio/' . $file))->getTotalDuration()
             );
         }
         ksort($tracks);

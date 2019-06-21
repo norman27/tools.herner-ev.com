@@ -21,65 +21,13 @@ use AppBundle\Screen\ScreensRepository;
 class ScreenController extends Controller
 {
     /**
-     * @Route("/audio", name="admin.screen.audio", options={"expose"=true})
-     * @return Response
-     */
-    public function audioAction()
-    {
-        $audioRepository = new AudioRepository($this->get('cache.app'));
-        $audio = $audioRepository->get();
-        return $this->render('admin/screen/audio.html.twig', [
-            'volume' => $audio->volume,
-            'track' => $audio->track
-        ]);
-    }
-
-    /**
-     * @Route("/audio/tracks", name="admin.screen.audio.tracks", options={"expose"=true})
-     * @return Response
-     */
-    public function getAudioTracks() {
-        $audioRepository = new AudioRepository($this->get('cache.app'));
-        return new JsonResponse([
-            'tracks' => $audioRepository->getAvailableTracks()
-        ]);
-    }
-
-    /**
-     * @Route("/audio/volume/{volume}", name="admin.screen.audio.volume", options={"expose"=true}, defaults={"volume"=80}, methods={"POST"})
-     * @param string $volume
-     * @return JsonResponse
-     */
-    public function postAudioVolumeAction($volume) // @TODO this should be more something like "change"
-    {
-        $repository = new AudioRepository($this->get('cache.app'));
-        return new JsonResponse([
-            $repository->setVolume((int) $volume)
-        ]);
-    }
-
-    /**
-     * @Route("/audio/track/{track}", name="admin.screen.audio.track", options={"expose"=true}, defaults={"track"=""}, methods={"POST"})
-     * @param string $track
-     * @return JsonResponse
-     */
-    public function postAudioTrackAction($track) // @TODO this should be more something like "change"
-    {
-        $repository = new AudioRepository($this->get('cache.app'));
-        return new JsonResponse([
-            $repository->setTrack($track)
-        ]);
-    }
-
-    /**
      * @Route("/files", name="admin.screen.files")
      * @param Request $request
+     * @param FilesRepository $repository
      * @return Response
      */
-    public function filesAction(Request $request)
+    public function filesAction(Request $request, FilesRepository $repository)
     {
-        $repository = new FilesRepository($this->getParameter('media_screen_directory'));
-
         $form = $this->createForm(FileUploadForm::class);
         $form->handleRequest($request);
 
@@ -100,23 +48,22 @@ class ScreenController extends Controller
     /**
      * @Route("/files/delete/{filename}", name="admin.screen.files.delete", requirements={"filename" = "[a-z0-9._-]+"})
      * @param string $filename
+     * @param FilesRepository $repository
      * @return Response
      */
-    public function filesDeleteAction($filename)
+    public function filesDeleteAction($filename, FilesRepository $repository)
     {
-        $files = new FilesRepository($this->getParameter('media_screen_directory'));
-        $files->delete($filename);
-
+        $repository->delete($filename);
         return $this->redirect($this->generateUrl('admin.screen.files'));
     }
 
     /**
      * @Route("/effects", name="admin.screen.effects")
+     * @param EffectsRepository $repository
      * @return Response
      */
-    public function effectsAction()
+    public function effectsAction(EffectsRepository $repository)
     {
-        $repository = new EffectsRepository($this->get('cache.app'));
         return $this->render('admin/screen/effects.html.twig', [
             'effects' => $repository->getAll()
         ]);
@@ -124,13 +71,13 @@ class ScreenController extends Controller
 
     /**
      * @Route("/effects/activate/{effect}", name="admin.screen.effects.activate", methods={"POST"})
-     * @param Request $request
      * @param string $effect
+     * @param Request $request
+     * @param EffectsRepository $repository
      * @return Response
      */
-    public function effectsActivateAction(Request $request, $effect)
+    public function effectsActivateAction($effect, Request $request, EffectsRepository $repository)
     {
-        $repository = new EffectsRepository($this->get('cache.app'));
         $repository->setEffect($effect, $request->get('data', []));
 
         return $this->redirect($this->generateUrl('admin.screen.effects'));
@@ -138,11 +85,11 @@ class ScreenController extends Controller
 
     /**
      * @Route("/screens", name="admin.screen.screens")
+     * @param ScreensRepository $repository
      * @return Response
      */
-    public function screensAction()
+    public function screensAction(ScreensRepository $repository)
     {
-        $repository = new ScreensRepository($this->getDoctrine());
         return $this->render('admin/screen/screens.html.twig', [
             'screens' => $repository->getAll()
         ]);
@@ -150,17 +97,17 @@ class ScreenController extends Controller
 
     /**
      * @Route("/screens/edit/{id}", name="admin.screen.screens.edit")
-     * @param Request $request
      * @param mixed $id
+     * @param Request $request
+     * @param ScreensRepository $repository
      * @return Response
      */
-    public function editAction(Request $request, $id)
+    public function editAction($id, Request $request, ScreensRepository $repository)
     {
-        $repository = new ScreensRepository($this->getDoctrine());
-        $em         = $this->getDoctrine()->getManager();
-        $screen     = $repository->getById($id);
-        $formClass  = 'AppBundle\Form\\' . ucfirst($screen->screenType) .  'Form';
-        $form       = $this->createForm($formClass, $screen->config, ['entity_manager' => $em]);
+        /*$em = $this->getDoctrine()->getManager();
+        $screen = $repository->getById($id);
+        $formClass = 'AppBundle\Form\\' . ucfirst($screen->screenType) .  'Form';
+        $form = $this->createForm($formClass, $screen->config, ['entity_manager' => $em]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
@@ -181,27 +128,18 @@ class ScreenController extends Controller
 
         return $this->render($template, [
             'form' => $form->createView(),
-        ]);
+        ]);*/
     }
 
     /**
      * @Route("/screens/activate/{id}", name="admin.screen.screens.activate")
-     * @param int $id
+     * @param string $id
+     * @param ScreensRepository $repository
      * @return JsonResponse
      */
-    public function activateAction($id)
+    public function activateAction($id, ScreensRepository $repository)
     {
-        $repository = new ScreensRepository($this->getDoctrine());
-        $em = $this->getDoctrine()->getManager();
-
-        $query = $em->createQuery('UPDATE AppBundle:Screen s SET s.active = 0');
-        $query->execute();
-
-        $screen = $repository->getById($id);
-        $screen->active = Screen::IS_ACTIVE;
-        $em->persist($screen);
-        $em->flush();
-
+        $repository->activate((int) $id);
         return new JsonResponse(1);
     }
 }

@@ -2,18 +2,18 @@
 
 namespace AppBundle\Screen;
 
-use Doctrine\Bundle\DoctrineBundle\Registry;
-use AppBundle\Entity\Screen\Screen;
+use AppBundle\Entity\Screen;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 class ScreensRepository
 {
-    /** @var Registry */
+    /** @var ManagerRegistry */
     private $doctrine;
 
     /**
-     * @param Registry $doctrine
+     * @param ManagerRegistry $doctrine
      */
-    public function __construct(Registry $doctrine)
+    public function __construct(ManagerRegistry $doctrine)
     {
         $this->doctrine = $doctrine;
     }
@@ -33,6 +33,31 @@ class ScreensRepository
     public function getById($id)
     {
         return current($this->filterGet(['id' => $id]));
+    }
+
+    /**
+     * @param int $id
+     */
+    public function activate(int $id)
+    {
+        $this->deactivateAll();
+
+        $screen = $this->getById($id);
+        $screen->active = Screen::IS_ACTIVE;
+
+        $em = $this->doctrine->getManager();
+        $em->persist($screen);
+        $em->flush();
+    }
+
+    /**
+     * Deactivate all screens
+     */
+    private function deactivateAll()
+    {
+        $em = $this->doctrine->getManager();
+        $query = $em->createQuery('UPDATE AppBundle:Screen s SET s.active = 0');
+        $query->execute();
     }
 
     /**
