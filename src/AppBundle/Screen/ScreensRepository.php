@@ -5,7 +5,7 @@ namespace AppBundle\Screen;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use AppBundle\Entity\Screen\Screen;
 
-class ScreenRepository
+class ScreensRepository
 {
     /** @var Registry */
     private $doctrine;

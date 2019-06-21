@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Audio;
+namespace AppBundle\Screen\Audio;
 
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 use falahati\PHPMP3\MpegAudio;

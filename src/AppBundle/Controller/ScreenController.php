@@ -2,10 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Screen\Effect\EffectsRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use AppBundle\Audio\AudioRepository;
+use AppBundle\Screen\Audio\AudioRepository;
 
 class ScreenController extends Controller
 {
@@ -31,10 +32,11 @@ class ScreenController extends Controller
     public function stateAction()
     {
         $audioRepository = new AudioRepository($this->get('cache.app'));
+        $effectsRepository = new EffectsRepository($this->get('cache.app'));
 
         return new JsonResponse([
             'audio' => $audioRepository->get(),
-            'effect' => [],
+            'effect' => $effectsRepository->get(),
             'screen' => [
                 // @TODO implement this
                 'type' => 'text',

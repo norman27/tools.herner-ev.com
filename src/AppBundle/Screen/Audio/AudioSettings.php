@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Audio;
+namespace AppBundle\Screen\Audio;
 
 final class AudioSettings
 {

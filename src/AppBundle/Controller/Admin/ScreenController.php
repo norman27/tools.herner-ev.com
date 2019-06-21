@@ -8,12 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
-use AppBundle\Audio\AudioRepository;
+use AppBundle\Screen\Audio\AudioRepository;
 use AppBundle\Admin\Form\FileUploadForm;
 use AppBundle\Entity\Screen;
-use AppBundle\Repository\EffectsRepository;
+use AppBundle\Screen\Effect\EffectsRepository;
 use AppBundle\Screen\FilesRepository;
-use AppBundle\Screen\ScreenRepository;
+use AppBundle\Screen\ScreensRepository;
 
 /**
  * @Route("/admin/screen")
@@ -116,20 +116,24 @@ class ScreenController extends Controller
      */
     public function effectsAction()
     {
-        return $this->render('admin/screen/effects.html.twig');
+        $repository = new EffectsRepository($this->get('cache.app'));
+        return $this->render('admin/screen/effects.html.twig', [
+            'effects' => $repository->getAll()
+        ]);
     }
 
     /**
-     * @Route("/effects/{effect}", name="admin.screen.effects.activate")
+     * @Route("/effects/activate/{effect}", name="admin.screen.effects.activate", methods={"POST"})
      * @param Request $request
      * @param string $effect
      * @return Response
      */
     public function effectsActivateAction(Request $request, $effect)
     {
-        $repository = new EffectsRepository();
-        $repository->setEffect($effect, $request->get('data', '')); // @TODO explicitly set data in request
-        return new JsonResponse(1);
+        $repository = new EffectsRepository($this->get('cache.app'));
+        $repository->setEffect($effect, $request->get('data', []));
+
+        return $this->redirect($this->generateUrl('admin.screen.effects'));
     }
 
     /**
@@ -138,7 +142,7 @@ class ScreenController extends Controller
      */
     public function screensAction()
     {
-        $repository = new ScreenRepository($this->getDoctrine());
+        $repository = new ScreensRepository($this->getDoctrine());
         return $this->render('admin/screen/screens.html.twig', [
             'screens' => $repository->getAll()
         ]);
@@ -152,7 +156,7 @@ class ScreenController extends Controller
      */
     public function editAction(Request $request, $id)
     {
-        $repository = new ScreenRepository($this->getDoctrine());
+        $repository = new ScreensRepository($this->getDoctrine());
         $em         = $this->getDoctrine()->getManager();
         $screen     = $repository->getById($id);
         $formClass  = 'AppBundle\Form\\' . ucfirst($screen->screenType) .  'Form';
@@ -187,7 +191,7 @@ class ScreenController extends Controller
      */
     public function activateAction($id)
     {
-        $repository = new ScreenRepository($this->getDoctrine());
+        $repository = new ScreensRepository($this->getDoctrine());
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery('UPDATE AppBundle:Screen s SET s.active = 0');

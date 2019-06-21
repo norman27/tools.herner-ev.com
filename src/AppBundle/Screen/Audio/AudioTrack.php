@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Audio;
+namespace AppBundle\Screen\Audio;
 
 final class AudioTrack
 {
@@ -14,10 +14,6 @@ final class AudioTrack
      */
     public $duration;
 
-    /**
-     * @param string $track
-     * @param int $duration
-     */
     public function __construct(string $track, int $duration)
     {
         $this->track = $track;
