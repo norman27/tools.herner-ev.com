@@ -18,11 +18,13 @@
                     <tbody>
                         {% for screen in screens %}
                             <tr>
-                                <td>{{ screen.name }}</td>
+                                <td>
+                                    <a href="{{ path('admin.screen.screens.edit', {id: screen.id}) }}"><i class="fa fa-edit"></i> {{ screen.name }}</a>
+                                </td>
                                 <td>{{ screen.screenType }}</td>
                                 <td>
-                                    <a href="#TODO">
-                                        <button class="btn btn-light"><i class="fa fa-edit"></i></button>
+                                    <a href="{{ path('admin.screen.screens.activate', {id: screen.id}) }}" title="Aktivieren">
+                                        <button class="btn btn-light"><i class="far fa-window-maximize"></i></button>
                                     </a>
                                 </td>
                             </tr>
