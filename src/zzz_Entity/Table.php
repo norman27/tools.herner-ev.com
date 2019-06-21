@@ -20,7 +20,7 @@ class Table {
     public $catid;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Club")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Hockey\Club")
      * @ORM\JoinColumn(name="club_id", referencedColumnName="id")
      */
     public $club;

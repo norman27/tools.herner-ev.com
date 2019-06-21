@@ -1,15 +1,16 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Screen;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="leinwand_screen")
+ * @ORM\Table(name="app_screens")
  * @ORM\HasLifecycleCallbacks
  */
-class Screen {
+class Screen
+{
     const IS_ACTIVE = 1;
 
     /**

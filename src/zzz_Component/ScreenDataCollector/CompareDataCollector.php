@@ -3,26 +3,18 @@
 namespace AppBundle\Component\ScreenDataCollector;
 
 use AppBundle\Entity\Screen;
-use AppBundle\Entity\Club;
+use AppBundle\Entity\Hockey\Club;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
-class OthergamesDataCollector implements DataCollectorInterface {
+class CompareDataCollector implements DataCollectorInterface {
     /**
      * @inheritdoc
      */
     public function collect(Registry $doctrine, Screen $screen) {
         /** @var Club[] $clubs */
         $clubs = $this->getClubs($doctrine);
-
-        for ($i = 1; $i <= 8; $i++) {
-            if (isset($screen->config['home_' . $i]) && $screen->config['home_' . $i] > 0) {
-                $screen->config['home_' . $i] = $clubs[$screen->config['home_' . $i]];
-            }
-            if (isset($screen->config['away_' . $i]) && $screen->config['away_' . $i] > 0) {
-                $screen->config['away_' . $i] = $clubs[$screen->config['away_' . $i]];
-            }
-        }
-
+        $screen->config['hometeam'] = $clubs[$screen->config['hometeam']];
+        $screen->config['awayteam'] = $clubs[$screen->config['awayteam']];
         return $screen;
     }
 
@@ -30,7 +22,7 @@ class OthergamesDataCollector implements DataCollectorInterface {
      * @param Registry $doctrine
      * @return Club[]
      */
-    private function getClubs(Registry $doctrine) {
+    private function getClubs(Registry $doctrine) { //@TODO add this to its own method copied multiple times
         /** @var Club[] $clubs */
         $clubs = $doctrine->getRepository(Club::class)->findBy(['state' => 1]);
 

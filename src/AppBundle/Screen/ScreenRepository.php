@@ -1,33 +1,28 @@
 <?php
 
-namespace AppBundle\Repository;
+namespace AppBundle\Screen;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
-use AppBundle\Entity\Screen;
-use Symfony\Component\Cache\Simple\FilesystemCache;
+use AppBundle\Entity\Screen\Screen;
 
-class ScreenRepository {
-    const CATEGORY_ERSTE = 0;
-    const CATEGORY_NACHWUCHS = 1;
-
+class ScreenRepository
+{
     /** @var Registry */
     private $doctrine;
-
-    /** @var FilesystemCache */
-    private $cache;
 
     /**
      * @param Registry $doctrine
      */
-    public function __construct(Registry $doctrine) {
+    public function __construct(Registry $doctrine)
+    {
         $this->doctrine = $doctrine;
-        $this->cache = new FilesystemCache();
     }
 
     /**
      * @return Screen[]
      */
-    public function getAllForActiveCategory() {
+    public function getAll()
+    {
         return $this->filterGet([]);
     }
 
@@ -35,7 +30,8 @@ class ScreenRepository {
      * @param int $id
      * @return Screen
      */
-    public function getById($id) {
+    public function getById($id)
+    {
         return current($this->filterGet(['id' => $id]));
     }
 
@@ -43,7 +39,8 @@ class ScreenRepository {
      * @param array $filters
      * @return Screen[]
      */
-    private function filterGet(array $filters) {
+    private function filterGet(array $filters)
+    {
         $repository = $this->doctrine->getRepository(Screen::class);
         return $repository->findBy($filters);
     }

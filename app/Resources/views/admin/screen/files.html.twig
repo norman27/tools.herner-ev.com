@@ -29,7 +29,11 @@
                         <td><img src="{{ asset('media/screen/' ~ file.getFileName) }}" alt="{{ file.getFileName }}" style="width:100px" class="img-thumbnail"></td>
                         <td>{{ file.getFileName }}</td>
                         <td>{{ bytes.bytesToSize(file.getSize) }}</td>
-                        <td><a class="btn btn-light" type="button" href="{{ path('admin.screen.files.delete', {filename: file.getFileName}) }}" class="btn btn-default"><i class="fa fa-trash"></i></a></td>
+                        <td>
+                            <a href="{{ path('admin.screen.files.delete', {filename: file.getFileName}) }}">
+                                <button class="btn btn-light"><i class="fa fa-trash"></i></button>
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

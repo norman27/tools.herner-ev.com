@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\AppBundle\Repository;
+namespace Tests\AppBundle\Screen;
 
-use AppBundle\Repository\FilesRepository;
+use AppBundle\Screen\FilesRepository;
 use PHPUnit\Framework\TestCase;
 
 class FilesRepositoryTest extends TestCase

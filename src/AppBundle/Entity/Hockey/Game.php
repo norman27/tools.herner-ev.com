@@ -3,7 +3,7 @@
 namespace AppBundle\Entity\Hockey;
 
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\Club;
+use AppBundle\Entity\Hockey\Club;
 
 /**
  * @ORM\Entity
@@ -21,14 +21,14 @@ class Game {
     public $catid;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Club")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Hockey\Club")
      * @ORM\JoinColumn(name="hometeam", referencedColumnName="id")
      * @var Club
      */
     public $hometeam;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Club")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Hockey\Club")
      * @ORM\JoinColumn(name="awayteam", referencedColumnName="id")
      * @var Club
      */

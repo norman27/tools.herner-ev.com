@@ -28,7 +28,7 @@ class Games extends React.Component<{}, State> {
             <div>
             {this.state.games.map((game: Game, index) => {
                 return (
-                    <div className="list-group-item list-group-item-accent-warning list-group-item-divider">
+                    <div className="list-group-item list-group-item-accent-warning list-group-item-divider" key={game.id}>
                         <div>{game.hometeam.name} - {game.awayteam.name}</div>
                         <small className="text-muted mr-3">
                             <i className="far fa-calendar"></i>&nbsp; {game.gamedate}</small>

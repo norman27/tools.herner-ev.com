@@ -1,10 +1,12 @@
 <?php
 
-namespace AppBundle\Repository;
+namespace AppBundle\Screen;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use URLify;
+
+// @TODO add checker for extension and size on upload, then remove isImage()
 
 class FilesRepository
 {

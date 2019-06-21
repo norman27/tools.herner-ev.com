@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use AppBundle\Entity\Club;
+use AppBundle\Entity\Hockey\Club;
 use AppBundle\Entity\JoomlaBanner;
 use Doctrine\ORM\EntityManager;
 

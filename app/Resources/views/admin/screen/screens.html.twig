@@ -9,7 +9,28 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane active show" id="tab-effects" role="tabpanel">
-            TODO
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Typ</th>
+                    <th>Aktion</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for screen in screens %}
+                        <tr>
+                            <td>{{ screen.name }}</td>
+                            <td>{{ screen.screenType }}</td>
+                            <td>
+                                <a href="#TODO">
+                                    <button class="btn btn-light"><i class="fa fa-edit"></i></button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}

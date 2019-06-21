@@ -2,16 +2,15 @@
 
 namespace AppBundle\Controller\Admin;
 
-use AppBundle\Repository\FilesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Screen;
 use Symfony\Component\Routing\Annotation\Route;
-use AppBundle\Form\Admin\FileUploadForm;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use AppBundle\Repository\ScreenRepository;
+use AppBundle\Admin\Form\FileUploadForm;
+use AppBundle\Screen\ScreenRepository;
+use AppBundle\Screen\FilesRepository;
 use AppBundle\Repository\EffectsRepository;
 use AppBundle\Audio\AudioRepository;
 
@@ -144,7 +143,10 @@ class ScreenController extends Controller
      */
     public function screensAction()
     {
-        return $this->render('admin/screen/screens.html.twig', []);
+        $repository = new ScreenRepository($this->getDoctrine());
+        return $this->render('admin/screen/screens.html.twig', [
+            'screens' => $repository->getAll()
+        ]);
     }
 
     /**

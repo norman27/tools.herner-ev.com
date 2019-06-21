@@ -4,13 +4,15 @@ namespace AppBundle\Repository;
 
 use Symfony\Component\Cache\Simple\FilesystemCache;
 
-class EffectsRepository {
+class EffectsRepository
+{
     const CACHE_KEY = 'screen.effects';
 
     /** @var FilesystemCache */
     private $cache;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->cache = new FilesystemCache();
     }
 
@@ -18,7 +20,8 @@ class EffectsRepository {
      * @param string $effect
      * @param string $addData
      */
-    public function setEffect($effect, $addData) {
+    public function setEffect($effect, $addData)
+    {
         $this->cache->set(
             self::CACHE_KEY,
             [
@@ -32,14 +35,16 @@ class EffectsRepository {
     /**
      * @return array
      */
-    public function getEffect() {
+    public function getEffect()
+    {
         return $this->cache->get(self::CACHE_KEY, '');
     }
 
     /**
      * @return bool
      */
-    public function hasEffect() {
+    public function hasEffect()
+    {
         return ($this->cache->get(self::CACHE_KEY, '') !== '');
     }
 }

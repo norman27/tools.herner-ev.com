@@ -3,7 +3,7 @@
 namespace AppBundle\Form;
 
 use Doctrine\ORM\EntityManager;
-use AppBundle\Entity\Club;
+use AppBundle\Entity\Hockey\Club;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

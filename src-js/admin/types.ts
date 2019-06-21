@@ -3,6 +3,7 @@ type Club = {
 }
 
 type Game = {
+    id: number,
     hometeam: Club,
     awayteam: Club,
     gamedate: string, // ie. 2019-06-21

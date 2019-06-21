@@ -3,7 +3,7 @@
 namespace AppBundle\Component\ScreenDataCollector;
 
 use AppBundle\Entity\Screen;
-use AppBundle\Entity\Club;
+use AppBundle\Entity\Hockey\Club;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
 class LivegameDataCollector implements DataCollectorInterface {

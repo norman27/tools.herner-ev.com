@@ -3,18 +3,17 @@
 namespace AppBundle\Component\ScreenDataCollector;
 
 use AppBundle\Entity\Screen;
-use AppBundle\Entity\Club;
+use AppBundle\Entity\Hockey\Club;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
-class CompareDataCollector implements DataCollectorInterface {
+class SixDataCollector implements DataCollectorInterface {
     /**
      * @inheritdoc
      */
     public function collect(Registry $doctrine, Screen $screen) {
         /** @var Club[] $clubs */
         $clubs = $this->getClubs($doctrine);
-        $screen->config['hometeam'] = $clubs[$screen->config['hometeam']];
-        $screen->config['awayteam'] = $clubs[$screen->config['awayteam']];
+        $screen->config['team'] = $clubs[$screen->config['team']];
         return $screen;
     }
 
