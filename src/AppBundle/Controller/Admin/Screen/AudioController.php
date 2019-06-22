@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\Admin;
+namespace AppBundle\Controller\Admin\Screen;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,7 +11,7 @@ use AppBundle\Screen\Audio\AudioRepository;
 /**
  * @Route("/admin/screen/audio")
  */
-class ScreenAudioController extends Controller
+class AudioController extends Controller
 {
     /**
      * @Route("", name="admin.screen.audio", options={"expose"=true})

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Admin\Form;
+namespace AppBundle\Admin\Screen;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -40,6 +40,7 @@ class FileUploadForm extends AbstractType
                         'class' => 'btn btn-primary mt-3'
                     ]
                 ]
-            );
+            )
+        ;
     }
 }

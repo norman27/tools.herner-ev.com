@@ -1,0 +1,21 @@
+{% extends 'admin/base.html.twig' %}
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+
+{% block body_content %}
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-edit"></i>Bearbeiten von "{{ screen.name }}"</div>
+                <div class="card-body">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success js-flash">{{ message }}</div>
+                    {% endfor %}
+                    {{ form_start(form) }}
+                        {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

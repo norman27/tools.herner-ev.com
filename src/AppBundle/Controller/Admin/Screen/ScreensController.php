@@ -1,44 +1,19 @@
 <?php
 
-namespace AppBundle\Controller\Admin;
+namespace AppBundle\Controller\Admin\Screen;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use AppBundle\Screen\Effect\EffectsRepository;
 use AppBundle\Screen\ScreensRepository;
 
 /**
  * @Route("/admin/screen")
  */
-class ScreenController extends Controller
+class ScreensController extends Controller
 {
-    /**
-     * @Route("/effects", name="admin.screen.effects")
-     * @param EffectsRepository $repository
-     * @return Response
-     */
-    public function effectsAction(EffectsRepository $repository)
-    {
-        return $this->render('admin/screen/effects.html.twig', [
-            'effects' => $repository->getAll()
-        ]);
-    }
-
-    /**
-     * @Route("/effects/activate/{effect}", name="admin.screen.effects.activate", methods={"POST"})
-     * @param string $effect
-     * @param Request $request
-     * @param EffectsRepository $repository
-     * @return Response
-     */
-    public function effectsActivateAction($effect, Request $request, EffectsRepository $repository)
-    {
-        $repository->setEffect($effect, $request->get('data', []));
-        return $this->redirect($this->generateUrl('admin.screen.effects'));
-    }
-
     /**
      * @Route("/screens", name="admin.screen.screens")
      * @param ScreensRepository $repository
@@ -60,31 +35,30 @@ class ScreenController extends Controller
      */
     public function editAction($id, Request $request, ScreensRepository $repository)
     {
-        /*$em = $this->getDoctrine()->getManager();
         $screen = $repository->getById($id);
-        $formClass = 'AppBundle\Form\\' . ucfirst($screen->screenType) .  'Form';
-        $form = $this->createForm($formClass, $screen->config, ['entity_manager' => $em]);
+
+        $formClass = 'AppBundle\Admin\Screen\Edit\\' . ucfirst($screen->screenType) .  'Form';
+        $form = $this->createForm($formClass, $screen->config);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
+            // @TODO maybe put this to its own route
             $screen->config = $form->getData();
-            $em->persist($screen);
-            $em->flush();
+            $repository->save($screen);
 
-            $this->addFlash('success', 'Gespeichert!');
+            $this->addFlash('success', 'Erfolgreich gespeichert');
             return $this->redirectToRoute('admin.screen.screens.edit', ['id' => $id]);
         }
 
-        $template = 'admin/screen/forms/' . $screen->screenType . '.html.twig';
-        if (!$this->get('templating')->exists('admin/screen/forms/' . $screen->screenType . '.html.twig'))
-        {
-            $template = 'admin/screen/edit.html.twig';
-        }
+        $template = ($this->get('templating')->exists('admin/screen/edit/' . $screen->screenType . '.html.twig')) ?
+            'admin/screen/edit/' . $screen->screenType . '.html.twig'
+            : $template = 'admin/screen/edit/form.html.twig';
 
         return $this->render($template, [
+            'screen' => $screen,
             'form' => $form->createView(),
-        ]);*/
+        ]);
     }
 
     /**

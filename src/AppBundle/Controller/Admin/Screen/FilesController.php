@@ -1,19 +1,19 @@
 <?php
 
-namespace AppBundle\Controller\Admin;
+namespace AppBundle\Controller\Admin\Screen;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
-use AppBundle\Admin\Form\FileUploadForm;
+use AppBundle\Admin\Screen\FileUploadForm;
 use AppBundle\Screen\FilesRepository;
 
 /**
  * @Route("/admin/screen/files")
  */
-class ScreenFilesController extends Controller
+class FilesController extends Controller
 {
     /**
      * @Route("", name="admin.screen.files")

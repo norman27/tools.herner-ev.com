@@ -8,14 +8,14 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 class ScreensRepository
 {
     /** @var ManagerRegistry */
-    private $doctrine;
+    private $managerRegistry;
 
     /**
-     * @param ManagerRegistry $doctrine
+     * @param ManagerRegistry $managerRegistry
      */
-    public function __construct(ManagerRegistry $doctrine)
+    public function __construct(ManagerRegistry $managerRegistry)
     {
-        $this->doctrine = $doctrine;
+        $this->managerRegistry = $managerRegistry;
     }
 
     /**
@@ -49,11 +49,14 @@ class ScreensRepository
     public function activate(int $id)
     {
         $this->deactivateAll();
-
         $screen = $this->getById($id);
         $screen->active = Screen::IS_ACTIVE;
+        $this->save($screen);
+    }
 
-        $em = $this->doctrine->getManager();
+    public function save(Screen $screen)
+    {
+        $em = $this->managerRegistry->getManager();
         $em->persist($screen);
         $em->flush();
     }
@@ -63,7 +66,7 @@ class ScreensRepository
      */
     private function deactivateAll()
     {
-        $em = $this->doctrine->getManager();
+        $em = $this->managerRegistry->getManager();
         $query = $em->createQuery('UPDATE AppBundle:Screen s SET s.active = 0');
         $query->execute();
     }
@@ -77,7 +80,7 @@ class ScreensRepository
      */
     private function filterGet(array $filters, array $orderBy = null, int $limit = null, int $offset = null)
     {
-        $repository = $this->doctrine->getRepository(Screen::class);
+        $repository = $this->managerRegistry->getRepository(Screen::class);
         return $repository->findBy($filters, $orderBy, $limit, $offset);
     }
 }
