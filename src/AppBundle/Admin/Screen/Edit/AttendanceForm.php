@@ -2,42 +2,39 @@
 
 namespace AppBundle\Admin\Screen\Edit;
 
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\AbstractType;
+use AppBundle\Screen\FilesRepository;
 
-class ScheduleForm extends AbstractType
+class AttendanceForm extends AbstractType
 {
-    use JoomlaHelperTrait;
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
+        $repository = new FilesRepository();
+
         $builder
             ->add(
-                'caption',
-                TextType::class, ['required' => false]
+                'attendance',
+                IntegerType::class
             )
             ->add(
-                'id',
+                'sponsor',
                 ChoiceType::class,
                 [
-                    'choices' => $this->getCategories('com_hockeymanager_schedule')
+                    'choices' => $repository->getAll()
                 ]
             )
             ->add(
                 'save',
                 SubmitType::class,
                 [
-                    'label' => 'Save',
-                    'attr' => [
-                        'class' => 'btn btn-primary mt-3'
-                    ]
+                    'label' => 'Save'
                 ]
             )
         ;
