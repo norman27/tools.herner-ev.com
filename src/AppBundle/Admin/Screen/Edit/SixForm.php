@@ -18,7 +18,8 @@ class SixForm extends AbstractType
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
         $builder
             ->add(
                 'team',
@@ -30,7 +31,8 @@ class SixForm extends AbstractType
             )
         ;
 
-        for ($i = 1; $i <= 6; $i++) {
+        for ($i = 1; $i <= 6; $i++)
+        {
             $builder
                 ->add(
                     'number_' . $i,

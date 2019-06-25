@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin\Screen\Edit;
 
+use AppBundle\Entity\Joomla\Banner;
 use AppBundle\Entity\Joomla\Category;
 use AppBundle\Entity\Hockey\Club;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -19,6 +20,26 @@ trait JoomlaHelperTrait
     public function __construct(ManagerRegistry $managerRegistry)
     {
         $this->managerRegistry = $managerRegistry;
+    }
+
+    /**
+     * @return Banner[]
+     */
+    private function getBanners()
+    {
+        /** @var Banner[] $banners */
+        $joomlaBanners = $this->managerRegistry->getRepository(Banner::class)->findBy([
+            'state' => 1
+        ]);
+
+        $banners = [];
+        foreach ($joomlaBanners as $banner) {
+            $banners[$banner->name] = $banner->params["imageurl"];
+        }
+
+        ksort($banners);
+
+        return $banners;
     }
 
     /**
@@ -48,12 +69,16 @@ trait JoomlaHelperTrait
     /**
      * @return Club[]
      */
-    private function getClubs() {
+    private function getClubs()
+    {
         /** @var Club[] $clubs */
-        $joomlaClubs = $this->managerRegistry->getRepository(Club::class)->findBy(['state' => 1]);
+        $joomlaClubs = $this->managerRegistry->getRepository(Club::class)->findBy([
+            'state' => 1
+        ]);
 
         $clubs = [];
-        foreach ($joomlaClubs as $club) {
+        foreach ($joomlaClubs as $club)
+        {
             $clubs[$club->name] = $club->id;
         }
 

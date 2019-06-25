@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Joomla;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="b2n61_banners")
  */
-class JoomlaBanner {
+class Banner {
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
