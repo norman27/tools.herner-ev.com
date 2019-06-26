@@ -68,16 +68,5 @@ class OthergamesForm extends AbstractType
                 )
             ;
         }
-
-
-        $builder
-            ->add(
-                'save',
-                SubmitType::class,
-                [
-                    'label' => 'Save'
-                ]
-            )
-        ;
     }
 }

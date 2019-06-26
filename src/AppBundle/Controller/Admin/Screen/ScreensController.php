@@ -27,7 +27,7 @@ class ScreensController extends Controller
     }
 
     /**
-     * @Route("/screens/edit/{id}", name="admin.screen.screens.edit")
+     * @Route("/screens/edit/{id}", name="admin.screen.screens.edit", options={"expose"=true})
      * @param mixed $id
      * @param Request $request
      * @param ScreensRepository $repository
@@ -38,16 +38,21 @@ class ScreensController extends Controller
         $screen = $repository->getById($id);
 
         $formClass = 'AppBundle\Admin\Screen\Edit\\' . ucfirst($screen->screenType) .  'Form';
-        $form = $this->createForm($formClass, $screen->config);
+        $form = $this->createForm(
+            $formClass,
+            $screen->config,
+            [
+                'action' => $this->generateUrl('admin.screen.screens.edit', ['id' => $id]),
+            ]
+        );
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
+        if ($form->isSubmitted() && $form->isValid()) //@TODO check how to trigger an invalid form? does not seem to work...
         {
             $screen->config = $form->getData();
             $repository->save($screen);
 
             $this->addFlash('success', 'Erfolgreich gespeichert');
-            return $this->redirectToRoute('admin.screen.screens.edit', ['id' => $id]);
         }
 
         $template = ($this->get('templating')->exists('admin/screen/edit/' . $screen->screenType . '.html.twig')) ?
@@ -56,7 +61,7 @@ class ScreensController extends Controller
 
         return $this->render($template, [
             'screen' => $screen,
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ]);
     }
 

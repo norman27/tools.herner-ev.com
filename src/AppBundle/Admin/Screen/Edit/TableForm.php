@@ -44,13 +44,6 @@ class TableForm extends AbstractType
                     'required' => false
                 ]
             )
-            ->add(
-                'save',
-                SubmitType::class,
-                [
-                    'label' => 'Save'
-                ]
-            )
         ;
     }
 }

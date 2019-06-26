@@ -46,13 +46,6 @@ class ImageForm extends AbstractType
                     'empty_data' => '10',
                 ]
             )
-            ->add(
-                'save',
-                SubmitType::class,
-                [
-                    'label' => 'Save'
-                ]
-            )
         ;
     }
 }

@@ -21,23 +21,13 @@ class ScheduleForm extends AbstractType
         $builder
             ->add(
                 'caption',
-                TextType::class, ['required' => false]
+                TextType::class
             )
             ->add(
                 'id',
                 ChoiceType::class,
                 [
                     'choices' => $this->getCategories('com_hockeymanager_schedule')
-                ]
-            )
-            ->add(
-                'save',
-                SubmitType::class,
-                [
-                    'label' => 'Save',
-                    'attr' => [
-                        'class' => 'btn btn-primary mt-3'
-                    ]
                 ]
             )
         ;

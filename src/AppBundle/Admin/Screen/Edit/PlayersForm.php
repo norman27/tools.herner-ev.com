@@ -50,13 +50,6 @@ class PlayersForm extends AbstractType
                     'required' => false,
                 ]
             )
-            ->add(
-                'save',
-                SubmitType::class,
-                [
-                    'label' => 'Save'
-                ]
-            )
         ;
     }
 }

@@ -72,13 +72,6 @@ class LivegameForm extends AbstractType
                     'choices' => $this->getBanners()
                 ]
             )
-            ->add(
-                'save',
-                SubmitType::class,
-                [
-                    'label' => 'Save'
-                ]
-            )
         ;
     }
 

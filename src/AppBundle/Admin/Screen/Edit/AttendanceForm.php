@@ -31,13 +31,6 @@ class AttendanceForm extends AbstractType
                     'choices' => $repository->getAll()
                 ]
             )
-            ->add(
-                'save',
-                SubmitType::class,
-                [
-                    'label' => 'Save'
-                ]
-            )
         ;
     }
 }

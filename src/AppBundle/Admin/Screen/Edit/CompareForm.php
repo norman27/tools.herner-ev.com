@@ -118,13 +118,6 @@ class CompareForm extends AbstractType
                 'awaybadboypunkte',
                 IntegerType::class
             )
-            ->add(
-                'save',
-                SubmitType::class,
-                [
-                    'label' => 'Save'
-                ]
-            )
         ;
     }
 }

@@ -30,13 +30,6 @@ class ContentForm extends AbstractType
                     ]
                 ]
             )
-            ->add(
-                'save',
-                SubmitType::class,
-                [
-                    'label' => 'Save'
-                ]
-            )
         ;
     }
 }

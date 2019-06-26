@@ -63,15 +63,5 @@ class SixForm extends AbstractType
                 )
             ;
         }
-
-        $builder
-            ->add(
-                'save',
-                SubmitType::class,
-                [
-                    'label' => 'Save'
-                ]
-            )
-        ;
     }
 }
