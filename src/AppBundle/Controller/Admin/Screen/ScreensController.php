@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller\Admin\Screen;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +15,7 @@ use AppBundle\Screen\ScreensRepository;
 class ScreensController extends Controller
 {
     /**
-     * @Route("/screens", name="admin.screen.screens")
+     * @Route("/screens", name="admin.screen.screens", options={"expose"=true})
      * @param ScreensRepository $repository
      * @return Response
      */
@@ -43,7 +43,6 @@ class ScreensController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
-            // @TODO maybe put this to its own route
             $screen->config = $form->getData();
             $repository->save($screen);
 
@@ -62,7 +61,19 @@ class ScreensController extends Controller
     }
 
     /**
-     * @Route("/screens/activate/{id}", name="admin.screen.screens.activate")
+     * @Route("/screens/list", name="admin.screen.screens.list", options={"expose"=true})
+     * @param ScreensRepository $repository
+     * @return JsonResponse
+     */
+    public function listAction(ScreensRepository $repository)
+    {
+        return new JsonResponse([
+            'screens' => $repository->getAll() // @TODO this contains too much data in "config"
+        ]);
+    }
+
+    /**
+     * @Route("/screens/activate/{id}", name="admin.screen.screens.activate", options={"expose"=true})
      * @param string $id
      * @param ScreensRepository $repository
      * @return Response

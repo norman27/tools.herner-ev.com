@@ -5,12 +5,14 @@ require('../../node_modules/@coreui/coreui/dist/js/coreui.min.js');
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { ConnectedApp } from './component/App';
 import { NotificationReducer } from './reducers/NotificationReducer';
 
-const store = createStore(NotificationReducer);
+const store = createStore(combineReducers({
+    NotificationReducer,
+}));
 
 ReactDOM.render(
     <Provider store={store}>

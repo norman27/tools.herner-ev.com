@@ -6,32 +6,7 @@
             <div class="card">
                 <div class="card-header">
                     <i class="far fa-list-alt"></i>Screens</div>
-                <div class="card-body">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Typ</th>
-                        <th>Aktion</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {% for screen in screens %}
-                            <tr>
-                                <td>
-                                    <a href="{{ path('admin.screen.screens.edit', {id: screen.id}) }}"><i class="fa fa-edit"></i> {{ screen.name }}</a>
-                                </td>
-                                <td>{{ screen.screenType }}</td>
-                                <td>
-                                    <a href="{{ path('admin.screen.screens.activate', {id: screen.id}) }}" title="Aktivieren">
-                                        <button class="btn btn-light"><i class="far fa-window-maximize"></i></button>
-                                    </a>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                </div>
+                <div class="card-body" id="screen-list">{# React #}</div>
             </div>
         </div>
     </div>
