@@ -46,7 +46,7 @@ class FilesRepository
     /**
      * @return SplFileInfo[]
      */
-    public function getAll()
+    public function getAll(): array
     {
         $finder = new Finder();
 
@@ -61,6 +61,12 @@ class FilesRepository
 
         ksort($files);
         return $files;
+    }
+
+    public function getAllNames(): array
+    {
+        $keys = array_keys($this->getAll());
+        return array_combine($keys, $keys);
     }
 
     /**

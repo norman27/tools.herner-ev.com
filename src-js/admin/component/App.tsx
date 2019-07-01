@@ -6,7 +6,7 @@ import { Settings } from './audio/Settings';
 import { TrackTable } from './audio/TrackTable';
 import { Games } from './aside/Games';
 import { ScreenTable } from './screen/ScreenTable';
-import { Routing } from '../../routing/Routing';
+import { Routing } from '../../symfony/routing/Routing';
 
 const App = ({ dispatch }) => {
 

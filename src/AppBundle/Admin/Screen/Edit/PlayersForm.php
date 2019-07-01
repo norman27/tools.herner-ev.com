@@ -32,7 +32,7 @@ class PlayersForm extends AbstractType
                 CollectionType::class,
                 [
                     'attr' => [
-                        'class' => 'js-addable-list' //@TODO implement
+                        'class' => 'js-symfony-collection'
                     ],
                     'allow_add' => true,
                     'allow_delete' => true,

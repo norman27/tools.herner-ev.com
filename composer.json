@@ -51,10 +51,7 @@
         ],
 	    "test": [
 	        "phpunit"
-	    ],
-        "dump-js-routes": [
-            "php bin/console fos:js-routing:dump --format=json --target=src-js/routing/fos_js_routes.json"
-        ]
+	    ]
     },
     "config": {
         "sort-packages": true

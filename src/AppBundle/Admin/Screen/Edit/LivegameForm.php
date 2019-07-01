@@ -53,7 +53,7 @@ class LivegameForm extends AbstractType
                 CollectionType::class,
                 [
                     'attr' => [
-                        'class' => 'js-addable-list'
+                        'class' => 'js-symfony-collection'
                     ],
                     'allow_add' => true,
                     'allow_delete' => true,

@@ -2,9 +2,10 @@
 
 import * as React from 'react';
 import { Dispatch } from 'redux';
-import { Routing } from '../../../routing/Routing';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { EnableCollection } from '../../../symfony/forms/Collection';
+import { Routing } from '../../../symfony/routing/Routing';
 
 type Props = {
     dispatch: Dispatch<NotificationActionType>
@@ -44,7 +45,7 @@ class ScreenTable extends React.Component<Props, State> {
         if (this.state.showModal) {
             const form = document.getElementById('screen-form') as HTMLFormElement;
 
-            form.addEventListener('submit', function (event) {
+            form.addEventListener('modal-submit', function (event) {
                 event.preventDefault();
                 const target = event.target as HTMLFormElement;
 
@@ -52,6 +53,7 @@ class ScreenTable extends React.Component<Props, State> {
                     .then(response => response.text())
                     .then(body => {
                         this.setState({ modalBody: body });
+                        EnableCollection();
                 }).catch((error) => {
                     // @TODO handle error
                 });
@@ -77,6 +79,7 @@ class ScreenTable extends React.Component<Props, State> {
             .then(response => response.text())
             .then(body => {
                 this.setState({ showModal: true, modalBody: body });
+                EnableCollection();
             }).catch(error => {
                 // @TODO handle error
             });
@@ -88,7 +91,7 @@ class ScreenTable extends React.Component<Props, State> {
 
     modalSave = () => {
         const form = (document.getElementById('screen-form') as HTMLFormElement);
-        form.dispatchEvent(new Event('submit'));
+        form.dispatchEvent(new Event('modal-submit'));
     }
 
     componentDidMount() {

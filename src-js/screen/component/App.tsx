@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Player } from './Audio/Player'; //@TODO maybe better naming and splitting?
 import { Effect } from './effect/Effect';
 import { Screen } from './screen/Screen';
-import { Routing } from '../../routing/Routing';
+import { Routing } from '../../symfony/routing/Routing';
 
 interface State {
     audio: AudioSettings,

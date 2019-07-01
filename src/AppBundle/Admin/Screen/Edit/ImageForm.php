@@ -18,7 +18,7 @@ class ImageForm extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $files = new FilesRepository();
+        $repository = new FilesRepository();
 
         $builder
             ->add(
@@ -26,14 +26,14 @@ class ImageForm extends AbstractType
                 CollectionType::class,
                 [
                     'attr' => [
-                        'class' => 'js-addable-list' //@TODO implement
+                        'class' => 'js-symfony-collection'
                     ],
                     'allow_add' => true,
                     'allow_delete' => true,
                     'delete_empty' => true,
                     'entry_type' => ChoiceType::class,
                     'entry_options'  => [
-                        'choices'  => $files->getAll(),
+                        'choices'  => $repository->getAllNames(),
                         'placeholder' => '---'
                     ],
                     'prototype' => true,

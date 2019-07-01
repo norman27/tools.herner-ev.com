@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Dispatch } from 'redux';
-import { Routing } from '../../../routing/Routing';
+import { Routing } from '../../../symfony/routing/Routing';
 
 type State = {
     games: Game[]
