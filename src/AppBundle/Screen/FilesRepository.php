@@ -28,7 +28,7 @@ class FilesRepository
     /**
      * @param string $filename
      */
-    public function delete($filename)
+    public function delete(string $filename)
     {
         unlink($this->directory . $this->simplifyFilename($filename));
     }
@@ -36,11 +36,10 @@ class FilesRepository
     /**
      * @param UploadedFile $file
      */
-    public function upload(UploadedFile $file) {
-        $file->move(
-            $this->directory,
-            $this->simplifyFilename($file->getClientOriginalName())
-        );
+    public function upload(UploadedFile $file)
+    {
+        $newFilename = $this->simplifyFilename($file->getClientOriginalName());
+        $file->move($this->directory, $newFilename);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace AppBundle\Screen\Effect;
 
 use Psr\Cache\CacheItemPoolInterface;
+use Psr\Cache\InvalidArgumentException;
 
 class EffectsRepository
 {
@@ -19,6 +20,7 @@ class EffectsRepository
     /**
      * @param string $id
      * @param array $data
+     * @throws InvalidArgumentException
      */
     public function setEffect(string $id, array $data)
     {
@@ -29,6 +31,7 @@ class EffectsRepository
 
     /**
      * @return Effect
+     * @throws InvalidArgumentException
      */
     public function get()
     {
