@@ -21,6 +21,7 @@ class App extends React.Component<{}, State> {
             lastChange: 0
         },
         effect: {
+            id: '',
             name: ''
         },
         screen: {

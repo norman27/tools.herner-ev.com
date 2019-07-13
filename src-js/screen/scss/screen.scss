@@ -1,8 +1,41 @@
+@import 'variables';
+
+@import '../../../node_modules/csshake/scss/csshake.scss';
+
+html,
 body {
-  background: #060606 url(/img/screen/index-bg.jpg) 50% 0 no-repeat;
+  margin: 0;
+  padding: 0;
+  background: #000000 url(/img/screen/bg-kohle.jpg) 50% 0 no-repeat;
+  color: #ffffff;
 }
 
-.container {
+body {
+  &.iframe {
+    background: #060606 url(/img/screen/bg-iframe.jpg) 50% 0 no-repeat;
+  }
+}
+
+.bg-green-light {
+  background-color: $color-brand-green-light;
+}
+
+.title {
+  margin: 0;
+}
+
+.effect-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.effect-rubberduck {
+  margin-top: 170px;
+}
+
+.screen-iframe {
   box-shadow: 0 0 20px 10px rgba(255,255,255,.3);
   padding: 0;
   width: 896px;

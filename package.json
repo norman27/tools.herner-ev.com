@@ -21,6 +21,7 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-redux": "^7.1.0",
     "bootstrap": "^4.3.1",
+    "csshake": "^1.5.3",
     "jquery": "^3.4.1",
     "perfect-scrollbar": "^1.4.0",
     "popper.js": "^1.15.0",

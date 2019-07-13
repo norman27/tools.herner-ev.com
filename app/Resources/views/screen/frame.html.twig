@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link href="{{ asset('bundles/webpack/css/screen.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block javascripts %}
     <script src="{{ asset('bundles/webpack/js/screen.js') }}"></script>
 {% endblock %}

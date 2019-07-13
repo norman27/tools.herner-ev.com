@@ -5,6 +5,7 @@ type AudioSettings = {
 }
 
 type EffectSettings = {
+    id: string,
     name: string
 }
 

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Table } from './hockey/Table';
 import { FadingImages } from './media/FadingImages';
-import { Text } from './media/Text';
+import { Content } from './media/Content';
 
 class Screen extends React.Component<ScreenSettings> {
     render() {
@@ -15,8 +15,8 @@ class Screen extends React.Component<ScreenSettings> {
                             return <FadingImages />;
                         case 'table':
                             return <Table />;
-                        case 'text':
-                            return <Text {...this.props.config} />;
+                        case 'content':
+                            return <Content {...this.props.config} />;
                     }
                 })()}
             </div>
