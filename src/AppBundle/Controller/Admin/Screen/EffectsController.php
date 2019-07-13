@@ -2,14 +2,17 @@
 
 namespace AppBundle\Controller\Admin\Screen;
 
+use Psr\Cache\InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Screen\Effect\EffectsRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/admin/screen/effects")
+ * @Security("has_role('ROLE_SCREEN')")
  */
 class EffectsController extends Controller
 {
@@ -31,6 +34,7 @@ class EffectsController extends Controller
      * @param Request $request
      * @param EffectsRepository $repository
      * @return Response
+     * @throws InvalidArgumentException
      */
     public function effectsActivateAction($effect, Request $request, EffectsRepository $repository)
     {

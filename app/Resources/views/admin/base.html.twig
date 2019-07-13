@@ -50,6 +50,7 @@
             <nav class="sidebar-nav">
                 <ul class="nav">
                     <li class="nav-title">Applikationen</li>
+                    {% if is_granted('ROLE_SCREEN') %}
                     <li class="nav-item nav-dropdown">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="nav-icon far fa-window-maximize"></i> Leinwand</a>
@@ -72,6 +73,7 @@
                             </li>
                         </ul>
                     </li>
+                    {% endif %}
                     <li class="nav-item nav-dropdown">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="nav-icon far fa-grin-stars"></i> Nachwuchs</a>

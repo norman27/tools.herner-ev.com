@@ -38,10 +38,10 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $isActive;
 
-    public function __construct()
-    {
-        $this->isActive = true;
-    }
+    /**
+     * @ORM\Column(name="roles", type="array", nullable=true)
+     */
+    private $roles;
 
     public function getUsername()
     {
@@ -64,7 +64,10 @@ class User implements AdvancedUserInterface, \Serializable
 
     public function getRoles()
     {
-        return ['ROLE_ADMIN']; // @TODO this should come from the database
+        if ($this->roles === null) {
+            return [];
+        }
+        return $this->roles;
     }
 
     public function eraseCredentials()

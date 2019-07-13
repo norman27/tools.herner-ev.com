@@ -9,9 +9,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Admin\Screen\FileUploadForm;
 use AppBundle\Screen\FilesRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/admin/screen/files")
+ * @Security("has_role('ROLE_SCREEN')")
  */
 class FilesController extends Controller
 {

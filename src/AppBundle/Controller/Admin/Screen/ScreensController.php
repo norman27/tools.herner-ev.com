@@ -8,9 +8,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Screen\ScreensRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/admin/screen")
+ * @Security("has_role('ROLE_SCREEN')")
  */
 class ScreensController extends Controller
 {
