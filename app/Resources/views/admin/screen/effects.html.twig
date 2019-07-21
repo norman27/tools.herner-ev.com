@@ -7,31 +7,31 @@
                 <div class="card-header">
                     <i class="far fa-list-alt"></i>Effekte</div>
                 <div class="card-body">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Effekt</th>
-                        <th>Aktion</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {% for effect in effects %}
-                            <form method="POST" action="{{ path('admin.screen.effects.activate', {effect: effect.id}) }}">
-                                <tr>
-                                    <td>
-                                        {{ effect.name }}
-                                        {% for data in effect.data %}
-                                            <input type="text" name="data[{{ data }}]" placeholder="{{ data }}" />
-                                        {% endfor %}
-                                    </td>
-                                    <td>
-                                        <button type="submit" class="btn btn-light"><i class="fa fa-play-circle"></i></button>
-                                    </td>
-                                </tr>
-                            </form>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Effekt</th>
+                            <th>Aktion</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for effect in effects %}
+                                <form method="POST" action="{{ path('admin.screen.effects.activate', {effect: effect.id}) }}">
+                                    <tr>
+                                        <td>
+                                            {{ effect.name }}
+                                            {% for data in effect.data %}
+                                                <input type="text" name="data[{{ data }}]" placeholder="{{ data }}" />
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="btn btn-light"><i class="fa fa-play-circle"></i></button>
+                                        </td>
+                                    </tr>
+                                </form>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

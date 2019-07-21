@@ -54,6 +54,7 @@ class EffectsRepository
     {
         // @TODO this should come from the database
         return [
+            new Effect('stop', 'STOP'),
             new Effect('goal', 'Tor'),
             new Effect('goalscorer', 'Torschütze', ['number']),
             new Effect('penalty', 'Strafzeit'),

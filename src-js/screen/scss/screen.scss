@@ -6,13 +6,16 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: #000000 url(/img/screen/bg-kohle.jpg) 50% 0 no-repeat;
   color: #ffffff;
 }
 
 body {
   &.iframe {
     background: #060606 url(/img/screen/bg-iframe.jpg) 50% 0 no-repeat;
+  }
+
+  &.screen {
+    background: #000000 url(/img/screen/bg-kohle.jpg) 50% 0 no-repeat;
   }
 }
 
