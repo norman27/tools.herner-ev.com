@@ -1,0 +1,2 @@
+- Extract the relevant code from `src-js/screen/scss/dist/reveal.scss` (and give credit)
+- Split styles for screen-index and screen-frame (do the names make sense?)

@@ -1,5 +1,8 @@
 @import 'variables';
 
+@import 'dist/reveal.scss';
+@import 'dist/theme/black.scss';
+
 @import '../../../node_modules/csshake/scss/csshake.scss';
 
 html,
@@ -23,8 +26,19 @@ body {
   background-color: $color-brand-green-light;
 }
 
+.reveal {
+  font-size: 28px !important;
+}
+
 .title {
   margin: 0;
+}
+
+.title-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 40px #000;
 }
 
 .effect-container {
@@ -36,6 +50,12 @@ body {
 
 .effect-rubberduck {
   margin-top: 170px;
+}
+
+.screen-content {
+  top: 70px;
+  position: relative;
+  display: block;
 }
 
 .screen-iframe {

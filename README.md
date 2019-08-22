@@ -2,6 +2,10 @@
 
 [![CircleCI](https://circleci.com/gh/norman27/hev-leinwand-herner-ev-com.svg?style=svg)](https://circleci.com/gh/norman27/hev-leinwand-herner-ev-com)
 
+## Requirements
+In order to run the application you need a MySQL server. Copy the file `app/config/parameters.yml.dist`
+to `app/config/parameters.yml` and fill in the required credentials.  
+
 ## Installation
 ```bash
 composer install
