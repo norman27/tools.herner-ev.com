@@ -1,0 +1,11 @@
+{
+  "tabWidth": 4,
+  "overrides": [
+    {
+      "files": "*.php",
+      "options": {
+        "tabWidth": 4
+      }
+    }
+  ]
+}
