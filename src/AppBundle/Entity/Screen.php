@@ -42,4 +42,28 @@ class Screen
     public function onPersistSetLastChange() {
         $this->lastChange = new \DateTime();
     }
+
+    /**
+     * @return bool
+     */
+    public function isEnrichable(): bool {
+        switch ($this->screenType) {
+            case 'table':
+                return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param string $key
+     * @return mixed
+     */
+    public function getConfig(string $key) {
+        if (array_key_exists($key, $this->config)) {
+            return $this->config[$key];
+        }
+
+        return null;
+    }
 }

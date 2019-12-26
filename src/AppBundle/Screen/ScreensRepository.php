@@ -3,7 +3,11 @@
 namespace AppBundle\Screen;
 
 use AppBundle\Entity\Screen;
+use AppBundle\Entity\Hockey\Table;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class ScreensRepository
 {
@@ -40,7 +44,31 @@ class ScreensRepository
      */
     public function getActive()
     {
-        return current($this->filterGet(['active' => Screen::IS_ACTIVE], null, 1));
+        /** @var Screen $screen */
+        $screen = current($this->filterGet(['active' => Screen::IS_ACTIVE], null, 1));
+        if ($screen->isEnrichable()) {
+            switch ($screen->screenType) {
+                case 'table':
+                    $repo = $this->managerRegistry->getRepository(Table::class); //@TODO cache response
+                    $tables = $repo->findBy(['catid' => $screen->getConfig("id")]);
+                    $serializer = new Serializer(array(new ObjectNormalizer()), array('json' => new JsonEncoder()));
+                    $tables = $serializer->normalize($tables, 'json');
+                    usort($tables, function($a, $b) { //@TODO would be nice to sort on MySQL
+                        if ($a["points"] === $b["points"]) {
+                            $aDiff = $a["goalsFor"] - $a["goalsAgainst"];
+                            $bDiff = $b["goalsFor"] - $b["goalsAgainst"];
+                            if ($aDiff === $bDiff) {
+                                return 0;
+                            }
+                            return ($aDiff < $bDiff) ? 1 : -1;
+                        }
+                        return ($a["points"] < $b["points"]) ? 1 : -1;
+                    });
+                    $screen->config["items"] = $tables;
+            }
+        }
+
+        return $screen;
     }
 
     /**

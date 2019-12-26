@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Hockey;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,6 +22,7 @@ class Table {
     /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Hockey\Club")
      * @ORM\JoinColumn(name="club_id", referencedColumnName="id")
+     * @var Club
      */
     public $club;
 

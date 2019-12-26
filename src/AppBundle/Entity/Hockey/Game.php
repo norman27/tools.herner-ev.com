@@ -3,7 +3,6 @@
 namespace AppBundle\Entity\Hockey;
 
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\Hockey\Club;
 
 /**
  * @ORM\Entity
