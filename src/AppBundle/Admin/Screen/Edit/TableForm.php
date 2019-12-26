@@ -21,7 +21,7 @@ class TableForm extends AbstractType
     {
         $builder
             ->add(
-                'caption',
+                'title',
                 TextType::class,
                 [
                     'required' => false

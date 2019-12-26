@@ -20,7 +20,7 @@ class ScheduleForm extends AbstractType
     {
         $builder
             ->add(
-                'caption',
+                'title',
                 TextType::class
             )
             ->add(

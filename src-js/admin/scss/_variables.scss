@@ -1,13 +1,7 @@
-//@TODO these are defined in two places:
-// These are the official brand colors
-$color-brand-green: #00380b;
-$color-brand-red: #821119;
-// @see https://material.io/tools/color
-$color-brand-green-light: #316333;
-$color-brand-red-light: #b84540;
+@import "../../variables";
 
 // library overwrites
-$fa-font-path: '../../../node_modules/@fortawesome/fontawesome-free/webfonts';
+$fa-font-path: "../../../node_modules/@fortawesome/fontawesome-free/webfonts";
 $sidebar-nav-link-active-icon-color: $color-brand-green-light;
 $sidebar-nav-link-hover-bg: $color-brand-green-light;
 

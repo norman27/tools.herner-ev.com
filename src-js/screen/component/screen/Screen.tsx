@@ -14,7 +14,7 @@ class Screen extends React.Component<ScreenSettings> {
                         case 'images':
                             return <FadingImages />;
                         case 'table':
-                            return <Table />;
+                            return <Table {...this.props.config} />;
                         case 'content':
                             return <Content {...this.props.config} />;
                     }

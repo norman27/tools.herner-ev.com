@@ -2,16 +2,16 @@
 
 @import 'dist/reveal.scss';
 @import 'dist/theme/black.scss';
-
 @import '../../../node_modules/csshake/scss/csshake.scss';
 
 @font-face {
-  font-family: 'norwester';
-  src: url('fonts/norwester.eot'); /* IE9 Compat Modes */
-  src: url('fonts/norwester.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('fonts/norwester.woff') format('woff'), /* Pretty Modern Browsers */
-  url('fonts/norwester.ttf')  format('truetype'), /* Safari, Android, iOS */
-  url('fonts/norwester.svg#svgFontName') format('svg'); /* Legacy iOS */
+  font-family: 'oswaldregular';
+  src: url('fonts/Oswald-Regular.ttf')  format('truetype');
+}
+
+@font-face {
+  font-family: 'oswaldlight';
+  src: url('fonts/Oswald-Light.ttf')  format('truetype');
 }
 
 html,

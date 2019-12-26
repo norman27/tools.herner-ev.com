@@ -13,7 +13,7 @@ class Content extends React.Component<Props> {
     render() {
         return (
             <section className="screen-content present" data-fullscreen>
-                <div className="bg-green-light title-container">{this.props.title}</div>
+                <div className="bg-green-light title-container"><h5>{this.props.title}</h5></div>
                 <div dangerouslySetInnerHTML={this.createMarkup()} />
             </section>
         )
