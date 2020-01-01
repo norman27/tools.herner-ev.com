@@ -5,8 +5,12 @@ type Props = {
     content: string
 }
 
+type Markup = {
+    __html: string,
+}
+
 class Content extends React.Component<Props> {
-    createMarkup() {
+    createMarkup(): Markup {
         return {__html: this.props.content}
     }
 
