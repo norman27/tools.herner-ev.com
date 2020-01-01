@@ -3,6 +3,8 @@ app/config/parameters.yml
 electron/dist/
 electron/package-lock.json
 node_modules/
+public/audio/
+!public/audio/silence.mp3
 public/bundles/
 public/media/
 !public/media/screen/.gitkeep
