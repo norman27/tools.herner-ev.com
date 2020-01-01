@@ -1,5 +1,6 @@
 type Club = {
-    name: string
+    name: string,
+    logo: string
 }
 
 type Game = {

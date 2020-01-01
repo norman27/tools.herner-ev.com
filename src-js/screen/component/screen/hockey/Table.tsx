@@ -15,18 +15,24 @@ type Props = {
 
 class Table extends React.Component<Props> {
     render() {
-        let style = {
+        let tableStyle = {
           fontSize: this.props.font + 'px'
+        }
+        let logoStyle = {
+          height: this.props.font + 'px',
+          width: this.props.font + 'px'
         }
 
         return (
             <section className="screen-content present" data-fullscreen>
                 <div className="bg-green-light title-container"><h5>{this.props.title}</h5></div>
-                <table style={style}>
+                <table style={tableStyle}>
                     <tbody>
                         {this.props.items.map((item: TableItem, index) => {
+                            let logo = '/bundles/hockey-teams/img/' + item.club.logo;
                             return (
                                 <tr>
+                                    <td><img className="small-logo" style={logoStyle} src={logo} /></td>
                                     <td>{item.club.name}</td>
                                     <td>{item.goalsFor}:{item.goalsAgainst}</td>
                                     <td>{item.points}</td>

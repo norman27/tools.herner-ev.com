@@ -31,6 +31,15 @@ body {
   }
 }
 
+img {
+  border: 0 !important;
+  margin: 0 !important;
+}
+
+table {
+  background-color: rgba(0,0,0,.5);
+}
+
 .bg-green-light {
   background-color: $color-brand-green-light;
 }

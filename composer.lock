@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f03e662a94cfd5b7f7b3947efa3fa4f",
+    "content-hash": "662c2312e411e5db9a9f3715209cd3c2",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1233,6 +1233,31 @@
             "time": "2018-11-05T09:00:11+00:00"
         },
         {
+            "name": "norman27/hev-hockey-teams",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:norman27/hev-hockey-teams.git",
+                "reference": "3d4e803c7e385e6161546a732c98276e781863e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/norman27/hev-hockey-teams/zipball/3d4e803c7e385e6161546a732c98276e781863e4",
+                "reference": "3d4e803c7e385e6161546a732c98276e781863e4",
+                "shasum": ""
+            },
+            "type": "project",
+            "license": [
+                "MIT"
+            ],
+            "description": "This package provides logos and data for hockey clubs mainly located in germany",
+            "support": {
+                "source": "https://github.com/norman27/hev-hockey-teams/tree/0.0.1",
+                "issues": "https://github.com/norman27/hev-hockey-teams/issues"
+            },
+            "time": "2020-01-01T16:30:29+00:00"
+        },
+        {
             "name": "paragonie/random_compat",
             "version": "v2.0.11",
             "source": {
@@ -1685,6 +1710,54 @@
             ],
             "description": "A security checker for your composer.lock",
             "time": "2017-08-22T22:18:16+00:00"
+        },
+        {
+            "name": "slowprog/composer-copy-file",
+            "version": "0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/slowprog/CopyFile.git",
+                "reference": "5a82ba4613948f70b2d4b041c13c1c9259fc6477"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/slowprog/CopyFile/zipball/5a82ba4613948f70b2d4b041c13c1c9259fc6477",
+                "reference": "5a82ba4613948f70b2d4b041c13c1c9259fc6477",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "mikey179/vfsstream": "~1",
+                "php-mock/php-mock-phpunit": "~1",
+                "phpunit/phpunit": "5.7.27",
+                "symfony/filesystem": "~2.7",
+                "symfony/finder": "~2.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SlowProg\\CopyFile\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrey Tyshev",
+                    "email": "slowprog@gmail.com"
+                }
+            ],
+            "description": "Composer script copying your files after install",
+            "homepage": "https://github.com/SlowProg/composer-copy-file",
+            "keywords": [
+                "copy file"
+            ],
+            "time": "2019-01-10T05:06:10+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
