@@ -27,7 +27,7 @@ class Screen
     public $screenType;
 
     /** @ORM\Column(type="array") */
-    public $config = 'a:0:{}';
+    public $config = [];
 
     /** @ORM\Column(type="smallint") */
     public $active;
@@ -49,6 +49,7 @@ class Screen
     public function isEnrichable(): bool {
         switch ($this->screenType) {
             case 'table':
+            case 'schedule':
                 return true;
         }
 
@@ -65,5 +66,13 @@ class Screen
         }
 
         return null;
+    }
+
+    /**
+     * @param string $key
+     * @param $value
+     */
+    public function setConfig(string $key, $value) {
+        $this->config[$key] = $value;
     }
 }

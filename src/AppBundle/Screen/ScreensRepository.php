@@ -2,6 +2,7 @@
 
 namespace AppBundle\Screen;
 
+use AppBundle\Entity\Hockey\Game;
 use AppBundle\Entity\Screen;
 use AppBundle\Entity\Hockey\Table;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -47,12 +48,15 @@ class ScreensRepository
         /** @var Screen $screen */
         $screen = current($this->filterGet(['active' => Screen::IS_ACTIVE], null, 1));
         if ($screen->isEnrichable()) {
+            $serializer = new Serializer(array(new ObjectNormalizer()), array('json' => new JsonEncoder()));
+
             switch ($screen->screenType) {
                 case 'table':
                     $repo = $this->managerRegistry->getRepository(Table::class); //@TODO cache response
-                    $tables = $repo->findBy(['catid' => $screen->getConfig("id")]);
-                    $serializer = new Serializer(array(new ObjectNormalizer()), array('json' => new JsonEncoder()));
-                    $tables = $serializer->normalize($tables, 'json');
+                    $tables = $serializer->normalize(
+                        $repo->findBy(['catid' => $screen->getConfig("id")]),
+                        'json'
+                    );
                     usort($tables, function($a, $b) { //@TODO would be nice to sort on MySQL
                         if ($a["points"] === $b["points"]) {
                             $aDiff = $a["goalsFor"] - $a["goalsAgainst"];
@@ -64,7 +68,21 @@ class ScreensRepository
                         }
                         return ($a["points"] < $b["points"]) ? 1 : -1;
                     });
-                    $screen->config["items"] = $tables;
+                    $screen->setConfig('items', $tables);
+                    break;
+
+                case 'schedule':
+                    $repo = $this->managerRegistry->getRepository(Game::class); //@TODO cache response
+                    $games = $serializer->normalize(
+                        $repo->findBy(
+                            ['catid' => $screen->getConfig("id")],
+                            ['gamedate' => 'ASC'],
+                            5
+                        ),
+                        'json'
+                    );
+                    $screen->setConfig('items', $games);
+                    break;
             }
         }
 

@@ -34,6 +34,7 @@ body {
 img {
   border: 0 !important;
   margin: 0 !important;
+  background: none !important;
 }
 
 table {
@@ -54,8 +55,6 @@ table {
 }
 
 .reveal {
-  font-size: 28px !important;
-
   .slides {
     pointer-events: auto !important; // this is important for "Turn-on-Sound" button
   }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-class FadingImages extends React.Component<{}> {
+class Images extends React.Component<{}> {
     render() {
         return (
             <div>
@@ -10,4 +10,4 @@ class FadingImages extends React.Component<{}> {
     }
 }
 
-export { FadingImages }
+export { Images }
