@@ -124,7 +124,7 @@ class ScreenTable extends React.Component<Props, State> {
                                         <a href="#" onClick={(event: React.MouseEvent<HTMLAnchorElement>) => this.handleClickEdit(event, value.id)}>
                                             <i className="fa fa-edit"></i> { value.name }</a>
                                     </td>
-                                    <td>{ value.screenType }s</td>
+                                    <td>{ value.screenType }</td>
                                     <td>
                                         <button className={ buttonActiveClass } type="button"
                                                 onClick={(event: React.MouseEvent<HTMLButtonElement>) => this.handleClickActivate(event, value.id)}>
