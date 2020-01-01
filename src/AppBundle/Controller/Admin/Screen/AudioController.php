@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Admin\Screen;
 
+use Psr\Cache\InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +20,7 @@ class AudioController extends Controller
      * @Route("", name="admin.screen.audio", options={"expose"=true})
      * @param AudioRepository $repository
      * @return Response
+     * @throws InvalidArgumentException
      */
     public function audioAction(AudioRepository $repository)
     {
@@ -45,6 +47,7 @@ class AudioController extends Controller
      * @param string $volume
      * @param AudioRepository $repository
      * @return JsonResponse
+     * @throws InvalidArgumentException
      */
     public function changeAudioVolumeAction($volume, AudioRepository $repository)
     {
@@ -58,6 +61,7 @@ class AudioController extends Controller
      * @param string $track
      * @param AudioRepository $repository
      * @return JsonResponse
+     * @throws InvalidArgumentException
      */
     public function changeAudioTrackAction($track, AudioRepository $repository)
     {

@@ -56,9 +56,9 @@ class App extends React.Component<{}, State> {
         //@TODO on first render these values are not yet fetched from API
         return (
             <div>
-                <Screen {...this.state.screen} />
                 <Player {...this.state.audio} timestamp={this.state.timestamp} />
                 <Effect {...this.state.effect} />
+                <Screen {...this.state.screen} />
             </div>
         )
     }

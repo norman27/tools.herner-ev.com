@@ -31,7 +31,7 @@ class Table extends React.Component<Props> {
                         {this.props.items.map((item: TableItem, index) => {
                             let logo = '/bundles/hockey-teams/img/' + item.club.logo;
                             return (
-                                <tr>
+                                <tr key={index}>
                                     <td><img className="small-logo" style={logoStyle} src={logo} /></td>
                                     <td>{item.club.name}</td>
                                     <td>{item.goalsFor}:{item.goalsAgainst}</td>

@@ -12,9 +12,12 @@ interface State {
     isAutoplayAllowed: boolean
 }
 
+/**
+ * Play silence if no track given or track is too old
+ * @param props
+ */
 const getTrack = (props: Props): string => {
-    // play silence if selected track is too old
-    return (props.lastChange + 10 > props.timestamp) ? props.track : 'silence.mp3';
+    return (props.track && props.lastChange + 10 > props.timestamp) ? props.track : 'silence.mp3';
 }
 
 class Player extends React.Component<Props, State> {
@@ -76,7 +79,7 @@ class Player extends React.Component<Props, State> {
             <div>
                 <audio ref="player" id="audio" autoPlay/>
                 {(this.state.isPlaying && !this.state.isAutoplayAllowed) &&
-                    <button onClick={this.handleAllowAutoplay}>Turn on Sound</button>
+                    <button id="turn-on-sound" onClick={this.handleAllowAutoplay}>Sound erlauben</button>
                 }
             </div>
         )

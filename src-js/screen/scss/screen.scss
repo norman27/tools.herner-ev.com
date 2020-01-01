@@ -40,12 +40,25 @@ table {
   background-color: rgba(0,0,0,.5);
 }
 
+#turn-on-sound {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  background-color: $color-brand-red-light;
+  color: white;
+}
+
 .bg-green-light {
   background-color: $color-brand-green-light;
 }
 
 .reveal {
   font-size: 28px !important;
+
+  .slides {
+    pointer-events: auto !important; // this is important for "Turn-on-Sound" button
+  }
 }
 
 .title {

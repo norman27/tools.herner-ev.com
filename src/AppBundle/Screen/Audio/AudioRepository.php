@@ -4,6 +4,7 @@ namespace AppBundle\Screen\Audio;
 
 use Psr\Cache\CacheItemPoolInterface;
 use falahati\PHPMP3\MpegAudio;
+use Psr\Cache\InvalidArgumentException;
 
 final class AudioRepository
 {
@@ -24,7 +25,7 @@ final class AudioRepository
     {
         // @TODO fill with real data
         // @TODO cache metadata
-        $files = ['hockey-organ-1.mp3', 'silence.mp3'];
+        $files = ['hockey-organ-1.mp3'];
         $tracks = [];
         foreach ($files as $file) {
             $tracks[$file] = new AudioTrack(
@@ -42,6 +43,7 @@ final class AudioRepository
      *
      * @param string $track
      * @return AudioSettings
+     * @throws InvalidArgumentException
      */
     public function setTrack($track)
     {
@@ -63,6 +65,7 @@ final class AudioRepository
      *
      * @param int $volume
      * @return AudioSettings
+     * @throws InvalidArgumentException
      */
     public function setVolume($volume)
     {
@@ -80,6 +83,7 @@ final class AudioRepository
 
     /**
      * @return AudioSettings
+     * @throws InvalidArgumentException
      */
     public function get()
     {
