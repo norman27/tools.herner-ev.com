@@ -1,7 +1,7 @@
-@import 'variables';
+@import '../../variables';
 @import 'dist/reveal.scss';
 @import 'dist/theme/black.scss';
-@import '../../../node_modules/csshake/scss/csshake.scss';
+//@import '../../../node_modules/csshake/scss/csshake.scss';
 
 @font-face {
   font-family: 'oswaldregular';
@@ -49,8 +49,13 @@ table {
   color: white;
 }
 
-.bg-green-light {
-  background-color: $color-brand-green-light;
+.bg {
+  &-green-light {
+    background-color: $color-brand-green-light;
+  }
+  &-red-light {
+    background-color: $color-brand-red-light;
+  }
 }
 
 .reveal {
@@ -82,10 +87,30 @@ table {
     padding: 10px 0;
     margin-bottom: 10px;
   }
+
   &-attendance {
     .attendance-number {
       margin: 40px;
       font-size: 80px;
     }
+  }
+
+  &-compare {
+    span {
+      padding: 4px 10px;
+    }
+    table {
+      background-color: transparent;
+
+      td {
+        border-bottom: none;
+        padding-bottom: 15px;
+
+        &.middle {
+          background-color: rgba(0,0,0,.5);
+        }
+      }
+    }
+
   }
 }
