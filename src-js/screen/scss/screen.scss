@@ -1,5 +1,4 @@
 @import 'variables';
-
 @import 'dist/reveal.scss';
 @import 'dist/theme/black.scss';
 @import '../../../node_modules/csshake/scss/csshake.scss';
@@ -60,32 +59,14 @@ table {
   }
 }
 
-.title {
-  margin: 0;
-}
-
-.title-container {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  box-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 40px #000;
-}
-
 .effect-container {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 10;
 }
-
 .effect-rubberduck {
   margin-top: 170px;
-}
-
-.screen-content {
-  top: 70px;
-  position: relative;
-  display: block;
 }
 
 .screen-iframe {
@@ -93,4 +74,18 @@ table {
   padding: 0;
   width: 896px;
   margin: 100px auto 0;
+}
+
+.screen {
+  &-title {
+    box-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 40px #000;
+    padding: 10px 0;
+    margin-bottom: 10px;
+  }
+  &-attendance {
+    .attendance-number {
+      margin: 40px;
+      font-size: 80px;
+    }
+  }
 }

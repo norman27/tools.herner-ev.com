@@ -24,7 +24,7 @@ class Screen
     public $name;
 
     /** @ORM\Column(type="string", length=100) */
-    public $screenType;
+    public $screenType; //@TODO this should be an enum
 
     /** @ORM\Column(type="array") */
     public $config = [];
@@ -64,7 +64,6 @@ class Screen
         if (array_key_exists($key, $this->config)) {
             return $this->config[$key];
         }
-
         return null;
     }
 

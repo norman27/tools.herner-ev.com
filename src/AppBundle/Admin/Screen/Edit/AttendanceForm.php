@@ -28,7 +28,8 @@ class AttendanceForm extends AbstractType
                 'sponsor',
                 ChoiceType::class,
                 [
-                    'choices' => $repository->getAllNames()
+                    'choices' => $repository->getAllNames(),
+                    'placeholder' => '---'
                 ]
             )
         ;

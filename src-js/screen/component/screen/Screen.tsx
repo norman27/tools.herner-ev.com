@@ -1,6 +1,7 @@
 /// <reference path="../../types.ts" />
 
 import * as React from 'react';
+import { Attendance } from './media/Attendance';
 import { Content } from './media/Content';
 import { Images } from './media/Images';
 import { Schedule } from './hockey/Schedule';
@@ -12,6 +13,8 @@ class Screen extends React.Component<ScreenSettings> {
             <div>
                 {(() => {
                     switch(this.props.screenType) {
+                        case 'attendance':
+                            return <Attendance {...this.props.config} />;
                         case 'content':
                             return <Content {...this.props.config} />;
                         case 'images':

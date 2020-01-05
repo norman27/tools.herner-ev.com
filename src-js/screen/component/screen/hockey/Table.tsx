@@ -24,8 +24,8 @@ class Table extends React.Component<Props> {
         }
 
         return (
-            <section className="screen-content present" data-fullscreen>
-                <div className="bg-green-light title-container"><h4>{this.props.title}</h4></div>
+            <section className="present" data-fullscreen>
+                <div className="bg-green-light screen-title"><h4>{this.props.title}</h4></div>
                 <table style={tableStyle}>
                     <tbody>
                         {this.props.items.map((item: TableItem, index) => {
