@@ -2,6 +2,7 @@
 
 namespace AppBundle\Screen;
 
+use AppBundle\Entity\Hockey\Club;
 use AppBundle\Entity\Hockey\Game;
 use AppBundle\Entity\Screen;
 use AppBundle\Entity\Hockey\Table;
@@ -50,7 +51,37 @@ class ScreensRepository
         if ($screen->isEnrichable()) {
             $serializer = new Serializer(array(new ObjectNormalizer()), array('json' => new JsonEncoder()));
 
+            //@TODO a switch is not nice
             switch ($screen->screenType) {
+                case 'compare':
+                    $repo = $this->managerRegistry->getRepository(Club::class); //@TODO cache response
+                    $hometeam = $serializer->normalize(
+                        $repo->findOneBy(
+                            ['id' => $screen->getConfig('hometeam')]
+                        )
+                    );
+                    $awayteam = $serializer->normalize(
+                        $repo->findOneBy(
+                            ['id' => $screen->getConfig('awayteam')]
+                        )
+                    );
+                    $screen->setConfig('hometeam', $hometeam);
+                    $screen->setConfig('awayteam', $awayteam);
+                    break;
+
+                case 'schedule':
+                    $repo = $this->managerRegistry->getRepository(Game::class); //@TODO cache response
+                    $games = $serializer->normalize(
+                        $repo->findBy(
+                            ['catid' => $screen->getConfig("id")],
+                            ['gamedate' => 'ASC'],
+                            5
+                        ),
+                        'json'
+                    );
+                    $screen->setConfig('items', $games);
+                    break;
+
                 case 'table':
                     $repo = $this->managerRegistry->getRepository(Table::class); //@TODO cache response
                     $tables = $serializer->normalize(
@@ -69,19 +100,6 @@ class ScreensRepository
                         return ($a["points"] < $b["points"]) ? 1 : -1;
                     });
                     $screen->setConfig('items', $tables);
-                    break;
-
-                case 'schedule':
-                    $repo = $this->managerRegistry->getRepository(Game::class); //@TODO cache response
-                    $games = $serializer->normalize(
-                        $repo->findBy(
-                            ['catid' => $screen->getConfig("id")],
-                            ['gamedate' => 'ASC'],
-                            5
-                        ),
-                        'json'
-                    );
-                    $screen->setConfig('items', $games);
                     break;
             }
         }

@@ -85,7 +85,7 @@ table {
   &-title {
     box-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 40px #000;
     padding: 10px 0;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 
   &-attendance {
@@ -96,6 +96,10 @@ table {
   }
 
   &-compare {
+    img {
+      width: 100px;
+      height: 100px;
+    }
     span {
       padding: 4px 10px;
     }
@@ -111,6 +115,5 @@ table {
         }
       }
     }
-
   }
 }
