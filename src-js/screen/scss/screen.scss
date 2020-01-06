@@ -36,6 +36,15 @@ img {
   background: none !important;
 }
 
+.small-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.color-green {
+  color: $color-brand-green-lighter;
+}
+
 table {
   background-color: rgba(0,0,0,.5);
 }

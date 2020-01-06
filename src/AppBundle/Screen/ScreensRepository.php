@@ -69,6 +69,24 @@ class ScreensRepository
                     $screen->setConfig('awayteam', $awayteam);
                     break;
 
+                case 'othergames':
+                    $repo = $this->managerRegistry->getRepository(Club::class); //@TODO cache response
+                    $items = [];
+                    for ($i = 1; $i <= 8; $i++) {
+                        if ($screen->getConfig('home_'.$i) !== null && $screen->getConfig('away_'.$i) !== null) {
+                            //@TODO too many queries
+                            $game = new Game();
+                            $game->hometeam = $repo->findOneBy(['id' => $screen->getConfig('home_'.$i)]);
+                            $game->awayteam = $repo->findOneBy(['id' => $screen->getConfig('away_'.$i)]);
+                            $game->homescore = (int) $screen->getConfig('scorehome_'.$i);
+                            $game->awayscore = (int) $screen->getConfig('scoreaway_'.$i);
+                            $game->isFinished = $screen->getConfig('finished_'.$i); //@TODO property not in entity
+                            $items[] = $game;
+                        }
+                    }
+                    $screen->setConfig('items', $items);
+                    break;
+
                 case 'schedule':
                     $repo = $this->managerRegistry->getRepository(Game::class); //@TODO cache response
                     $games = $serializer->normalize(

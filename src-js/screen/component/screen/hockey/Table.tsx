@@ -32,7 +32,7 @@ class Table extends React.Component<Props> {
                             let logo = '/bundles/hockey-teams/img/' + item.club.logo;
                             return (
                                 <tr key={index}>
-                                    <td><img className="small-logo" style={logoStyle} src={logo} /></td>
+                                    <td><img style={logoStyle} src={logo} /></td>
                                     <td>{item.club.name}</td>
                                     <td>{item.goalsFor}:{item.goalsAgainst}</td>
                                     <td>{item.points}</td>

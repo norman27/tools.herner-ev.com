@@ -5,6 +5,7 @@ import { Attendance } from './media/Attendance';
 import { Content } from './media/Content';
 import { Compare } from './hockey/Compare';
 import { Images } from './media/Images';
+import { Othergames } from './hockey/Othergames';
 import { Schedule } from './hockey/Schedule';
 import { Table } from './hockey/Table';
 
@@ -22,6 +23,8 @@ class Screen extends React.Component<ScreenSettings> {
                             return <Content {...this.props.config} />;
                         case 'images':
                             return <Images />;
+                        case 'othergames':
+                            return <Othergames {...this.props.config} />;
                         case 'schedule':
                             return <Schedule {...this.props.config} />;
                         case 'table':
