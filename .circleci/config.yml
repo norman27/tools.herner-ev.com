@@ -10,17 +10,17 @@ jobs:
 
       - restore_cache:
           keys:
-            - php-v1-dependencies-{{ checksum "composer.lock" }}
-            - php-v1-dependencies-
+            - php-dependencies-{{ checksum "composer.lock" }}
+            - php-dependencies-
 
       - run: composer install -n --prefer-dist --no-scripts
 
       - save_cache:
           paths:
             - ./vendor
-          key: php-v1-dependencies-{{ checksum "composer.lock" }}
+          key: php-dependencies-{{ checksum "composer.lock" }}
 
-      - run: composer test
+      - run: bin/phpunit
   js:
     working-directory: ~/hev-leinwand-herner-ev-com/php
     docker:
@@ -30,15 +30,15 @@ jobs:
 
       - restore_cache:
           keys:
-            - js-v1-dependencies-{{ checksum "package-lock.json" }}
-            - js-v1-dependencies-
+            - js-dependencies-{{ checksum "package-lock.json" }}
+            - js-dependencies-
 
       - run: npm ci
 
       - save_cache:
           paths:
             - ./node_modules
-          key: php-v1-dependencies-{{ checksum "package-lock.json" }}
+          key: php-dependencies-{{ checksum "package-lock.json" }}
 
       - run: npm test
 

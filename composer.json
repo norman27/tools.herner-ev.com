@@ -80,9 +80,6 @@
         "post-update-cmd": [
             "@auto-scripts",
             "SlowProg\\CopyFile\\ScriptHandler::copy"
-        ],
-        "test": [
-            "phpunit"
         ]
     },
     "conflict": {
