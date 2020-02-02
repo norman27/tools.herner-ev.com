@@ -22,7 +22,7 @@ jobs:
 
       - run: php ./bin/phpunit
   js:
-    working-directory: ~/hev-leinwand-herner-ev-com/php
+    working-directory: ~/hev-leinwand-herner-ev-com/js
     docker:
       - image: circleci/node:8
     steps:
