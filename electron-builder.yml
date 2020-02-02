@@ -1,0 +1,4 @@
+appId: com.herner-ev.screen
+artifactName: "herner-ev-screen-${version}.${ext}"
+directories:
+  app: "./electron/"

@@ -1,0 +1,22 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body_content %}
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-cog"></i>Einstellungen</div>
+                <div class="card-body" id="audio-settings" data-volume="{{ volume }}">{# React #}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <i class="far fa-play-circle"></i>Musik</div>
+                <div class="card-body" id="audio-track" data-track="{{ track }}">{# React #}</div> {# @TODO is data-attribute used? #}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,128 @@
+@import '../../variables';
+@import 'dist/reveal.scss';
+@import 'dist/theme/black.scss';
+//@import '../../../node_modules/csshake/scss/csshake.scss';
+
+@font-face {
+  font-family: 'oswaldregular';
+  src: url('fonts/Oswald-Regular.ttf')  format('truetype');
+}
+
+@font-face {
+  font-family: 'oswaldlight';
+  src: url('fonts/Oswald-Light.ttf')  format('truetype');
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+}
+
+body {
+  &.iframe {
+    background: #060606 url(/img/screen/bg-iframe.jpg) 50% 0 no-repeat;
+  }
+
+  &.screen {
+    background: #000000 url(/img/screen/bg-kohle.jpg) 50% 0 no-repeat;
+  }
+}
+
+img {
+  border: 0 !important;
+  margin: 0 !important;
+  background: none !important;
+}
+
+.small-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.color-green {
+  color: $color-brand-green-lighter;
+}
+
+table {
+  background-color: rgba(0,0,0,.5);
+}
+
+#turn-on-sound {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  background-color: $color-brand-red-light;
+  color: white;
+}
+
+.bg {
+  &-green-light {
+    background-color: $color-brand-green-light;
+  }
+  &-red-light {
+    background-color: $color-brand-red-light;
+  }
+}
+
+.reveal {
+  .slides {
+    pointer-events: auto !important; // this is important for "Turn-on-Sound" button
+  }
+}
+
+.effect-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+.effect-rubberduck {
+  margin-top: 170px;
+}
+
+.screen-iframe {
+  box-shadow: 0 0 20px 10px rgba(255,255,255,.3);
+  padding: 0;
+  width: 896px;
+  margin: 100px auto 0;
+}
+
+.screen {
+  &-title {
+    box-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 40px #000;
+    padding: 10px 0;
+    margin-bottom: 20px;
+  }
+
+  &-attendance {
+    .attendance-number {
+      margin: 40px;
+      font-size: 80px;
+    }
+  }
+
+  &-compare {
+    img {
+      width: 100px;
+      height: 100px;
+    }
+    span {
+      padding: 4px 10px;
+    }
+    table {
+      background-color: transparent;
+
+      td {
+        border-bottom: none;
+        padding-bottom: 15px;
+
+        &.middle {
+          background-color: rgba(0,0,0,.5);
+        }
+      }
+    }
+  }
+}

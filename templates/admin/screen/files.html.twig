@@ -1,0 +1,53 @@
+{% extends 'admin/base.html.twig' %}
+{% import 'admin/screen/macro/bytesToSize.html.twig' as bytes %}
+
+{% block body_content %}
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <i class="far fa-save"></i>Hochladen</div>
+                <div class="card-body">
+                    <p class="alert alert-info"><i class="fas fa-info-circle"></i> Es werden nur Bild-Dateien (PNG, JPEG, ...) in der Größe 896x512 Pixel erlaubt.</p>
+                    {{ form_start(form) }}
+                        {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <i class="far fa-list-alt"></i>Dateien</div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Vorschau</th>
+                            <th>Datei</th>
+                            <th>Größe</th>
+                            <th>Aktion</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for file in files %}
+                            <tr>
+                                <td><img src="{{ asset('media/screen/' ~ file.getFileName) }}" alt="{{ file.getFileName }}" style="width:100px" class="img-thumbnail"></td>
+                                <td>{{ file.getFileName }}</td>
+                                <td>{{ bytes.bytesToSize(file.getSize) }}</td>
+                                <td>
+                                    <a href="{{ path('admin.screen.files.delete', {filename: file.getFileName}) }}">
+                                        <button class="btn btn-light"><i class="fa fa-trash"></i></button>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

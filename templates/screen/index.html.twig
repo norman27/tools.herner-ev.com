@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% set bodyClasses = 'iframe' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/webpack/css/screen.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="screen-iframe">
+        <iframe name="iframe"
+                src="{{ path('screen.frame') }}"
+                width="896"
+                height="512"
+                scrolling="no"
+                frameborder="0"
+                class="wrapper"
+        />
+    </div>
+{% endblock %}

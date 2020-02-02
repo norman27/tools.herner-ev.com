@@ -1,18 +1,4 @@
 {
-  "name": "hev-leinwand-electron",
-  "version": "1.0.0",
-  "description": "A minimal Electron application to serve the HEV leinwand",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
-  },
-  "repository": "https://github.com/NormanMalessa/hev-leinwand-herner-ev-com",
-  "author": "Norman Malessa",
-  "license": "MIT License",
-  "devDependencies": {
-    "electron": "^3.0.7",
-    "electron-builder": "^20.38.3"
-  }
+  "name": "herner-ev-com-screen",
+  "version": "1.0.0"
 }

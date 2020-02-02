@@ -1,0 +1,54 @@
+@import 'variables';
+
+// @see https://fontawesome.com/icons?d=gallery&s=regular&m=free
+@import '../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '../../../node_modules/@fortawesome/fontawesome-free/scss/regular.scss';
+@import '../../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss';
+
+// @see https://coreui.io/demo/#main.html
+@import '../../../node_modules/@coreui/coreui/scss/coreui.scss';
+
+// external components
+@import '../../../node_modules/react-notifications/lib/notifications.css';
+
+// additions
+.sidebar {
+  .nav-link {
+    .far {
+      color: $gray-600;
+    }
+  }
+}
+.app-body {
+  .main {
+    margin-top: 1.5rem;
+  }
+}
+
+// overwrites
+.sidebar {
+  .nav-dropdown-items {
+    padding-left: 1.5rem;
+  }
+}
+.sidebar-minimized {
+  .sidebar {
+    .nav-dropdown-items {
+      padding-left: 0;
+    }
+  }
+}
+.aside-menu {
+  .nav-tabs {
+    .nav-link {
+      &.active {
+        color: $color-brand-green;
+      }
+    }
+  }
+}
+@media (max-width: map-get($grid-breakpoints, 'sm')) {
+  .main .container-fluid {
+    padding: 0 15px;
+  }
+}

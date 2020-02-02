@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ title | default('Herner Eissportverein') }}</title>
+
+    {% block favicon %}{# genereated with https://realfavicongenerator.net #}
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#00380b">
+    <meta name="msapplication-TileColor" content="#00380b">
+    <meta name="theme-color" content="#00380b">
+    {% endblock %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    {% block stylesheets %}{% endblock %}
+    {% block piwik %}{% endblock %}
+</head>
+<body{% if bodyClasses is defined %} class="{{ bodyClasses | default('') }}"{% endif %}>
+    {% block body %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+</body>
+</html>

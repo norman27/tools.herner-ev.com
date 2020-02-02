@@ -1,0 +1,68 @@
+{
+  "name": "herner-ev-com",
+  "version": "1.0.0",
+  "scripts": {
+    "build:analyze": "npm run build:prod -- --env.presets analyze",
+    "build:dev": "webpack --config webpack.config.js --mode development --display-modules",
+    "build:dev-watch": "webpack --config webpack.config.js --mode development --watch --display-modules",
+    "build:prod": "webpack --config webpack.config.js --mode production --display-modules",
+    "fos-routes": "php bin/console fos:js-routing:dump --format=json --target=src-js/symfony/routing/fos_js_routes.json",
+    "start:dev": "webpack-dev-server",
+    "test": "jest",
+    "electron:start": "cross-env NODE_ENV=development URL=http://127.0.0.1:8000 electron electron/index.js",
+    "electron:dist": "cross-env URL=https://leinwand.herner-ev.com electron-builder --project electron"
+  },
+  "dependencies": {
+    "@coreui/coreui": "^2.1.11",
+    "@fortawesome/fontawesome-free": "^5.9.0",
+    "@types/jest": "^24.0.13",
+    "@types/node": "^12.0.4",
+    "@types/react": "^16.8.19",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-redux": "^7.1.0",
+    "bootstrap": "^4.3.1",
+    "csshake": "^1.5.3",
+    "jquery": "^3.4.1",
+    "perfect-scrollbar": "^1.4.0",
+    "popper.js": "^1.15.0",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.9",
+    "react-dom": "^16.8.6",
+    "react-notifications": "^1.4.3",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.1",
+    "symfony-ts-router": "^1.0.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@prettier/plugin-php": "^0.11.2",
+    "babel-loader": "^8.0.6",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
+    "electron": "^5.0.3",
+    "electron-builder": "^20.43.0",
+    "file-loader": "^4.0.0",
+    "jest": "^24.8.0",
+    "mini-css-extract-plugin": "^0.7.0",
+    "node-sass": "^4.13.1",
+    "prettier": "^1.18.2",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "ts-loader": "^6.0.2",
+    "typescript": "^3.5.1",
+    "webpack": "^4.32.2",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-cli": "^3.3.2"
+  },
+  "jest": {
+    "testMatch": [
+      "**/src-js/**/*.test.(js|jsx|ts|tsx)"
+    ]
+  },
+  "keywords": [],
+  "author": "Norman Malessa",
+  "description": "Herner EV web projects",
+  "license": "MIT"
+}

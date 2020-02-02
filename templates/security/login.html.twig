@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% set title = 'Login' %}
+{% set bodyClasses = 'app flex-row align-items-center' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/webpack/css/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card-group">
+                    <div class="card p-4">
+                        <div class="card-body">
+                            <h1><img src="{{ asset('img/brand/hev-admin-logo.svg') }}" /></h1>
+                            <p class="text-muted">Bitte loggen Sie sich ein</p>
+                            {% if error %}
+                                <p class="text-white bg-danger p-2">
+                                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                                </p>
+                            {% endif %}
+                            <form action="{{ path('login') }}" method="post">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="icon-user"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control" type="text" placeholder="Benutzername" id="username" name="_username" value="{{ last_username }}"/>
+                                </div>
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="icon-lock"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control" type="password" placeholder="Passwort" id="password" name="_password"/>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button class="btn btn-success px-4" type="submit">Login</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

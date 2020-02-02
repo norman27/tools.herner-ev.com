@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html style="padding:0; margin:0; border:0;">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin (Leinwand)</title>
+</head>
+<body style="padding:0; margin:0; border:0; line-height: 0;">
+    <button onClick="handleForceReload()">Force Reload</button>
+    <hr />
+    <iframe id="admin-frame" name="admin-frame" src="https://leinwand.herner-ev.com/admin" width="1200" height="800" scrolling="no" frameborder="0" class="wrapper"></iframe>
+    <script>
+        function handleForceReload() {
+            const ipc = require('electron').ipcRenderer;
+            console.log('[IPC] send admin-trigger-force-reload');
+            ipc.send('admin-trigger-force-reload', true);
+        }
+
+        if (process.env.NODE_ENV === 'development') {
+            document.getElementById('admin-frame').src = process.env.URL + '/admin';
+        }
+    </script>
+</body>
+</html>

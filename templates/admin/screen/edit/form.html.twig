@@ -1,0 +1,12 @@
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+
+{% block body_content %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success js-flash">{{ message }}</div>
+    {% endfor %}
+
+    {{ form_start(form, {'attr': {'id': 'screen-form'}}) }}
+        {% block edit_form %}{% endblock %}
+        {{ form_rest(form) }}
+    {{ form_end(form) }}
+{% endblock %}

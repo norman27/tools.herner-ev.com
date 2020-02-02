@@ -1,24 +1,36 @@
-/.web-server-pid
-/app/config/parameters.yml
-/build/
-/phpunit.xml
-/var/*
-!/var/cache
-/var/cache/*
-!var/cache/.gitkeep
-!/var/logs
-/var/logs/*
-!var/logs/.gitkeep
-!/var/sessions
-/var/sessions/*
-!var/sessions/.gitkeep
-!var/SymfonyRequirements.php
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
 /vendor/
-/web/bundles/
-/web/media/
-/web/sounds/
+###< symfony/framework-bundle ###
+###> electron ###
+electron/dist/
+electron/package-lock.json
+###< electron ###
 
-/.idea/
-/electron/dist
-/electron/node_modules
-/electron/*.tgz
+###> node_modules ###
+node_modules/
+###< node_modules ###
+
+###> application ###
+.idea/
+public/audio/
+!public/audio/silence.mp3
+public/bundles/
+public/media/
+!public/media/screen/.gitkeep
+###< application ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###

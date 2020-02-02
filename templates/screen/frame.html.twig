@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% set bodyClasses = 'screen' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/webpack/css/screen.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/webpack/js/screen.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="reveal">
+        <div class="slides" id="app"></div>
+    </div>
+{% endblock %}
