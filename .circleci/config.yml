@@ -20,7 +20,7 @@ jobs:
             - ./vendor
           key: php-dependencies-{{ checksum "composer.lock" }}
 
-      - run: bin/phpunit
+      - run: ./bin/phpunit
   js:
     working-directory: ~/hev-leinwand-herner-ev-com/php
     docker:
@@ -38,7 +38,7 @@ jobs:
       - save_cache:
           paths:
             - ./node_modules
-          key: php-dependencies-{{ checksum "package-lock.json" }}
+          key: js-dependencies-{{ checksum "package-lock.json" }}
 
       - run: npm test
 
