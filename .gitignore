@@ -1,16 +1,36 @@
-.idea/
-app/config/parameters.yml
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+###> electron ###
 electron/dist/
 electron/package-lock.json
+###< electron ###
+
+###> node_modules ###
 node_modules/
+###< node_modules ###
+
+###> application ###
+.idea/
 public/audio/
 !public/audio/silence.mp3
 public/bundles/
 public/media/
 !public/media/screen/.gitkeep
-var/
-!var/cache/.gitkeep
-!var/logs/.gitkeep
-!var/sessions/.gitkeep
-!var/SymfonyRequirements.php
-vendor/
+###< application ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###

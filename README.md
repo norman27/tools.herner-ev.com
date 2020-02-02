@@ -15,10 +15,6 @@ Afterwards you need to compile the frontend code:
 ```bash
 npm run build:prod
 ```
-To run the server for development use:
-```bash
-php bin/console server:run
-```
 
 ### Frontend Routing
 We use the FOSJsRoutingBundle for frontend routing. This means all routes being used need to be exposed.
