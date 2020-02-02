@@ -20,7 +20,7 @@ jobs:
             - ./vendor
           key: php-dependencies-{{ checksum "composer.lock" }}
 
-      - run: ./bin/phpunit
+      - run: composer test
   js:
     working-directory: ~/hev-leinwand-herner-ev-com/php
     docker:
