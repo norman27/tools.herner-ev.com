@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin\Screen;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  * @Route("/admin/screen")
  * @Security("has_role('ROLE_SCREEN')")
  */
-class ScreensController extends Controller
+class ScreensController extends AbstractController
 {
     /**
      * @Route("/screens", name="admin.screen.screens", options={"expose"=true})

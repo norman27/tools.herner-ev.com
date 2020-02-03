@@ -3,7 +3,7 @@
 namespace App\Controller\Admin\Screen;
 
 use Psr\Cache\InvalidArgumentException;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  * @Route("/admin/screen/audio")
  * @Security("has_role('ROLE_SCREEN')")
  */
-class AudioController extends Controller
+class AudioController extends AbstractController
 {
     /**
      * @Route("", name="admin.screen.audio", options={"expose"=true})

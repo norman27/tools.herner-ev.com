@@ -4,12 +4,12 @@ namespace App\Controller\Admin;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/admin")
  */
-class DefaultController extends Controller
+class DefaultController extends AbstractController
 {
     /**
      * @Route("", name="admin.index")

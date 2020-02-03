@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Hockey\Game;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 /**
  * @Route("/admin/aside")
  */
-class AsideController extends Controller
+class AsideController extends AbstractController
 {
     /**
      * @Route("/games", name="admin.aside.games", options={"expose"=true})

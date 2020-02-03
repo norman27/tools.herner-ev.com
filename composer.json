@@ -39,6 +39,7 @@
         "symfony/yaml": "4.4.*"
     },
     "require-dev": {
+        "friendsofsymfony/jsrouting-bundle": "^2.5",
         "symfony/debug-pack": "*",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "^1.0",

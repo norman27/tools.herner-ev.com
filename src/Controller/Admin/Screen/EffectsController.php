@@ -3,7 +3,7 @@
 namespace App\Controller\Admin\Screen;
 
 use Psr\Cache\InvalidArgumentException;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  * @Route("/admin/screen/effects")
  * @Security("has_role('ROLE_SCREEN')")
  */
-class EffectsController extends Controller
+class EffectsController extends AbstractController
 {
     /**
      * @Route("", name="admin.screen.effects")

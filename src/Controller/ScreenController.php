@@ -5,12 +5,12 @@ namespace App\Controller;
 use App\Screen\Effect\EffectsRepository;
 use App\Screen\ScreensRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Screen\Audio\AudioRepository;
 use Psr\Cache\InvalidArgumentException;
 
-class ScreenController extends Controller
+class ScreenController extends AbstractController
 {
     /**
      * @Route("/screen", name="screen.index")

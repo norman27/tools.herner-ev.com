@@ -1,13 +1,13 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     encoders:
-        AppBundle\Entity\Admin\User:
+        App\Entity\Admin\User:
             algorithm: bcrypt
     providers:
         in_memory: { memory: null }
         admin_db_provider:
             entity:
-                class: AppBundle:Admin\User
+                class: App:Admin\User
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -17,11 +17,11 @@ security:
             logout_on_user_change: true
             provider: admin_db_provider
             form_login:
-                login_path: login
-                check_path: login
+                login_path: security.login
+                check_path: security.login
             logout:
-                path:   /logout
-                target: /admin
+                path: security.logout
+                target: admin.index
         main:
             anonymous: lazy
 
