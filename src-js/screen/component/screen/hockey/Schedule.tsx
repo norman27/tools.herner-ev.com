@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TeamLogo } from '../../../../hockey/TeamLogo'
 
 type TableItem = {
   hometeam: Club,
@@ -25,9 +26,13 @@ class Schedule extends React.Component<Props> {
                                 <tr key={index}>
                                     <td>{ gameDate.toLocaleDateString('de-DE', {month: '2-digit', year: 'numeric', day: '2-digit'}) }</td>
                                     <td>{ item.gametime }&nbsp;Uhr</td>
-                                    <td><img className="small-logo" src={ `/bundles/hockey-teams/img/${ item.hometeam.logo }` } /></td>
+                                    <td>
+                                      <TeamLogo logo={item.hometeam.logo} alt={item.hometeam.name} width={40} height={40} />
+                                    </td>
                                     <td>{item.hometeam.name}</td>
-                                    <td><img className="small-logo" src={ `/bundles/hockey-teams/img/${ item.awayteam.logo }` } /></td>
+                                    <td>
+                                      <TeamLogo logo={item.awayteam.logo} alt={item.awayteam.name} width={40} height={40} />
+                                    </td>
                                     <td>{item.awayteam.name}</td>
                                 </tr>
                             )

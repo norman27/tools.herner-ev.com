@@ -36,11 +36,6 @@ img {
   background: none !important;
 }
 
-.small-logo {
-  width: 40px;
-  height: 40px;
-}
-
 .color-green {
   color: $color-brand-green-lighter;
 }
@@ -105,10 +100,6 @@ table {
   }
 
   &-compare {
-    img {
-      width: 100px;
-      height: 100px;
-    }
     span {
       padding: 4px 10px;
     }

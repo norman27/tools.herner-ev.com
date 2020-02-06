@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TeamLogo } from '../../../../hockey/TeamLogo'
 
 type TableItem = {
   club: Club,
@@ -18,10 +19,6 @@ class Table extends React.Component<Props> {
         let tableStyle = {
           fontSize: this.props.font + 'px'
         }
-        let logoStyle = {
-          height: this.props.font + 'px',
-          width: this.props.font + 'px'
-        }
 
         return (
             <section className="present" data-fullscreen>
@@ -31,7 +28,9 @@ class Table extends React.Component<Props> {
                         {this.props.items.map((item: TableItem, index) => {
                             return (
                                 <tr key={index}>
-                                    <td><img style={logoStyle} src={ `/bundles/hockey-teams/img/${ item.club.logo }` } /></td>
+                                    <td>
+                                      <TeamLogo logo={item.club.logo} alt={item.club.name} width={this.props.font} height={this.props.font}/>
+                                    </td>
                                     <td>{item.club.name}</td>
                                     <td>{item.goalsFor}:{item.goalsAgainst}</td>
                                     <td>{item.points}</td>

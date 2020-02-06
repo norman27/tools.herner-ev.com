@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TeamLogo } from '../../../../hockey/TeamLogo'
 
 type TableItem = {
   hometeam: Club,
@@ -22,9 +23,13 @@ class Othergames extends React.Component<Props> {
                         {this.props.items.map((item: TableItem, index) => {
                             return (
                                 <tr key={index}>
-                                    <td><img className="small-logo" src={ `/bundles/hockey-teams/img/${ item.hometeam.logo }` } /></td>
+                                    <td>
+                                      <TeamLogo logo={item.hometeam.logo} alt={item.hometeam.name} width={40} height={40} />
+                                    </td>
                                     <td>{item.hometeam.name}</td>
-                                    <td><img className="small-logo" src={ `/bundles/hockey-teams/img/${ item.awayteam.logo }` } /></td>
+                                    <td>
+                                      <TeamLogo logo={item.awayteam.logo} alt={item.awayteam.name} width={40} height={40} />
+                                    </td>
                                     <td>{item.awayteam.name}</td>
                                     <td><strong><span className={!item.isFinished && 'color-green'}>{item.homescore}:{item.awayscore}</span></strong></td>
                                 </tr>

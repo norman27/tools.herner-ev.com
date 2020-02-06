@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TeamLogo } from '../../../../hockey/TeamLogo'
 
 type Props = {
     //@TODO all english, and color logic
@@ -71,9 +72,13 @@ class Compare extends React.Component<Props> {
                             <td><span className={`bg-${ this.getColor(this.props.awaybadboypunkte, this.props.homebadboypunkte) }-light`}>{ this.props.awaybadboy }&nbsp;({ this.props.awaybadboypunkte } Tore)</span></td>
                         </tr>
                         <tr>
-                            <td align="right"><img src={`/bundles/hockey-teams/img/${ this.props.hometeam.logo }`} title={ this.props.hometeam.name } /></td>
+                            <td align="right">
+                                <TeamLogo logo={this.props.hometeam.logo} alt={this.props.hometeam.name} width={100} height={100}/>
+                            </td>
                             <td></td>
-                            <td><img src={ `/bundles/hockey-teams/img/${ this.props.awayteam.logo }` } title={ this.props.hometeam.name } /></td>
+                            <td>
+                                <TeamLogo logo={this.props.awayteam.logo} alt={this.props.awayteam.name} width={100} height={100}/>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

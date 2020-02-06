@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TeamLogo } from '../../../../hockey/TeamLogo'
 
 type SixProps = {
   club: Club,
@@ -75,7 +76,7 @@ function Six(props: SixProps) {
           </div>
         </div>
         <div className="logo">
-          <img src={ `/bundles/hockey-teams/img/${ props.club.logo }` } width="120" height="120" alt={props.club.name}/>
+          <TeamLogo logo={props.club.logo} alt={props.club.name} width={120} height={120}/>
         </div>
       </section>
   )
