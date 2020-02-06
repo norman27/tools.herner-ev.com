@@ -7,6 +7,7 @@ import { Compare } from './hockey/Compare';
 import { Images } from './media/Images';
 import { Othergames } from './hockey/Othergames';
 import { Schedule } from './hockey/Schedule';
+import { Six } from './hockey/Six';
 import { Table } from './hockey/Table';
 
 class Screen extends React.Component<ScreenSettings> {
@@ -27,6 +28,8 @@ class Screen extends React.Component<ScreenSettings> {
                             return <Othergames {...this.props.config} />;
                         case 'schedule':
                             return <Schedule {...this.props.config} />;
+                        case 'six':
+                            return <Six {...this.props.config} />;
                         case 'table':
                             return <Table {...this.props.config} />;
                     }

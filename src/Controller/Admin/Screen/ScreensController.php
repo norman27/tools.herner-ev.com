@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Screen\ScreensRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Twig\Environment;
 
 /**
  * @Route("/admin/screen")
@@ -33,9 +34,10 @@ class ScreensController extends AbstractController
      * @param mixed $id
      * @param Request $request
      * @param ScreensRepository $repository
+     * @param Environment $twig
      * @return Response
      */
-    public function editAction($id, Request $request, ScreensRepository $repository)
+    public function editAction($id, Request $request, ScreensRepository $repository, Environment $twig)
     {
         $screen = $repository->getById($id);
 
@@ -57,7 +59,7 @@ class ScreensController extends AbstractController
             $this->addFlash('success', 'Erfolgreich gespeichert');
         }
 
-        $template = ($this->get('templating')->exists('admin/screen/edit/' . $screen->screenType . '.html.twig')) ?
+        $template = ($twig->getLoader()->exists('admin/screen/edit/' . $screen->screenType . '.html.twig')) ?
             'admin/screen/edit/' . $screen->screenType . '.html.twig'
             : $template = 'admin/screen/edit/form.html.twig';
 

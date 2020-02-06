@@ -100,6 +100,17 @@ class ScreensRepository
                     $screen->setConfig('items', $games);
                     break;
 
+                case 'six':
+                    $repo = $this->managerRegistry->getRepository(Club::class); //@TODO cache response
+                    $club = $serializer->normalize(
+                        $repo->findOneBy(
+                            ['id' => $screen->getConfig("team")]
+                        ),
+                        'json'
+                    );
+                    $screen->setConfig('club', $club);
+                    break;
+
                 case 'table':
                     $repo = $this->managerRegistry->getRepository(Table::class); //@TODO cache response
                     $tables = $serializer->normalize(

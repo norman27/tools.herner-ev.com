@@ -51,6 +51,7 @@ class Screen
             case 'compare':
             case 'othergames':
             case 'schedule':
+            case 'six':
             case 'table':
                 return true;
         }

@@ -125,4 +125,59 @@ table {
       }
     }
   }
+
+  &-six {
+    .team-role {
+      display: flex;
+      margin-bottom: 50px;
+
+      &-forward {
+        margin-top: 90px;
+      }
+    }
+
+    .player {
+      float: left;
+      width: 200px;
+      margin-left: 50px;
+
+      &.player-1 {
+        margin-left:348px;
+      }
+
+      &.player-2 {
+        margin-left:223px;
+      }
+
+      &.player-3 {
+        margin-left:98px;
+      }
+
+      &> div {
+        font-size: 22px;
+        float: left;
+
+        &> div {
+          padding: 0 5px;
+          background-color: rgba(0,0,0,.6);
+
+          &.name {
+            text-transform: uppercase;
+            padding: 0 15px;
+          }
+        }
+
+        &.number {
+          height: 54px;
+          font-size: 40px;
+          padding: 0 10px;
+        }
+      }
+    }
+
+    .logo {
+      float: left;
+      margin-left: 98px;
+    }
+  }
 }

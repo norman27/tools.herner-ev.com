@@ -20,16 +20,14 @@ class Schedule extends React.Component<Props> {
                 <table>
                     <tbody>
                         {this.props.items.map((item: TableItem, index) => {
-                            let logoHome = '/bundles/hockey-teams/img/' + item.hometeam.logo; //@TODO constant for bundles/hockey-teams/img/
-                            let logoAway = '/bundles/hockey-teams/img/' + item.awayteam.logo;
                             let gameDate = new Date(item.gamedate);
                             return (
                                 <tr key={index}>
                                     <td>{ gameDate.toLocaleDateString('de-DE', {month: '2-digit', year: 'numeric', day: '2-digit'}) }</td>
                                     <td>{ item.gametime }&nbsp;Uhr</td>
-                                    <td><img className="small-logo" src={logoHome} /></td>
+                                    <td><img className="small-logo" src={ `/bundles/hockey-teams/img/${ item.hometeam.logo }` } /></td>
                                     <td>{item.hometeam.name}</td>
-                                    <td><img className="small-logo" src={logoAway} /></td>
+                                    <td><img className="small-logo" src={ `/bundles/hockey-teams/img/${ item.awayteam.logo }` } /></td>
                                     <td>{item.awayteam.name}</td>
                                 </tr>
                             )
