@@ -8,10 +8,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use App\Entity\Hockey\Club;
-use App\Entity\Joomla\Banner;
-use Doctrine\ORM\EntityManager;
 
 class LivegameForm extends AbstractType
 {

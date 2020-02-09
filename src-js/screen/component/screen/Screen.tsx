@@ -1,10 +1,12 @@
 /// <reference path="../../types.ts" />
 
+//@TODO convert all to functional components
 import * as React from 'react';
 import { Attendance } from './media/Attendance';
 import { Content } from './media/Content';
 import { Compare } from './hockey/Compare';
 import { Images } from './media/Images';
+import { Lottery } from './media/Lottery';
 import { Othergames } from './hockey/Othergames';
 import { Schedule } from './hockey/Schedule';
 import { Six } from './hockey/Six';
@@ -24,6 +26,8 @@ class Screen extends React.Component<ScreenSettings> {
                             return <Content {...this.props.config} />;
                         case 'images':
                             return <Images />;
+                        case 'lottery':
+                            return <Lottery {...this.props.config} />;
                         case 'othergames':
                             return <Othergames {...this.props.config} />;
                         case 'schedule':

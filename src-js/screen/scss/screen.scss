@@ -54,11 +54,17 @@ table {
 }
 
 .bg {
-  &-green-light {
-    background-color: $color-brand-green-light;
+  &-green {
+    background-color: $color-brand-green;
+    &-light {
+      background-color: $color-brand-green-light;
+    }
   }
-  &-red-light {
-    background-color: $color-brand-red-light;
+  &-red {
+    background-color: $color-brand-red;
+    &-light {
+      background-color: $color-brand-red-light;
+    }
   }
 }
 
@@ -114,6 +120,12 @@ table {
           background-color: rgba(0,0,0,.5);
         }
       }
+    }
+  }
+
+  &-lottery {
+    .vertical-top {
+      vertical-align: top;
     }
   }
 

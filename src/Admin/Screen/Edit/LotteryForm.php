@@ -3,12 +3,10 @@
 namespace App\Admin\Screen\Edit;
 
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\AbstractType;
-use App\Screen\FilesRepository;
 
-class AttendanceForm extends AbstractType
+class LotteryForm extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,20 +14,26 @@ class AttendanceForm extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $repository = new FilesRepository();
-
         $builder
             ->add(
-                'attendance',
+                'puck1',
                 IntegerType::class
             )
             ->add(
-                'sponsor',
-                ChoiceType::class,
-                [
-                    'choices' => $repository->getAllNames(),
-                    'placeholder' => '---'
-                ]
+                'puck2',
+                IntegerType::class
+            )
+            ->add(
+                'puck3',
+                IntegerType::class
+            )
+            ->add(
+                'jersey',
+                IntegerType::class
+            )
+            ->add(
+                'pokal',
+                IntegerType::class
             )
         ;
     }
