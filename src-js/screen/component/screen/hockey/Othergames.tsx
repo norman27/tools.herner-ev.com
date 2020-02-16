@@ -16,7 +16,7 @@ type Props = {
 class Othergames extends React.Component<Props> {
     render() {
         return (
-            <section className="present" data-fullscreen>
+            <section className="present" data-fullscreen="">
                 <div className="bg-green-light screen-title"><h4>Zwischenstände</h4></div>
                 <table>
                     <tbody>

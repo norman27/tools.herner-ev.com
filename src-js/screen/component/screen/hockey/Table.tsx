@@ -21,7 +21,7 @@ class Table extends React.Component<Props> {
         }
 
         return (
-            <section className="present" data-fullscreen>
+            <section className="present" data-fullscreen="">
                 <div className="bg-green-light screen-title"><h4>{this.props.title}</h4></div>
                 <table style={tableStyle}>
                     <tbody>

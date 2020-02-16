@@ -9,7 +9,7 @@ class Attendance extends React.Component<Props> {
     render() {
         let sponsorImage = '/media/screen/' + this.props.sponsor;
         return (
-            <section className="screen-attendance present" data-fullscreen>
+            <section className="screen-attendance present" data-fullscreen="">
                 <div className="bg-green-light screen-title"><h4>Die Zuschauerzahl</h4></div>
                 <div className="attendance-number">{this.props.attendance}</div>
                 {this.props.sponsor !== null &&
