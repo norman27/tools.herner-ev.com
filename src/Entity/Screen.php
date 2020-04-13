@@ -45,10 +45,12 @@ class Screen
 
     /**
      * @return bool
+     * @TODO we want to make this more dynamic
      */
     public function isEnrichable(): bool {
         switch ($this->screenType) {
             case 'compare':
+            case 'livegame':
             case 'othergames':
             case 'schedule':
             case 'six':

@@ -8,6 +8,7 @@ use App\Entity\Screen;
 use App\Entity\Hockey\Table;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
@@ -43,6 +44,7 @@ class ScreensRepository
 
     /**
      * @return Screen
+     * @throws ExceptionInterface
      */
     public function getActive()
     {
@@ -54,6 +56,7 @@ class ScreensRepository
             //@TODO a switch is not nice
             switch ($screen->screenType) {
                 case 'compare':
+                case 'livegame':
                     $repo = $this->managerRegistry->getRepository(Club::class); //@TODO cache response
                     $hometeam = $serializer->normalize(
                         $repo->findOneBy(

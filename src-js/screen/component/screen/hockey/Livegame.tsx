@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { TeamLogo } from '../../../../hockey/TeamLogo'
+import { TeamLogo } from '../../../../hockey/TeamLogo';
+
+let Marquee = require('react-marquee');
 
 type LivegameProps = {
   hometeam: Club,
   homescore: number,
   awayteam: Club,
   awayscore: number,
-  sponsors: string[],
-  ticker: string
+  goals: string[],
+  sponsors: string[]
 }
 
 function Livegame(props: LivegameProps) {
@@ -20,7 +22,7 @@ function Livegame(props: LivegameProps) {
             <TeamLogo logo={props.hometeam.logo} alt={props.hometeam.name} width={200} height={200}/>
           </div>
           <div className="goals">
-            <span id="homescore">{props.homescore}</span>:<span id="awayscore">{props.awayscore}</span>
+            {props.homescore}:{props.awayscore}
           </div>
           <div className="logo">
             <TeamLogo logo={ props.awayteam.logo } alt={ props.awayteam.name } width={200} height={200}/>
@@ -28,12 +30,12 @@ function Livegame(props: LivegameProps) {
         </div>
       </div>
       <div className="bottom">
-        <div className="greenbg clearfix ticker">
-          <div className="marquee" id="ticker">{ props.ticker }</div>
-          <div className="greenbg">Ticker:</div>
+        <div className="bg-green-light clearfix goals">
+          <div className="marquee-caption"><strong>Ticker:</strong></div>
+          <Marquee text={props.goals.join(', ')} loop={true} hoverToStop={true} trailing={10000} leading={10000} />
         </div>
-        <div className="whitebg clearfix sponsoren">
-          {this.props.sponsors.map((sponsor: string, index) => {
+        <div className="bg-white clearfix sponsors">
+          {props.sponsors.map((sponsor: string, index) => {
             return (
               <img key={index} src={ `https://www.herner-ev.com/${ sponsor }` } alt="" width="180" height="100" />
             )

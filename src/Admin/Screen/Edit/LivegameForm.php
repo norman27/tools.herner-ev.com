@@ -60,7 +60,7 @@ class LivegameForm extends AbstractType
                 ]
             )
             ->add(
-                'sponsoren',
+                'sponsors',
                 ChoiceType::class,
                 [
                     'multiple' => true,
