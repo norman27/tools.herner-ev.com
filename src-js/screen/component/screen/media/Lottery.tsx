@@ -11,7 +11,7 @@ type LotteryProps = {
 function Lottery(props: LotteryProps) {
   console.log(props);
   return (
-      <section className="screen-lottery present" data-fullscreen>
+      <section className="screen-lottery present" data-fullscreen="">
         <div className="bg-green-light screen-title"><h4>Puckwerfen und Verlosung</h4></div>
         <table>
           <tbody>

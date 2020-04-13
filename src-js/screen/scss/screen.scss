@@ -66,11 +66,19 @@ table {
       background-color: $color-brand-red-light;
     }
   }
+  &-white {
+    background-color: #ffffff;
+  }
 }
 
 .reveal {
   .slides {
     pointer-events: auto !important; // this is important for "Turn-on-Sound" button
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
   }
 }
 
@@ -119,6 +127,51 @@ table {
         &.middle {
           background-color: rgba(0,0,0,.5);
         }
+      }
+    }
+  }
+
+  &-livegame {
+    .score {
+      height: 220px;
+      width: 640px;
+      margin: 40px auto;
+
+      .goals, .logo {
+        float: left;
+      }
+
+      .goals {
+        font-size: 140px;
+        font-weight: bold;
+        width: 200px;
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+    }
+
+    .bottom {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+
+      .goals {
+        padding: 5px 0;
+        height: 30px;
+
+        .marquee-caption {
+          width: 100px;
+          float: left;
+        }
+        .ui-marquee {
+          width: 776px;
+          float: left;
+        }
+      }
+
+      img {
+        box-shadow: none;
+        padding: 10px;
       }
     }
   }

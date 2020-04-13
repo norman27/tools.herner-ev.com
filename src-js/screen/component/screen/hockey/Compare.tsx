@@ -30,14 +30,14 @@ type Props = {
 class Compare extends React.Component<Props> {
 
     getColor(a: number, b: number, inverse = false): string {
-        let isBetterA = (a >= b) ? true : false;
+        let isBetterA = (a >= b);
         if (inverse) isBetterA = !isBetterA;
         return isBetterA ? 'green' : 'red';
     }
 
     render() {
         return (
-            <section className="screen-compare present" data-fullscreen>
+            <section className="screen-compare present" data-fullscreen="">
                 <div className="bg-green-light screen-title"><h4>Teamvergleich</h4></div>
                 <table>
                     <tbody>
@@ -75,7 +75,7 @@ class Compare extends React.Component<Props> {
                             <td align="right">
                                 <TeamLogo logo={this.props.hometeam.logo} alt={this.props.hometeam.name} width={100} height={100}/>
                             </td>
-                            <td></td>
+                            <td>&nbsp;</td>
                             <td>
                                 <TeamLogo logo={this.props.awayteam.logo} alt={this.props.awayteam.name} width={100} height={100}/>
                             </td>

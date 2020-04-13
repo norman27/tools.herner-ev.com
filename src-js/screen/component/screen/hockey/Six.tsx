@@ -25,7 +25,7 @@ type SixProps = {
 
 function Six(props: SixProps) {
   return (
-      <section className="screen-six present" data-fullscreen>
+      <section className="screen-six present" data-fullscreen="">
         <div className="bg-green-light screen-title"><h4>Starting Six: {props.club.name}</h4></div>
         <div className="team-role team-role-forward">
           <div className="player player-3">
