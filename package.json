@@ -1,6 +1,10 @@
 {
   "name": "herner-ev-com",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/norman27/hev-leinwand-herner-ev-com.git"
+  },
   "scripts": {
     "build:analyze": "npm run build:prod -- --env.presets analyze",
     "build:dev": "webpack --config webpack.config.js --mode development --display-modules",
@@ -44,7 +48,7 @@
     "electron": "^5.0.3",
     "electron-builder": "^20.43.0",
     "file-loader": "^4.0.0",
-    "jest": "^24.8.0",
+    "jest": "^25.3.0",
     "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.13.1",
     "prettier": "^1.18.2",
