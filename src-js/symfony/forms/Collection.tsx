@@ -25,6 +25,10 @@ const EnableCollection = (): void => {
     });
 
     $elems.map((elem) => {
+        const oldButton = elem.parentNode.getElementsByClassName('js-symfony-collection-add');
+        if (oldButton.length > 0) {
+            oldButton.remove();
+        }
         elem.parentNode.insertBefore(addButton, elem.nextSibling);
     });
 }

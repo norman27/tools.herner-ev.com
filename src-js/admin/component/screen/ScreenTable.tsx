@@ -14,7 +14,7 @@ type Props = {
 type State = {
     screens: EditScreen[],
     showModal: boolean,
-    modalBody: string
+    modalBody: string,
 }
 
 const apiPost = (dispatch: Dispatch<NotificationActionType>, url: string, successMessage: string, successCallback: () => void): void => {
@@ -38,26 +38,30 @@ class ScreenTable extends React.Component<Props, State> {
     state: State = {
         screens: [],
         showModal: false,
-        modalBody: ''
+        modalBody: '',
     }
 
     componentDidUpdate(prevProp: Props) {
         if (this.state.showModal) {
             const form = document.getElementById('screen-form') as HTMLFormElement;
+            console.log(form.listenerAttached);
 
-            form.addEventListener('modal-submit', function (event) {
-                event.preventDefault();
-                const target = event.target as HTMLFormElement;
+            if (form.listenerAttached !== true) {
+                form.addEventListener('modal-submit', function(event) {
+                    event.preventDefault();
+                    form.listenerAttached = true;
+                    const target = event.target as HTMLFormElement;
 
-                fetch(target.action, {method: 'POST', body: new FormData(target)})
-                    .then(response => response.text())
-                    .then(body => {
-                        this.setState({ modalBody: body });
-                        EnableCollection();
-                }).catch((error) => {
-                    // @TODO handle error
-                });
-            }.bind(this));
+                    fetch(target.action, { method: 'POST', body: new FormData(target) })
+                      .then(response => response.text())
+                      .then(body => {
+                          this.setState({ modalBody: body });
+                          EnableCollection();
+                      }).catch((error) => {
+                        // @TODO handle error
+                    });
+                }.bind(this));
+            }
         }
     }
 

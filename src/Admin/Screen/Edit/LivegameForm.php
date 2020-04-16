@@ -65,7 +65,8 @@ class LivegameForm extends AbstractType
                 [
                     'multiple' => true,
                     'required' => false,
-                    'choices' => $this->getBanners()
+                    'choices' => $this->getBanners(),
+                    'attr' => ['size' => 10]
                 ]
             )
         ;
