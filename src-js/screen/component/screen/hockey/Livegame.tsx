@@ -32,7 +32,7 @@ function Livegame(props: LivegameProps) {
       <div className="bottom">
         <div className="bg-green-light clearfix goals">
           <div className="marquee-caption"><strong>Ticker:</strong></div>
-          <Marquee text={props.goals.join(', ')} loop={true} hoverToStop={true} trailing={10000} leading={10000} />
+          <Marquee text={props.goals.join(', ')} loop={true} hoverToStop={true} trailing={10000} leading={2000} />
         </div>
         <div className="bg-white clearfix sponsors">
           {props.sponsors.map((sponsor: string, index) => {

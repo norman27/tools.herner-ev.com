@@ -1,0 +1,33 @@
+{% extends 'admin/screen/edit/form.html.twig' %}
+
+{% block edit_form %}
+    <div class="form-group row">
+        <div class="col-sm-2">Teams</div>
+        <div class="col-sm-5">{{ form_widget(form.children['hometeam']) }}</div>
+        <div class="col-sm-5">{{ form_widget(form.children['awayteam']) }}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-2">Score</div>
+        <div class="col-sm-5">{{ form_widget(form.children['homescore']) }}</div>
+        <div class="col-sm-5">{{ form_widget(form.children['awayscore']) }}</div>
+    </div>
+    {{ form_row(form.children['goals']) }}
+    <div class="accordion" id="accordionSponsors">
+        <div class="card border-bottom">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Sponsoren
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSponsors">
+                <div class="card-body">
+                    <p>Mit gedrückter [STRG]-Taste können mehrere Einträge gewählt werden.</p>
+                    {{ form_widget(form.children['sponsors']) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

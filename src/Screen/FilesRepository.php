@@ -18,7 +18,6 @@ class FilesRepository
                 __DIR__
                 . DIRECTORY_SEPARATOR . '..'
                 . DIRECTORY_SEPARATOR . '..'
-                . DIRECTORY_SEPARATOR . '..'
                 . DIRECTORY_SEPARATOR . 'public'
                 . DIRECTORY_SEPARATOR . 'media'
                 . DIRECTORY_SEPARATOR . 'screen'
