@@ -30,7 +30,7 @@ final class AudioRepository
         foreach ($files as $file) {
             $tracks[$file] = new AudioTrack(
                 $file,
-                (int) MpegAudio::fromFile(realpath(__DIR__ . '/../../../../public/audio/' . $file))->getTotalDuration()
+                (int) MpegAudio::fromFile(realpath(__DIR__ . '/../../../public/audio/' . $file))->getTotalDuration()
             );
         }
         ksort($tracks);
