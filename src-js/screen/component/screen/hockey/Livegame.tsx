@@ -46,7 +46,7 @@ function Livegame(props: LivegameProps) {
           })}
         </div>
         {(props.socialFacebook || props.socialInstagram || props.socialYoutube || props.socialTwitter) &&
-          <div className="bg-black social">
+          <div className="bg-green-light social">
             {props.socialFacebook &&
               <div>
                 <img src="/img/social/facebook.svg" alt="" width="20" height="20" />
