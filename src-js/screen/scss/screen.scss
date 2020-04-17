@@ -171,7 +171,29 @@ table {
 
       img {
         box-shadow: none;
-        padding: 10px;
+
+        &.sponsor {
+          padding: 10px;
+        }
+      }
+
+      .social {
+        height: 30px;
+
+        div {
+          float: left;
+          width: 200px;
+        }
+
+        img {
+          padding-top: 4px;
+          margin-right: 8px !important;
+        }
+
+        small {
+          font-size: 0.8em;
+          padding-top: 3px;
+        }
       }
     }
   }

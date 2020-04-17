@@ -9,7 +9,11 @@ type LivegameProps = {
   awayteam: Club,
   awayscore: number,
   goals: string[],
-  sponsors: string[]
+  sponsors: string[],
+  socialFacebook: string | null,
+  socialInstagram: string | null,
+  socialYoutube: string | null,
+  socialTwitter: string | null,
 }
 
 function Livegame(props: LivegameProps) {
@@ -37,10 +41,38 @@ function Livegame(props: LivegameProps) {
         <div className="bg-white clearfix sponsors">
           {props.sponsors.map((sponsor: string, index) => {
             return (
-              <img key={index} src={ `https://www.herner-ev.com/${ sponsor }` } alt="" width="180" height="100" />
+              <img key={index} src={ `https://www.herner-ev.com/${ sponsor }` } className="sponsor" alt="" width="180" height="100" />
             )
           })}
         </div>
+        {(props.socialFacebook || props.socialInstagram || props.socialYoutube || props.socialTwitter) &&
+          <div className="bg-black social">
+            {props.socialFacebook &&
+              <div>
+                <img src="/img/social/facebook.svg" alt="" width="20" height="20" />
+                <small>{props.socialFacebook}</small>
+              </div>
+            }
+            {props.socialInstagram &&
+              <div>
+                <img src="/img/social/instagram.svg" alt="" width="20" height="20" />
+                <small>{props.socialInstagram}</small>
+              </div>
+            }
+            {props.socialYoutube &&
+              <div>
+                <img src="/img/social/youtube.svg" alt="" width="20" height="20" />
+                <small>{props.socialYoutube}</small>
+              </div>
+            }
+            {props.socialTwitter &&
+              <div>
+                <img src="/img/social/twitter.svg" alt="" width="20" height="20" />
+                <small>{props.socialTwitter}</small>
+              </div>
+            }
+          </div>
+        }
       </div>
     </section>
   )

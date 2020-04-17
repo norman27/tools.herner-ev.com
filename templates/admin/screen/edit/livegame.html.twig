@@ -12,8 +12,8 @@
         <div class="col-sm-5">{{ form_widget(form.children['awayscore']) }}</div>
     </div>
     {{ form_row(form.children['goals']) }}
-    <div class="accordion" id="accordionSponsors">
-        <div class="card border-bottom">
+    <div class="accordion" id="accordionLivegame">
+        <div class="card mb-0">
             <div class="card-header" id="headingOne">
                 <h2 class="mb-0">
                     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -21,11 +21,39 @@
                     </button>
                 </h2>
             </div>
-
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSponsors">
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionLivegame">
                 <div class="card-body">
                     <p>Mit gedrückter [STRG]-Taste können mehrere Einträge gewählt werden.</p>
                     {{ form_widget(form.children['sponsors']) }}
+                </div>
+            </div>
+        </div>
+        <div class="card border-bottom">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        Social Media
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionLivegame">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <div class="col-sm-2">Facebook</div>
+                        <div class="col-sm-10">{{ form_widget(form.children['socialFacebook']) }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2">Instagram</div>
+                        <div class="col-sm-10">{{ form_widget(form.children['socialInstagram']) }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2">Youtube</div>
+                        <div class="col-sm-10">{{ form_widget(form.children['socialYoutube']) }}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2">Twitter</div>
+                        <div class="col-sm-10">{{ form_widget(form.children['socialTwitter']) }}</div>
+                    </div>
                 </div>
             </div>
         </div>
