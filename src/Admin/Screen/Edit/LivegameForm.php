@@ -69,6 +69,26 @@ class LivegameForm extends AbstractType
                     'attr' => ['size' => 10]
                 ]
             )
+            ->add(
+                'socialFacebook',
+                TextType::class,
+                ['required' => false]
+            )
+            ->add(
+                'socialInstagram',
+                TextType::class,
+                ['required' => false]
+            )
+            ->add(
+                'socialYoutube',
+                TextType::class,
+                ['required' => false]
+            )
+            ->add(
+                'socialTwitter',
+                TextType::class,
+                ['required' => false]
+            )
         ;
     }
 

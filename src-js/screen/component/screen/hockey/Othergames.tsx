@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TeamLogo } from '../../../../hockey/TeamLogo'
 
-type TableItem = {
+type Othergame = {
   hometeam: Club,
   awayteam: Club,
   homescore: number,
@@ -10,7 +10,7 @@ type TableItem = {
 }
 
 type Props = {
-  items: TableItem[]
+  items: Othergame[]
 }
 
 class Othergames extends React.Component<Props> {
@@ -20,7 +20,7 @@ class Othergames extends React.Component<Props> {
                 <div className="bg-green-light screen-title"><h4>Zwischenstände</h4></div>
                 <table>
                     <tbody>
-                        {this.props.items.map((item: TableItem, index) => {
+                        {this.props.items.map((item: Othergame, index) => {
                             return (
                                 <tr key={index}>
                                     <td>
