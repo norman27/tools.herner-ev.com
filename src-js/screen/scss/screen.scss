@@ -134,17 +134,17 @@ table {
   &-livegame {
     .score {
       height: 220px;
-      width: 640px;
-      margin: 40px auto;
+      width: 730px;
+      margin: 25px auto;
 
-      .goals, .logo {
+      .score, .logo {
         float: left;
+        width: 230px;
       }
 
-      .goals {
+      .score {
         font-size: 140px;
         font-weight: bold;
-        width: 200px;
         margin-left: 20px;
         margin-right: 20px;
       }
@@ -155,25 +155,42 @@ table {
       bottom: 0;
       width: 100%;
 
-      .goals {
-        padding: 5px 0;
-        height: 30px;
-
-        .marquee-caption {
-          width: 100px;
-          float: left;
-        }
-        .ui-marquee {
-          width: 776px;
-          float: left;
-        }
-      }
-
       img {
         box-shadow: none;
 
         &.sponsor {
           padding: 10px;
+        }
+      }
+
+      .goals {
+        height: 90px;
+
+        > div {
+          width: 428px;
+          float: left;
+
+          &:first-child {
+            padding-left: 20px;
+          }
+
+          &:last-child {
+            padding-right: 20px;
+
+            .goal {
+              float: right;
+            }
+          }
+
+          .goal {
+            font-size: 16px;
+            color: #ffffff;
+            display: table;
+            background-color: $color-brand-red;
+            border-radius: 4px;
+            padding: 2px 5px;
+            margin-bottom: 2px;
+          }
         }
       }
 

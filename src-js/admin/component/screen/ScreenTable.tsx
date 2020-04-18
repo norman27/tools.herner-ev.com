@@ -141,7 +141,7 @@ class ScreenTable extends React.Component<Props, State> {
                     </tbody>
                 </table>
 
-                <Modal show={this.state.showModal} onHide={this.modalClose} size="lg">
+                <Modal show={this.state.showModal} onHide={this.modalClose} size="xl">
                     <Modal.Header closeButton>
                         <Modal.Title>Bearbeiten</Modal.Title>
                     </Modal.Header>

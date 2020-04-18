@@ -45,7 +45,22 @@ class LivegameForm extends AbstractType
                 IntegerType::class
             )
             ->add(
-                'goals',
+                'homegoals',
+                CollectionType::class,
+                [
+                    'attr' => [
+                        'class' => 'js-symfony-collection'
+                    ],
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'delete_empty' => true,
+                    'entry_type' => TextType::class,
+                    'prototype' => true,
+                    'required' => false
+                ]
+            )
+            ->add(
+                'awaygoals',
                 CollectionType::class,
                 [
                     'attr' => [
