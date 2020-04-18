@@ -17,6 +17,29 @@ class Effect extends React.Component<EffectSettings> {
                             return <div style={darkOverlay}></div>;
                         case 'rubberduck':
                             return <img className="shake-slow shake-constant effect-rubberduck" src="/img/screen/effect-rubberduck.png"/>;
+                        case 'snowflakes':
+                            return <div className="snowflakes" aria-hidden="true">
+                                <div className="snowflake">❅</div>
+                                <div className="snowflake">❆</div>
+                                <div className="snowflake">❅</div>
+                                <div className="snowflake">❆</div>
+                                <div className="snowflake">❅</div>
+                                <div className="snowflake">❆</div>
+                                <div className="snowflake">❅</div>
+                                <div className="snowflake">❆</div>
+                                <div className="snowflake">❅</div>
+                                <div className="snowflake">❆</div>
+                                <div className="snowflake">❅</div>
+                                <div className="snowflake">❆</div>
+                                <div className="snowflake">❅</div>
+                                <div className="snowflake">❆</div>
+                                <div className="snowflake">❅</div>
+                                <div className="snowflake">❆</div>
+                                <div className="snowflake">❅</div>
+                                <div className="snowflake">❆</div>
+                                <div className="snowflake">❅</div>
+                                <div className="snowflake">❆</div>
+                            </div>
                     }
                 })()}
             </div>
