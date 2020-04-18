@@ -54,13 +54,10 @@ class EffectsRepository
     {
         return [
             new Effect('stop', 'STOP'),
-            //new Effect('goal', 'Tor'),
-            //new Effect('goalscorer', 'Torschütze', ['number']),
-            //new Effect('penalty', 'Strafzeit'),
             new Effect('darken', 'Abdunkeln'),
             new Effect('broken', 'Gebrochenes Glas'),
             new Effect('rubberduck', 'Gummihuhn'),
-            //new Effect('snowflakes', 'Schneeflocken')
+            new Effect('snowflakes', 'Schneeflocken')
         ];
     }
 }
