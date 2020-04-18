@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { TeamLogo } from '../../../../hockey/TeamLogo';
 
-let Marquee = require('react-marquee');
-
 type LivegameProps = {
   hometeam: Club,
   homescore: number,
   awayteam: Club,
   awayscore: number,
-  goals: string[],
+  homegoals: string[],
+  awaygoals: string[],
   sponsors: string[],
   socialFacebook: string | null,
   socialInstagram: string | null,
@@ -25,7 +24,7 @@ function Livegame(props: LivegameProps) {
           <div className="logo">
             <TeamLogo logo={props.hometeam.logo} alt={props.hometeam.name} width={200} height={200}/>
           </div>
-          <div className="goals">
+          <div className="score">
             {props.homescore}:{props.awayscore}
           </div>
           <div className="logo">
@@ -34,14 +33,26 @@ function Livegame(props: LivegameProps) {
         </div>
       </div>
       <div className="bottom">
-        <div className="bg-green-light clearfix goals">
-          <div className="marquee-caption"><strong>Ticker:</strong></div>
-          <Marquee text={props.goals.join(', ')} loop={true} hoverToStop={true} trailing={10000} leading={2000} />
+        <div className="goals">
+          <div>
+            {props.homegoals.reverse().slice(0, 3).map((goal: string, index) => {
+              return (
+                <div key={`home-${index}`} className="goal">{goal}</div>
+              )
+            })}
+          </div>
+          <div>
+            {props.awaygoals.reverse().slice(0, 3).map((goal: string, index) => {
+              return (
+                <div key={`away-${index}`} className="goal">{goal}</div>
+              )
+            })}
+          </div>
         </div>
-        <div className="bg-white clearfix sponsors">
+        <div className="bg-white sponsors">
           {props.sponsors.map((sponsor: string, index) => {
             return (
-              <img key={index} src={ `https://www.herner-ev.com/${ sponsor }` } className="sponsor" alt="" width="180" height="100" />
+              <img key={index} src={ `https://www.herner-ev.com/${ sponsor }` } className="sponsor" alt="" width="144" height="80" />
             )
           })}
         </div>
