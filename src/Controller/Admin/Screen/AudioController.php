@@ -8,11 +8,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Screen\Audio\AudioRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/admin/screen/audio")
- * @Security("has_role('ROLE_SCREEN')")
  */
 class AudioController extends AbstractController
 {
@@ -24,6 +22,7 @@ class AudioController extends AbstractController
      */
     public function audioAction(AudioRepository $repository)
     {
+        $this->denyAccessUnlessGranted('ROLE_SCREEN');
         $audio = $repository->get();
         return $this->render('admin/screen/audio.html.twig', [
             'volume' => $audio->volume,
@@ -36,7 +35,9 @@ class AudioController extends AbstractController
      * @param AudioRepository $repository
      * @return Response
      */
-    public function getAudioTracks(AudioRepository $repository) {
+    public function getAudioTracks(AudioRepository $repository)
+    {
+        $this->denyAccessUnlessGranted('ROLE_SCREEN');
         return new JsonResponse([
             'tracks' => $repository->getAvailableTracks()
         ]);
@@ -51,6 +52,7 @@ class AudioController extends AbstractController
      */
     public function changeAudioVolumeAction($volume, AudioRepository $repository)
     {
+        $this->denyAccessUnlessGranted('ROLE_SCREEN');
         return new JsonResponse([
             $repository->setVolume((int) $volume)
         ]);
@@ -65,6 +67,7 @@ class AudioController extends AbstractController
      */
     public function changeAudioTrackAction($track, AudioRepository $repository)
     {
+        $this->denyAccessUnlessGranted('ROLE_SCREEN');
         return new JsonResponse([
             $repository->setTrack($track)
         ]);

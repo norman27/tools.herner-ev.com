@@ -4,11 +4,12 @@ namespace App\Controller;
 
 use App\Screen\Effect\EffectsRepository;
 use App\Screen\ScreensRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Screen\Audio\AudioRepository;
 use Psr\Cache\InvalidArgumentException;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 
 class ScreenController extends AbstractController
 {
@@ -35,6 +36,7 @@ class ScreenController extends AbstractController
      * @param ScreensRepository $screensRepository
      * @return JsonResponse
      * @throws InvalidArgumentException
+     * @throws ExceptionInterface
      */
     public function stateAction(AudioRepository $audioRepository, EffectsRepository $effectsRepository, ScreensRepository $screensRepository)
     {

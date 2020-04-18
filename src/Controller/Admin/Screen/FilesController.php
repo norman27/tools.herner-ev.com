@@ -9,11 +9,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Admin\Screen\FileUploadForm;
 use App\Screen\FilesRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/admin/screen/files")
- * @Security("has_role('ROLE_SCREEN')")
  */
 class FilesController extends AbstractController
 {
@@ -25,6 +23,7 @@ class FilesController extends AbstractController
      */
     public function filesAction(Request $request, FilesRepository $repository)
     {
+        $this->denyAccessUnlessGranted('ROLE_SCREEN');
         $form = $this->createForm(FileUploadForm::class);
         $form->handleRequest($request); // @TODO move upload to its own action
 
@@ -50,6 +49,7 @@ class FilesController extends AbstractController
      */
     public function filesDeleteAction($filename, FilesRepository $repository)
     {
+        $this->denyAccessUnlessGranted('ROLE_SCREEN');
         $repository->delete($filename);
         return $this->redirect($this->generateUrl('admin.screen.files'));
     }

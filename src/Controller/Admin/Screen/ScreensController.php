@@ -8,12 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Screen\ScreensRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Twig\Environment;
 
 /**
  * @Route("/admin/screen")
- * @Security("has_role('ROLE_SCREEN')")
  */
 class ScreensController extends AbstractController
 {
@@ -24,6 +22,7 @@ class ScreensController extends AbstractController
      */
     public function screensAction(ScreensRepository $repository)
     {
+        $this->denyAccessUnlessGranted('ROLE_SCREEN');
         return $this->render('admin/screen/screens.html.twig', [
             'screens' => $repository->getAll()
         ]);
@@ -39,6 +38,7 @@ class ScreensController extends AbstractController
      */
     public function editAction($id, Request $request, ScreensRepository $repository, Environment $twig)
     {
+        $this->denyAccessUnlessGranted('ROLE_SCREEN');
         $screen = $repository->getById($id);
 
         $formClass = 'App\Admin\Screen\Edit\\' . ucfirst($screen->screenType) .  'Form';
@@ -76,6 +76,7 @@ class ScreensController extends AbstractController
      */
     public function listAction(ScreensRepository $repository)
     {
+        $this->denyAccessUnlessGranted('ROLE_SCREEN');
         return new JsonResponse([
             'screens' => $repository->getAll() // @TODO this contains too much data in "config"
         ]);
@@ -89,6 +90,7 @@ class ScreensController extends AbstractController
      */
     public function activateAction($id, ScreensRepository $repository)
     {
+        $this->denyAccessUnlessGranted('ROLE_SCREEN');
         $repository->activate((int) $id);
         return $this->redirect($this->generateUrl('admin.screen.screens'));
     }
