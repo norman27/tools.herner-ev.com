@@ -1,6 +1,6 @@
 # HEV Leinwand
 
-[![CircleCI](https://circleci.com/gh/norman27/hev-leinwand-herner-ev-com.svg?style=svg)](https://circleci.com/gh/norman27/hev-leinwand-herner-ev-com)
+[![CircleCI](https://circleci.com/gh/norman27/tools.herner-ev.com.svg?style=svg)](https://circleci.com/gh/norman27/tools.herner-ev.com)
 
 This consists of tools to run Online Services for Herner EV. See Images for examples:
 
