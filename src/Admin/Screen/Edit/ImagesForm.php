@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
-class ImageForm extends AbstractType
+class ImagesForm extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -39,10 +39,13 @@ class ImageForm extends AbstractType
                 ]
             )
             ->add(
-                'timer',
+                'duration',
                 IntegerType::class,
                 [
                     'empty_data' => '10',
+                    'attr' => [
+                        'placeholder' => 10
+                    ]
                 ]
             )
         ;

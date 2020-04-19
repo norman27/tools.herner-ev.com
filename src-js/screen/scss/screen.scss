@@ -162,6 +162,28 @@ table {
     }
   }
 
+  &-images {
+    .react-slideshow-fade-images-wrap {
+      display: flex;
+
+      > div {
+        position: relative;
+      }
+    }
+
+    .each-fade {
+      display: flex;
+    }
+
+    .each-fade .image-container {
+      overflow: hidden;
+    }
+
+    .each-fade .image-container img {
+      width: 100%;
+    }
+  }
+
   &-livegame {
     .score {
       height: 220px;

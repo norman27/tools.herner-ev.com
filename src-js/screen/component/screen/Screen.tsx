@@ -26,7 +26,7 @@ class Screen extends React.Component<ScreenSettings> {
                         case 'content':
                             return <Content {...this.props.config} />;
                         case 'images':
-                            return <Images />;
+                            return <Images {...this.props.config}/>;
                         case 'livegame':
                             return <Livegame {...this.props.config} />;
                         case 'lottery':

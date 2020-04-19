@@ -25,7 +25,7 @@ class App extends React.Component<{}, State> {
             name: ''
         },
         screen: {
-            screenType: 'image', // @TODO add another default for preloading
+            screenType: 'loading', // @TODO add another default for preloading
             config: []
         },
         timestamp: 0
