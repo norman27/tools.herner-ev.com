@@ -4,8 +4,8 @@
 
 This consists of tools to run Online Services for Herner EV. See Images for examples:
 
-![Image of Admin](https://raw.githubusercontent.com/norman27/hev-leinwand-herner-ev-com/master/doc/admin.png)
-![Image of Screen](https://raw.githubusercontent.com/norman27/hev-leinwand-herner-ev-com/master/doc/screen.png)
+![Image of Admin](https://raw.githubusercontent.com/norman27/tools.herner-ev.com/master/doc/admin.png)
+![Image of Screen](https://raw.githubusercontent.com/norman27/tools.herner-ev.com/master/doc/screen.png)
 
 
 ## Requirements
