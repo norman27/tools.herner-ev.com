@@ -20,14 +20,14 @@ class Game {
     public $catid;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Hockey\Club")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Hockey\Club", fetch="EAGER")
      * @ORM\JoinColumn(name="hometeam", referencedColumnName="id")
      * @var Club
      */
     public $hometeam;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Hockey\Club")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Hockey\Club", fetch="EAGER")
      * @ORM\JoinColumn(name="awayteam", referencedColumnName="id")
      * @var Club
      */
