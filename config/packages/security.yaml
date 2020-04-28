@@ -14,7 +14,6 @@ security:
             security: false
         admin:
             anonymous: ~
-            logout_on_user_change: true
             provider: admin_db_provider
             form_login:
                 login_path: security.login

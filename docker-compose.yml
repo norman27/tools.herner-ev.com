@@ -1,0 +1,31 @@
+version: '3'
+services:
+  apache:
+    build: docker/apache
+    container_name: tools_herner_ev_com_apache
+    ports:
+      - 80:80
+    volumes:
+      - ./docker/config/vhosts:/etc/apache2/sites-enabled
+      - .:/home/wwwroot/tools.herner-ev.local
+    depends_on:
+      - php
+
+  mysql:
+    image: mysql:8
+    container_name: tools_herner_ev_com_mysql
+    ports:
+      - 3306:3306
+    command:
+      - "--default-authentication-plugin=mysql_native_password"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: hev
+      MYSQL_USER: hev
+      MYSQL_PASSWORD: hev
+
+  php:
+    build: docker/php
+    container_name: tools_herner_ev_com_php
+    volumes:
+      - .:/home/wwwroot/tools.herner-ev.local

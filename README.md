@@ -2,29 +2,30 @@
 
 [![CircleCI](https://circleci.com/gh/norman27/tools.herner-ev.com.svg?style=svg)](https://circleci.com/gh/norman27/tools.herner-ev.com)
 
-This consists of tools to run Online Services for Herner EV. See Images for examples:
+This consists of tools to run Online Services for Herner EV. This includes for example the ice rink screen:
 
-![Image of Admin](https://raw.githubusercontent.com/norman27/tools.herner-ev.com/master/doc/admin.png)
 ![Image of Screen](https://raw.githubusercontent.com/norman27/tools.herner-ev.com/master/doc/screen.png)
 
 
-## Requirements
-In order to run the application you need a MySQL server. Copy the file `app/config/parameters.yml.dist`
-to `app/config/parameters.yml` and fill in the required credentials.  
-
 ## Installation
+The application can be run locally using docker. First copy the file `.env` to `.env.local`
+and change the MySQL configuration to `DATABASE_URL=mysql://hev:hev@tools.herner-ev.local:3306/hev?serverVersion=5.7`
+
+Then you need to install backend and frontend packages and build the assets:
 ```bash
 composer install
 npm ci
-```
-Afterwards you need to compile the frontend code:
-```bash
 npm run build:prod
 ```
-To run the server for development use:
+
+### Database
+You can initialize the database with example data by executing:
 ```bash
-php bin/console server:run
+bin/console doctrine:database:create
+bin/console doctrine:schema:create
+bin/console doctrine:database:import sql/example.sql
 ```
+This includes an admin user with username / password: `admin / admin`
 
 ### Frontend Routing
 We use the FOSJsRoutingBundle for frontend routing. This means all routes being used need to be exposed.

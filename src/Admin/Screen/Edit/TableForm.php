@@ -37,6 +37,7 @@ class TableForm extends AbstractType
                 'font',
                 IntegerType::class,
                 [
+                    'empty_data' => '22',
                     'attr' => [
                         'placeholder' => 22
                     ],
