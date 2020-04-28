@@ -20,7 +20,7 @@ class Table {
     public $catid;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Hockey\Club", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Hockey\Club", fetch="EAGER")
      * @ORM\JoinColumn(name="club_id", referencedColumnName="id")
      * @var Club
      */
