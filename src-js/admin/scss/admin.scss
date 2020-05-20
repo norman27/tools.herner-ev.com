@@ -17,6 +17,11 @@
     .far {
       color: $gray-600;
     }
+    &.active {
+      .nav-icon {
+        color: #ffffff !important;
+      }
+    }
   }
 }
 .app-body {
@@ -42,7 +47,7 @@
   .nav-tabs {
     .nav-link {
       &.active {
-        color: #ffffff;
+        color: $color-brand-green;
       }
     }
   }
