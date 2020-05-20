@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+//@TODO split this into components instead of switch
 class Effect extends React.Component<EffectSettings> {
     render() {
         return (
