@@ -67,9 +67,9 @@ class Compare extends React.Component<Props> {
                             <td><span className={`bg-${ this.getColor(this.props.awaygefahrpunkte, this.props.homegefahrpunkte) }-light`}>{ this.props.awaygefahr }&nbsp;({ this.props.awaygefahrpunkte } Tore)</span></td>
                         </tr>
                         <tr>
-                            <td align="right"><span className={`bg-${ this.getColor(this.props.homebadboypunkte, this.props.awaybadboypunkte) }-light`}>{ this.props.homebadboy }&nbsp;({ this.props.homebadboypunkte } Tore)</span></td>
+                            <td align="right"><span className={`bg-${ this.getColor(this.props.homebadboypunkte, this.props.awaybadboypunkte) }-light`}>{ this.props.homebadboy }&nbsp;({ this.props.homebadboypunkte } Minuten)</span></td>
                             <td className="middle" align="center">Bad Boy</td>
-                            <td><span className={`bg-${ this.getColor(this.props.awaybadboypunkte, this.props.homebadboypunkte) }-light`}>{ this.props.awaybadboy }&nbsp;({ this.props.awaybadboypunkte } Tore)</span></td>
+                            <td><span className={`bg-${ this.getColor(this.props.awaybadboypunkte, this.props.homebadboypunkte) }-light`}>{ this.props.awaybadboy }&nbsp;({ this.props.awaybadboypunkte } Minuten)</span></td>
                         </tr>
                         <tr>
                             <td align="right">

@@ -4,7 +4,7 @@ services:
     build: docker/apache
     container_name: tools_herner_ev_com_apache
     ports:
-      - 80:80
+      - 8090:80
     volumes:
       - ./docker/config/vhosts:/etc/apache2/sites-enabled
       - .:/home/wwwroot/tools.herner-ev.local
