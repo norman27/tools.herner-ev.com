@@ -16,20 +16,6 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     {% block stylesheets %}{% endblock %}
-    {% block matomo %}
-        <script type="text/javascript">
-            var _paq = window._paq || [];
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function() {
-                var u="https://piwik.herner-ev.com/";
-                _paq.push(['setTrackerUrl', u+'matomo.php']);
-                _paq.push(['setSiteId', '3']);
-                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-            })();
-        </script>
-    {% endblock %}
 </head>
 <body{% if bodyClasses is defined %} class="{{ bodyClasses | default('') }}"{% endif %}>
     {% block body %}{% endblock %}
