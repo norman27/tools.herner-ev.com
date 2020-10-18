@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8" />
-    <title>{{ title | default('Herner Eissportverein') }}</title>
+    <title>{{ title | default('Startseite') ~ ' | Herner EV' }}</title>
 
     {% block favicon %}{# genereated with https://realfavicongenerator.net #}
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -16,7 +16,6 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     {% block stylesheets %}{% endblock %}
-    {% block piwik %}{% endblock %}
 </head>
 <body{% if bodyClasses is defined %} class="{{ bodyClasses | default('') }}"{% endif %}>
     {% block body %}{% endblock %}

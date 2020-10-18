@@ -4,7 +4,7 @@ jobs:
   php:
     working_directory: ~/tools-herner-ev-com/php
     docker:
-      - image: circleci/php:7.2-browsers
+      - image: circleci/php:7.4-browsers
     steps:
       - checkout
 
