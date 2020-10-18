@@ -138,6 +138,9 @@
     "psr/container": {
         "version": "1.0.0"
     },
+    "psr/event-dispatcher": {
+        "version": "1.0.0"
+    },
     "psr/link": {
         "version": "1.0.0"
     },
@@ -176,9 +179,6 @@
         ]
     },
     "symfony/css-selector": {
-        "version": "v4.4.4"
-    },
-    "symfony/debug": {
         "version": "v4.4.4"
     },
     "symfony/debug-bundle": {

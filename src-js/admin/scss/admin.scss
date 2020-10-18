@@ -17,6 +17,11 @@
     .far {
       color: $gray-600;
     }
+    &.active {
+      .nav-icon {
+        color: #ffffff !important;
+      }
+    }
   }
 }
 .app-body {
