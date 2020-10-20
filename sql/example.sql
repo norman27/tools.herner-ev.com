@@ -17,6 +17,11 @@ INSERT IGNORE INTO `app_users` (`id`, `username`, `password`, `email`, `is_activ
 
 -- --------------------------------------------------------
 
+INSERT IGNORE INTO `b2n61_banners` (`id`, `name`, `state`, `params`) VALUES
+(1, 'Wohnungsgenossenschaft Herne-Süd eG', 1, '{"imageurl":"images\\/banners\\/whs.jpg","width":"","height":"","alt":""}');
+
+-- --------------------------------------------------------
+
 INSERT IGNORE INTO `b2n61_categories` (`id`, `extension`, `title`, `published`, `level`) VALUES
 (1, 'com_hockeymanager_schedule', 'Oberliga-Nord', 1, 2),
 (2, 'com_hockeymanager_table', 'Oberliga-Nord 2019/20', 1, 2);
@@ -24,8 +29,21 @@ INSERT IGNORE INTO `b2n61_categories` (`id`, `extension`, `title`, `published`, 
 -- --------------------------------------------------------
 
 INSERT IGNORE INTO `b2n61_hockeymanager_clubs` (`id`, `name`, `logo`, `state`) VALUES
-(1, 'Herner EV', 'herner-ev.png', 1),
-(2, 'EC Bad Nauheim', 'ec-bad-nauheim.png', 1);
+(1, 'Herner EV', 'herner-ev_v2.png', 1),
+(2, 'EC Bad Nauheim', 'ec-bad-nauheim_v1.png', 1),
+(3, 'Tilburg Trappers', 'tilburg-trappers_v1.png', 1),
+(4, 'TecArt Black Dragons', 'black-dragons-erfurt_v1.png', 1),
+(5, 'Crocodiles Hamburg', 'crocodiles-hamburg_v1.png', 1),
+(6, 'EG Diez-Limburg', 'eg-diez-limburg_v1.png', 1),
+(7, 'Hammer Eisbären', 'hammer-eisbaeren_v1.png', 1),
+(8, 'Hannover Indians', 'hannover-indians_v1.png', 1),
+(9, 'Hannover Scorpions', 'hannover-scorpions_v1.png', 1),
+(10, 'Herforder EV', 'herforder-ev_v1.png', 1),
+(11, 'EXA Icefighters Leipzig', 'icefighters-leipzig_v1.png', 1),
+(12, 'Krefelder EV 81', 'krefelder-ev-81_v1.png', 1),
+(13, 'Rostock Piranhas', 'rostock-piranhas_v1.png', 1),
+(14, 'Saale Bulls Halle', 'saale-bulls-halle_v1.png', 1);
+
 
 -- --------------------------------------------------------
 
