@@ -1,6 +1,7 @@
 @import '../../variables';
 @import 'dist/reveal.scss';
 @import 'dist/theme/black.scss';
+@import '~csshake/dist/csshake-slow.css';
 
 @font-face {
   font-family: 'oswaldregular';
@@ -88,7 +89,7 @@ table {
   z-index: 10;
 }
 .effect-rubberduck {
-  margin-top: 170px;
+  margin-top: 170px !important;
 }
 .snowflake {
   color: #fff;
