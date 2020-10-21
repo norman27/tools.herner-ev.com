@@ -4,7 +4,7 @@
 
 This consists of tools to run Online Services for Herner EV. This includes for example the ice rink screen:
 
-![Image of Screen](https://raw.githubusercontent.com/norman27/tools.herner-ev.com/master/doc/screen.png)
+![Image of Screen](https://raw.githubusercontent.com/norman27/tools.herner-ev.com/main/doc/screen.png)
 
 
 ## Installation
