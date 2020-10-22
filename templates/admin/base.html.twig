@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% set title = 'Administration' %}
-{% set bodyClasses = 'app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show' %}
+{% set bodyClasses = 'app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show aside-menu-lg-show' %}
 
 {% block stylesheets %}
     <link href="{{ asset('bundles/webpack/css/admin.css') }}" rel="stylesheet">
@@ -17,8 +17,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-            <img class="navbar-brand-full" src="{{ asset('img/brand/hev-admin-logo.svg') }}" width="89" height="25" alt="HEV Admin">
-            <img class="navbar-brand-minimized" src="{{ asset('img/brand/hev-admin-logo-minimal.svg') }}" width="30" height="30" alt="HEV Admin">
+            <img class="navbar-brand-full" src="{{ asset('img/brand/hev-logo-legacy.svg') }}" width="30" height="30" alt="HEV Admin">
+            <img class="navbar-brand-minimized" src="{{ asset('img/brand/hev-logo-legacy.svg') }}" width="30" height="30" alt="HEV Admin">
         </a>
         <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
             <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,8 @@
         <ul class="nav navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link nav-link" data-toggle="dropdown" href="#" role="button">
-                    {{ app.user.email }}
+                    <span class="d-none d-sm-block"><i class="fa fa-user"></i> {{ app.user.email }}</span>
+                    <span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <div class="dropdown-header text-center">
@@ -38,15 +39,16 @@
                 </div>
             </li>
         </ul>
+
         <button class="navbar-toggler aside-menu-toggler d-md-down-none" type="button" data-toggle="aside-menu-lg-show">
-            <span class="navbar-toggler-icon"></span>
+            <span class="fa fa-ellipsis-v"></span>
         </button>
         <button class="navbar-toggler aside-menu-toggler d-lg-none" type="button" data-toggle="aside-menu-show">
-            <span class="navbar-toggler-icon"></span>
+            <span class="fa fa-ellipsis-v"></span>
         </button>
     </header>
     <div class="app-body">
-        <div class="sidebar">
+        <div class="sidebar sidebar-fixed">
             <nav class="sidebar-nav">
                 <ul class="nav">
                     <li class="nav-title">Applikationen</li>

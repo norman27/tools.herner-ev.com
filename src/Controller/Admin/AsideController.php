@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Hockey\Game;
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,14 +19,16 @@ class AsideController extends AbstractController
 {
     /**
      * @Route("/games", name="admin.aside.games", options={"expose"=true})
-     * @param ManagerRegistry $managerRegistry
      * @return Response
      * @throws ExceptionInterface
      */
-    public function getGamesTracks(ManagerRegistry $managerRegistry) {
-        $repository = $managerRegistry->getRepository(Game::class);
+    public function getGamesTracks() {
         /** @var Game[] $games */
-        $games = $repository->findBy(['state' => 1], ['gamedate' => 'ASC', 'gametime' => 'ASC'], 10);
+        $games = $this->getDoctrine()
+            ->getManager()
+            ->createQuery('SELECT g FROM App:Hockey\Game g WHERE CONCAT(g.gamedate, \' \', g.gametime) > CONCAT(CURRENT_DATE(), \' \', CURRENT_TIME()) AND g.state = 1')
+            ->setMaxResults(10)
+            ->getResult();
 
         $serializer = new Serializer(array(new ObjectNormalizer()), array('json' => new JsonEncoder()));
 
