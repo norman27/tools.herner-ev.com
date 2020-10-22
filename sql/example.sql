@@ -48,7 +48,8 @@ INSERT IGNORE INTO `b2n61_hockeymanager_clubs` (`id`, `name`, `logo`, `state`) V
 -- --------------------------------------------------------
 
 INSERT IGNORE INTO `b2n61_hockeymanager_schedule` (`id`, `state`, `catid`, `gamedate`, `gametime`, `hometeam`, `awayteam`, `homescore`, `awayscore`) VALUES
-(1, 1, 1, '2019-12-22', '08:00', 1, 2, 0, 0);
+(1, 1, 1, '2019-12-22', '08:00', 1, 2, 0, 0),
+(2, 1, 1, '2099-12-22', '20:00', 1, 2, 0, 0);
 
 -- --------------------------------------------------------
 
