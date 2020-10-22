@@ -26,7 +26,7 @@ class AsideController extends AbstractController
         /** @var Game[] $games */
         $games = $this->getDoctrine()
             ->getManager()
-            ->createQuery('SELECT g FROM App:Hockey\Game g WHERE CONCAT(g.gamedate, \' \', g.gametime) > CONCAT(CURRENT_DATE(), \' \', CURRENT_TIME()) AND g.state = 1')
+            ->createQuery('SELECT g FROM App:Hockey\Game g WHERE CONCAT(g.gamedate, \' \', g.gametime) > CONCAT(CURRENT_DATE(), \' \', CURRENT_TIME()) AND g.state = 1 ORDER BY CONCAT(g.gamedate, \' \', g.gametime) ASC')
             ->setMaxResults(10)
             ->getResult();
 
