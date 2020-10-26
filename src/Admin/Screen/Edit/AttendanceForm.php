@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Admin\Screen\Edit;
 
@@ -6,18 +6,17 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\AbstractType;
-use App\Screen\FilesRepository;
 
 class AttendanceForm extends AbstractType
 {
+    use JoomlaHelperTrait;
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $repository = new FilesRepository();
-
         $builder
             ->add(
                 'attendance',
@@ -27,8 +26,9 @@ class AttendanceForm extends AbstractType
                 'sponsor',
                 ChoiceType::class,
                 [
-                    'choices' => $repository->getAllNames(),
-                    'placeholder' => '---'
+                    'required' => false,
+                    'choices' => $this->getBanners(),
+                    'attr' => ['size' => 10]
                 ]
             )
         ;

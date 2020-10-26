@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Screen;
 
@@ -6,6 +6,7 @@ use App\Entity\Hockey\Club;
 use App\Entity\Hockey\Game;
 use App\Entity\Screen;
 use App\Entity\Hockey\Table;
+use Doctrine;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
@@ -14,8 +15,7 @@ use Symfony\Component\Serializer\Serializer;
 
 class ScreensRepository
 {
-    /** @var ManagerRegistry */
-    private $managerRegistry;
+    private ManagerRegistry $managerRegistry;
 
     /**
      * @param ManagerRegistry $managerRegistry
@@ -28,7 +28,7 @@ class ScreensRepository
     /**
      * @return Screen[]
      */
-    public function getAll()
+    public function getAll(): array
     {
         return $this->filterGet([]);
     }
@@ -37,7 +37,7 @@ class ScreensRepository
      * @param int $id
      * @return Screen
      */
-    public function getById($id)
+    public function getById($id): Screen
     {
         return current($this->filterGet(['id' => $id]));
     }
@@ -46,7 +46,7 @@ class ScreensRepository
      * @return Screen
      * @throws ExceptionInterface
      */
-    public function getActive()
+    public function getActive(): Screen
     {
         /** @var Screen $screen */
         $screen = current($this->filterGet(['active' => Screen::IS_ACTIVE], null, 1));
@@ -91,15 +91,12 @@ class ScreensRepository
                     break;
 
                 case 'schedule':
-                    $repo = $this->managerRegistry->getRepository(Game::class); //@TODO cache response
-                    $games = $serializer->normalize(
-                        $repo->findBy(
-                            ['catid' => $screen->getConfig("id")],
-                            ['gamedate' => 'ASC'],
-                            5
-                        ),
-                        'json'
-                    );
+                    $games = $this->managerRegistry
+                        ->getManager()
+                        ->createQuery('SELECT g FROM App:Hockey\Game g WHERE g.catid = :catid AND CONCAT(g.gamedate, \' \', g.gametime) > CONCAT(CURRENT_DATE(), \' \', CURRENT_TIME()) AND g.state = 1 ORDER BY CONCAT(g.gamedate, \' \', g.gametime) ASC')
+                        ->setParameter('catid', $screen->getConfig('id'))
+                        ->setMaxResults(8)
+                        ->getResult();
                     $screen->setConfig('items', $games);
                     break;
 
@@ -142,7 +139,7 @@ class ScreensRepository
     /**
      * @param int $id
      */
-    public function activate(int $id)
+    public function activate(int $id): void
     {
         $this->deactivateAll();
         $screen = $this->getById($id);
@@ -150,7 +147,7 @@ class ScreensRepository
         $this->save($screen);
     }
 
-    public function save(Screen $screen)
+    public function save(Screen $screen): void
     {
         $em = $this->managerRegistry->getManager();
         $em->persist($screen);
@@ -160,7 +157,7 @@ class ScreensRepository
     /**
      * Deactivate all screens
      */
-    private function deactivateAll()
+    private function deactivateAll(): void
     {
         $em = $this->managerRegistry->getManager();
         $query = $em->createQuery('UPDATE App:Screen s SET s.active = 0');
@@ -174,7 +171,7 @@ class ScreensRepository
      * @param int|null $offset
      * @return Screen[]
      */
-    private function filterGet(array $filters, array $orderBy = null, int $limit = null, int $offset = null)
+    private function filterGet(array $filters, array $orderBy = null, int $limit = null, int $offset = null): array
     {
         $repository = $this->managerRegistry->getRepository(Screen::class);
         return $repository->findBy($filters, $orderBy, $limit, $offset);
