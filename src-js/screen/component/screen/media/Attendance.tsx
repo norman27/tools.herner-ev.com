@@ -7,7 +7,7 @@ type Props = {
 
 class Attendance extends React.Component<Props> {
     render() {
-        let sponsorImage = '/media/screen/' + this.props.sponsor;
+        let sponsorImage = 'https://www.herner-ev.com/' + this.props.sponsor;
         return (
             <section className="screen-attendance present" data-fullscreen="">
                 <div className="bg-green-light screen-title"><h4>Die Zuschauerzahl</h4></div>
@@ -15,7 +15,7 @@ class Attendance extends React.Component<Props> {
                 {this.props.sponsor !== null &&
                     <div>
                         Präsentiert von:<br />
-                        <img src={sponsorImage} style={{width: "320px"}} />
+                        <img src={sponsorImage} style={{width: "360px", height: "200px"}} />
                     </div>
                 }
             </section>

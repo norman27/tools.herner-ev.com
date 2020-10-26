@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Admin\Screen\Edit;
 
@@ -9,10 +9,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 
 trait JoomlaHelperTrait
 {
-    /**
-     * @var ManagerRegistry
-     */
-    private $managerRegistry;
+    private ManagerRegistry $managerRegistry;
 
     /**
      * @param ManagerRegistry $managerRegistry
@@ -25,7 +22,7 @@ trait JoomlaHelperTrait
     /**
      * @return Banner[]
      */
-    private function getBanners()
+    private function getBanners(): array
     {
         /** @var Banner[] $banners */
         $joomlaBanners = $this->managerRegistry->getRepository(Banner::class)->findBy([
@@ -69,7 +66,7 @@ trait JoomlaHelperTrait
     /**
      * @return Club[]
      */
-    private function getClubs()
+    private function getClubs(): array
     {
         /** @var Club[] $clubs */
         $joomlaClubs = $this->managerRegistry->getRepository(Club::class)->findBy([

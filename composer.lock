@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce7b6ceb76ce5fa3d4947b4d925f3b0f",
+    "content-hash": "0bf6b958cd07223e45a4a8868c9a07c9",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1562,16 +1562,16 @@
         },
         {
             "name": "norman27/hev-hockey-teams",
-            "version": "0.1.1",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:norman27/hev-hockey-teams.git",
-                "reference": "ea8158f0480e1286c3f10d2ef5519f3e6e946afe"
+                "reference": "0710f8aea5c06bec3fb7025873fc67a7c9ace8c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/norman27/hev-hockey-teams/zipball/ea8158f0480e1286c3f10d2ef5519f3e6e946afe",
-                "reference": "ea8158f0480e1286c3f10d2ef5519f3e6e946afe",
+                "url": "https://api.github.com/repos/norman27/hev-hockey-teams/zipball/0710f8aea5c06bec3fb7025873fc67a7c9ace8c0",
+                "reference": "0710f8aea5c06bec3fb7025873fc67a7c9ace8c0",
                 "shasum": ""
             },
             "type": "project",
@@ -1580,10 +1580,10 @@
             ],
             "description": "This package provides logos and data for hockey clubs mainly located in germany",
             "support": {
-                "source": "https://github.com/norman27/hev-hockey-teams/tree/0.1.1",
+                "source": "https://github.com/norman27/hev-hockey-teams/tree/0.2.0",
                 "issues": "https://github.com/norman27/hev-hockey-teams/issues"
             },
-            "time": "2020-10-20T00:17:38+00:00"
+            "time": "2020-10-26T19:35:58+00:00"
         },
         {
             "name": "ocramius/proxy-manager",
