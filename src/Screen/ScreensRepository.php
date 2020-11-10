@@ -72,6 +72,10 @@ class ScreensRepository
                     $screen->setConfig('awayteam', $awayteam);
                     break;
 
+                case 'images':
+                    $screen->setConfig('images', array_values($screen->getConfig('images')));
+                    break;
+
                 case 'othergames':
                     $repo = $this->managerRegistry->getRepository(Club::class); //@TODO cache response
                     $items = [];
