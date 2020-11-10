@@ -33,6 +33,12 @@
   color: $gray-500 !important;
 }
 
+.js-symfony-collection {
+  .col-form-label {
+    visibility: hidden;
+  }
+}
+
 // overwrites
 .sidebar {
   .nav-dropdown-items {

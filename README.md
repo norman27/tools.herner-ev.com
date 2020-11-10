@@ -18,6 +18,11 @@ npm ci
 npm run build:prod
 ```
 
+You can start the development environment with
+```bash
+docker-machine up -d
+```
+
 ### Database
 You can initialize the database with example data by executing:
 ```bash

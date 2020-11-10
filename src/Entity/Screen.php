@@ -50,6 +50,7 @@ class Screen
     public function isEnrichable(): bool {
         switch ($this->screenType) {
             case 'compare':
+            case 'images':
             case 'livegame':
             case 'othergames':
             case 'schedule':

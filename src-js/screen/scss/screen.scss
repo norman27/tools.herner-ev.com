@@ -217,7 +217,7 @@ table {
       }
 
       .goals {
-        height: 90px;
+        height: 100px;
 
         > div {
           width: 428px;
@@ -225,6 +225,7 @@ table {
 
           &:first-child {
             padding-left: 20px;
+            min-height: 1px !important;
           }
 
           &:last-child {
@@ -237,7 +238,7 @@ table {
           }
 
           .goal {
-            font-size: 16px;
+            font-size: 18px;
             color: #ffffff;
             display: table;
             background-color: $color-brand-red;
