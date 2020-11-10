@@ -13,8 +13,8 @@
     "fos-routes": "php bin/console fos:js-routing:dump --format=json --target=src-js/symfony/routing/fos_js_routes.json",
     "start:dev": "webpack-dev-server",
     "test": "jest",
-    "electron:start": "cross-env NODE_ENV=development URL=http://127.0.0.1:8000 electron electron/index.js",
-    "electron:dist": "cross-env URL=https://leinwand.herner-ev.com electron-builder --project electron"
+    "electron:start": "cross-env NODE_ENV=development URL=https://127.0.0.1:8000 electron electron/index.js",
+    "electron:dist": "cross-env URL=https://tools.herner-ev.com electron-builder --project electron --win"
   },
   "dependencies": {
     "@coreui/coreui": "^2.1.11",
