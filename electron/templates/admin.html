@@ -7,7 +7,9 @@
 <body style="padding:0; margin:0; border:0; line-height: 0;">
     <button onClick="handleForceReload()">Force Reload</button>
     <hr />
-    <iframe id="admin-frame" name="admin-frame" src="https://tools.herner-ev.com/admin" width="1200" height="800" scrolling="no" frameborder="0" class="wrapper"></iframe>
+    <webview id="admin-frame" src="https://tools.herner-ev.com/admin/screen/screens" style="width:1200px; height:800px;">
+        <div class = "indicator"></div>
+    </webview>
     <script>
         function handleForceReload() {
             const ipc = require('electron').ipcRenderer;
@@ -16,7 +18,7 @@
         }
 
         if (process.env.NODE_ENV === 'development') {
-            document.getElementById('admin-frame').src = process.env.URL + '/admin';
+            document.getElementById('admin-frame').src = process.env.URL + '/admin/screen/screens';
         }
     </script>
 </body>

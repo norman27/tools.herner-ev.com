@@ -13,12 +13,15 @@ let windowConfig = {
     y: 20,
     icon: path.join(__dirname, 'icons/64x64.png'),
     webPreferences: {
-        nodeIntegration: true
+        nodeIntegration: true,
+        webviewTag: true
     }
 };
 
 electron.ipcMain.on('admin-trigger-force-reload', function (event, arg) {
-    screenWindow.webContents.send('force-reload', true);
+    screenWindow.loadURL(
+        (process.env.NODE_ENV === 'development') ? 'http://127.0.0.1:8001' : 'https://tools.herner-ev.com/screen/frame'
+    );
 });
 
 function createScreenWindow() {
@@ -38,7 +41,9 @@ function createScreenWindow() {
     };
 
     screenWindow = new BrowserWindow({ ...windowConfig, ...myConfig });
-    screenWindow.loadFile(path.join(__dirname, 'templates/screen.html'));
+    screenWindow.loadURL(
+        (process.env.NODE_ENV === 'development') ? 'http://127.0.0.1:8001' : 'https://tools.herner-ev.com/screen/frame'
+    );
     screenWindow.on('closed', function () { screenWindow = null });
 }
 

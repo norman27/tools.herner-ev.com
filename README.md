@@ -41,3 +41,5 @@ The following command will output an electron app to `./electron/dist`
 ```bash
 npm run electron:dist
 ```
+
+Icons have been created using https://github.com/safu9/electron-icon-builder
