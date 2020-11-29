@@ -13,8 +13,9 @@
     "fos-routes": "php bin/console fos:js-routing:dump --format=json --target=src-js/symfony/routing/fos_js_routes.json",
     "start:dev": "webpack-dev-server",
     "test": "jest",
-    "electron:start": "cross-env NODE_ENV=development URL=http://127.0.0.1:8000 electron electron/index.js",
-    "electron:dist": "cross-env URL=https://leinwand.herner-ev.com electron-builder --project electron"
+    "electron:start": "cross-env NODE_ENV=development URL=https://127.0.0.1:8000 electron electron/index.js",
+    "electron:dist": "cross-env URL=https://tools.herner-ev.com electron-builder --project electron --win",
+    "electron:icons": "./node_modules/.bin/electron-icon-builder --input=./public/android-chrome-512x512.png --output=./electron --flatten"
   },
   "dependencies": {
     "@coreui/coreui": "^2.1.11",
@@ -48,6 +49,7 @@
     "css-loader": "^2.1.1",
     "electron": "^7.2.4",
     "electron-builder": "^20.43.0",
+    "electron-icon-builder": "^1.0.2",
     "file-loader": "^4.0.0",
     "jest": "^25.3.0",
     "mini-css-extract-plugin": "^0.7.0",
