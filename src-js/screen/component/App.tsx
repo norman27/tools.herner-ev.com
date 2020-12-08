@@ -1,7 +1,7 @@
 /// <reference path="../types.ts" />
 
 import * as React from 'react';
-import { Player } from './Audio/Player'; //@TODO maybe better naming and splitting?
+import { Player } from './audio/Player';
 import { Effect } from './effect/Effect';
 import { Screen } from './screen/Screen';
 import { Routing } from '../../symfony/routing/Routing';
@@ -11,6 +11,10 @@ interface State {
     effect: EffectSettings,
     screen: ScreenSettings,
     timestamp: number,
+}
+
+declare global {
+    interface Window { screenInitState: State; }
 }
 
 class App extends React.Component<{}, State> {
@@ -25,14 +29,17 @@ class App extends React.Component<{}, State> {
             name: ''
         },
         screen: {
-            screenType: 'loading', // @TODO add another default for preloading
+            screenType: 'loading',
             config: []
         },
         timestamp: 0
     }
 
+    constructor(props) {
+        super(props);
+    }
+
     refreshStateFromApi(): void {
-        // @TODO api is a returning pattern
         fetch(Routing.generate('screen_api'))
             .then(response => response.json())
             .then(
@@ -46,14 +53,14 @@ class App extends React.Component<{}, State> {
     }
 
     componentDidMount() {
-        var that = this;
+        const that = this;
+        this.setState(window.screenInitState);
         window.setInterval(function(): void {
             that.refreshStateFromApi();
         }, 2000);
     }
 
     render() {
-        //@TODO on first render these values are not yet fetched from API
         return (
             <div>
                 <Player {...this.state.audio} timestamp={this.state.timestamp} />
