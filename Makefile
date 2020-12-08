@@ -7,4 +7,4 @@ release-bundle:
 	mv .env.local-release .env.local
 
 run-dev:
-	docker-compose up
+	docker-compose up -d
