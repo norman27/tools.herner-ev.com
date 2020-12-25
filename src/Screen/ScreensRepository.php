@@ -6,7 +6,6 @@ use App\Entity\Hockey\Club;
 use App\Entity\Hockey\Game;
 use App\Entity\Screen;
 use App\Entity\Hockey\Table;
-use Doctrine;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;

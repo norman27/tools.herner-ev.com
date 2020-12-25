@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% set title = 'Mikro Sponsoring | Nachwuchs' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/webpack/css/youngsters.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <p class="text-center">
+        <h2 class="text-center">Mikro Sponsoring</h2>
+    </p>
+    <div class="row">
+        {% for i in 1..120 %}
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-1 microsponsor {% if sponsors[i] is defined and sponsors[i].isBlocked %}d-none d-xl-table{% else %}d-table{% endif %}">
+                {% if i not in sponsors|keys %}
+                    <div class="card card-body d-table-cell align-middle text-center">
+                        <span class="text-grey">{{ i }}</span>
+                    </div>
+                {% else %}
+                    {% if (not sponsors[i].isBlocked) %}
+                        <div class="card card-body d-table-cell align-middle text-center">
+                            <span class="text-red">{{ sponsors[i].name }}</span>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

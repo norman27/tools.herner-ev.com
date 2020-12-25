@@ -111,6 +111,15 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "laminas/laminas-code": {
+        "version": "3.5.1"
+    },
+    "laminas/laminas-eventmanager": {
+        "version": "3.3.0"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.1.1"
+    },
     "monolog/monolog": {
         "version": "1.25.3"
     },
@@ -372,6 +381,9 @@
     "symfony/property-info": {
         "version": "v4.4.4"
     },
+    "symfony/proxy-manager-bridge": {
+        "version": "v5.1.10"
+    },
     "symfony/routing": {
         "version": "4.2",
         "recipe": {
@@ -514,6 +526,9 @@
     },
     "voku/stop-words": {
         "version": "2.0.1"
+    },
+    "webimpress/safe-writer": {
+        "version": "2.1.0"
     },
     "webmozart/assert": {
         "version": "1.6.0"

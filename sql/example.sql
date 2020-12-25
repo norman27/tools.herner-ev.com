@@ -17,6 +17,12 @@ INSERT IGNORE INTO `app_users` (`id`, `username`, `password`, `email`, `is_activ
 
 -- --------------------------------------------------------
 
+INSERT IGNORE INTO `app_youngsters_microsponsors` (`id`, `name`, `is_blocked`) VALUES
+(1, 'Max Mustermann', 0),
+(109, '', 1);
+
+-- --------------------------------------------------------
+
 INSERT IGNORE INTO `b2n61_banners` (`id`, `name`, `state`, `params`) VALUES
 (1, 'Wohnungsgenossenschaft Herne-Süd eG', 1, '{"imageurl":"images\\/banners\\/whs.jpg","width":"","height":"","alt":""}');
 

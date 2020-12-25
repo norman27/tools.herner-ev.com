@@ -34,7 +34,8 @@ module.exports = {
         'css/admin': './src-js/admin/scss/admin.scss',
         'js/admin': './src-js/admin/index.tsx',
         'css/screen': './src-js/screen/scss/screen.scss',
-        'js/screen': './src-js/screen/index.tsx'
+        'js/screen': './src-js/screen/index.tsx',
+        'css/youngsters': './src-js/youngsters/scss/index.scss'
     },
     module: {
         rules: [
