@@ -1,0 +1,39 @@
+@import '../../variables';
+@import "~bootstrap/scss/bootstrap.scss";
+
+@font-face {
+  font-family: 'oswaldregular';
+  src: url('../../fonts/Oswald-Regular.ttf')  format('truetype');
+}
+
+@font-face {
+  font-family: 'oswaldlight';
+  src: url('../../fonts/Oswald-Light.ttf')  format('truetype');
+}
+
+body {
+  background: #000000 url(/img/screen/bg-kohle.jpg) 50% 0 no-repeat;
+}
+
+h2 {
+  color: #ffffff;
+}
+
+.microsponsor {
+  padding: 0 5px 5px 0;
+  font-size: 10px;
+
+  .text-red {
+    color: $color-brand-red;
+    font-weight: bold;
+  }
+
+  .text-grey {
+    color: #666666;
+  }
+
+  div {
+    background: #ffffff;
+    height: 80px;
+  }
+}
