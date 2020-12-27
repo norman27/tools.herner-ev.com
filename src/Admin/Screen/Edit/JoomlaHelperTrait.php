@@ -5,7 +5,7 @@ namespace App\Admin\Screen\Edit;
 use App\Entity\Joomla\Banner;
 use App\Entity\Joomla\Category;
 use App\Entity\Hockey\Club;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 trait JoomlaHelperTrait
 {

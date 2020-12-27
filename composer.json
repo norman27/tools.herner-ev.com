@@ -1,7 +1,7 @@
 {
     "name": "norman27/hev-leinwand-herner-ev-com",
     "license": "MIT",
-    "description": "HEV Leinwand software used at Hannibal Arena Herne",
+    "description": "Collection of tools for Herner EV",
     "repositories":[
         {
             "type": "vcs",
@@ -12,6 +12,7 @@
         "php": "^7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "doctrine/persistence": "^2.1",
         "falahati/php-mp3": "^0.9.5@alpha",
         "incenteev/composer-parameter-handler": "^2.1",
         "jbroadway/urlify": "^1.2",
