@@ -6,7 +6,7 @@ use App\Entity\Hockey\Club;
 use App\Entity\Hockey\Game;
 use App\Entity\Screen;
 use App\Entity\Hockey\Table;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -14,14 +14,14 @@ use Symfony\Component\Serializer\Serializer;
 
 class ScreensRepository
 {
-    private ManagerRegistry $managerRegistry;
+    private Registry $registry;
 
     /**
-     * @param ManagerRegistry $managerRegistry
+     * @param Registry $registry
      */
-    public function __construct(ManagerRegistry $managerRegistry)
+    public function __construct(Registry $registry)
     {
-        $this->managerRegistry = $managerRegistry;
+        $this->registry = $registry;
     }
 
     /**
@@ -56,7 +56,7 @@ class ScreensRepository
             switch ($screen->screenType) {
                 case 'compare':
                 case 'livegame':
-                    $repo = $this->managerRegistry->getRepository(Club::class); //@TODO cache response
+                    $repo = $this->registry->getRepository(Club::class); //@TODO cache response
                     $hometeam = $serializer->normalize(
                         $repo->findOneBy(
                             ['id' => $screen->getConfig('hometeam')]
@@ -76,7 +76,7 @@ class ScreensRepository
                     break;
 
                 case 'othergames':
-                    $repo = $this->managerRegistry->getRepository(Club::class); //@TODO cache response
+                    $repo = $this->registry->getRepository(Club::class); //@TODO cache response
                     $items = [];
                     for ($i = 1; $i <= 8; $i++) {
                         if ($screen->getConfig('home_'.$i) !== null && $screen->getConfig('away_'.$i) !== null) {
@@ -94,7 +94,7 @@ class ScreensRepository
                     break;
 
                 case 'schedule':
-                    $games = $this->managerRegistry
+                    $games = $this->registry
                         ->getManager()
                         ->createQuery('SELECT g FROM App:Hockey\Game g WHERE g.catid = :catid AND CONCAT(g.gamedate, \' \', g.gametime) > CONCAT(CURRENT_DATE(), \' \', CURRENT_TIME()) AND g.state = 1 ORDER BY CONCAT(g.gamedate, \' \', g.gametime) ASC')
                         ->setParameter('catid', $screen->getConfig('id'))
@@ -104,7 +104,7 @@ class ScreensRepository
                     break;
 
                 case 'six':
-                    $repo = $this->managerRegistry->getRepository(Club::class); //@TODO cache response
+                    $repo = $this->registry->getRepository(Club::class); //@TODO cache response
                     $club = $serializer->normalize(
                         $repo->findOneBy(
                             ['id' => $screen->getConfig("team")]
@@ -115,7 +115,7 @@ class ScreensRepository
                     break;
 
                 case 'table':
-                    $repo = $this->managerRegistry->getRepository(Table::class); //@TODO cache response
+                    $repo = $this->registry->getRepository(Table::class); //@TODO cache response
                     $tables = $serializer->normalize(
                         $repo->findBy(['catid' => $screen->getConfig("id")]),
                         'json'
@@ -152,7 +152,7 @@ class ScreensRepository
 
     public function save(Screen $screen): void
     {
-        $em = $this->managerRegistry->getManager();
+        $em = $this->registry->getManager();
         $em->persist($screen);
         $em->flush();
     }
@@ -162,7 +162,7 @@ class ScreensRepository
      */
     private function deactivateAll(): void
     {
-        $em = $this->managerRegistry->getManager();
+        $em = $this->registry->getManager();
         $query = $em->createQuery('UPDATE App:Screen s SET s.active = 0');
         $query->execute();
     }
@@ -176,7 +176,7 @@ class ScreensRepository
      */
     private function filterGet(array $filters, array $orderBy = null, int $limit = null, int $offset = null): array
     {
-        $repository = $this->managerRegistry->getRepository(Screen::class);
+        $repository = $this->registry->getRepository(Screen::class);
         return $repository->findBy($filters, $orderBy, $limit, $offset);
     }
 }

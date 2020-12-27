@@ -5,18 +5,18 @@ namespace App\Admin\Screen\Edit;
 use App\Entity\Joomla\Banner;
 use App\Entity\Joomla\Category;
 use App\Entity\Hockey\Club;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 
 trait JoomlaHelperTrait
 {
-    private ManagerRegistry $managerRegistry;
+    private Registry $registry;
 
     /**
-     * @param ManagerRegistry $managerRegistry
+     * @param Registry $registry
      */
-    public function __construct(ManagerRegistry $managerRegistry)
+    public function __construct(Registry $registry)
     {
-        $this->managerRegistry = $managerRegistry;
+        $this->registry = $registry;
     }
 
     /**
@@ -25,7 +25,7 @@ trait JoomlaHelperTrait
     private function getBanners(): array
     {
         /** @var Banner[] $banners */
-        $joomlaBanners = $this->managerRegistry->getRepository(Banner::class)->findBy([
+        $joomlaBanners = $this->registry->getRepository(Banner::class)->findBy([
             'state' => 1
         ]);
 
@@ -46,7 +46,7 @@ trait JoomlaHelperTrait
     private function getCategories(string $extension): array
     {
         /** @var Category[] $cats */
-        $joomlaCategories = $this->managerRegistry->getRepository(Category::class)->findBy([
+        $joomlaCategories = $this->registry->getRepository(Category::class)->findBy([
             'extension' => $extension,
             'published' => 1,
             'level' => 2
@@ -69,7 +69,7 @@ trait JoomlaHelperTrait
     private function getClubs(): array
     {
         /** @var Club[] $clubs */
-        $joomlaClubs = $this->managerRegistry->getRepository(Club::class)->findBy([
+        $joomlaClubs = $this->registry->getRepository(Club::class)->findBy([
             'state' => 1
         ]);
 
