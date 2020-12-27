@@ -97,8 +97,12 @@
                             <i class="nav-icon far fa-hourglass"></i> Cronjobs</a>
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
-                                <a class="nav-link" href="login.html" target="_top">
-                                    <i class="nav-icon far fa-chart-bar"></i> Report</a>
+                                <a class="nav-link" href="{{ path('admin.cronjob.index') }}" target="_top">
+                                    <i class="nav-icon fa fa-play"></i> Ausführen</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('admin.cronjob.log') }}" target="_top">
+                                    <i class="nav-icon far fa-chart-bar"></i> Log</a>
                             </li>
                         </ul>
                     </li>

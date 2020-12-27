@@ -1,0 +1,32 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body_content %}
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <i class="far fa-list-alt"></i>Cronjobs</div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Aktion</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tabellen Updaten</td>
+                                <td>
+                                    <a href="{{ path('admin.cronjob.execute', {job: 'table'}) }}">
+                                        <button class="btn btn-light"><i class="fa fa-play"></i> Ausführen</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
