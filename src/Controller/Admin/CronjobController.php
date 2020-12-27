@@ -17,6 +17,7 @@ class CronjobController extends AbstractController
      */
     public function indexAction()
     {
+        $this->denyAccessUnlessGranted('ROLE_TECH');
         return $this->render('admin/index.html.twig');
     }
 }

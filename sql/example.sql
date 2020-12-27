@@ -13,7 +13,7 @@ INSERT IGNORE INTO `app_screens` (`id`, `name`, `screen_type`, `config`, `active
 -- --------------------------------------------------------
 
 INSERT IGNORE INTO `app_users` (`id`, `username`, `password`, `email`, `is_active`, `roles`) VALUES
-(1, 'admin', '$2y$13$EwKijfdKqsl6.6otpT.MU.CzytLAxm09TzpkBqkVeJHzEFRdYxEPC', 'admin@herner-ev.com', 1, 'a:2:{i:0;s:10:\"ROLE_ADMIN\";i:1;s:11:\"ROLE_SCREEN\";}');
+(1, 'admin', '$2y$13$EwKijfdKqsl6.6otpT.MU.CzytLAxm09TzpkBqkVeJHzEFRdYxEPC', 'admin@herner-ev.com', 1, 'a:3:{i:0;s:10:\"ROLE_ADMIN\";i:1;s:11:\"ROLE_SCREEN\";i:2;s:11:\"ROLE_YOUNGSTERS\";}');
 
 -- --------------------------------------------------------
 

@@ -23,6 +23,7 @@ class AsideController extends AbstractController
      * @throws ExceptionInterface
      */
     public function getGamesTracks() {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         /** @var Game[] $games */
         $games = $this->getDoctrine()
             ->getManager()

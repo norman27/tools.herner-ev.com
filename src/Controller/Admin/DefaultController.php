@@ -17,6 +17,7 @@ class DefaultController extends AbstractController
      */
     public function indexAction()
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('admin/index.html.twig');
     }
 }
