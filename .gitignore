@@ -36,3 +36,7 @@ release-bundle.tgz
 ###> docker ###
 docker/data/*
 ###< docker ###
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

@@ -57,16 +57,29 @@ class ScreensRepository
                 case 'compare':
                 case 'livegame':
                     $repo = $this->managerRegistry->getRepository(Club::class); //@TODO cache response
+
+                    /** @var Club $hometeam */
                     $hometeam = $serializer->normalize(
                         $repo->findOneBy(
                             ['id' => $screen->getConfig('hometeam')]
                         )
                     );
+
+                    /** @var Club $awayteam */
                     $awayteam = $serializer->normalize(
                         $repo->findOneBy(
                             ['id' => $screen->getConfig('awayteam')]
                         )
                     );
+
+                    //@TODO remove this when alias mapping is available
+                    if ($awayteam["id"] === 61) {
+                        $awayteam["logo"] = 'iec-roosters_v1.png';
+                    }
+                    if ($awayteam["id"] === 6) {
+                        $awayteam["logo"] = 'ec-kassel-huskies_v1.png';
+                    }
+
                     $screen->setConfig('hometeam', $hometeam);
                     $screen->setConfig('awayteam', $awayteam);
                     break;
