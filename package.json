@@ -35,7 +35,7 @@
     "react-dom": "^16.8.6",
     "react-notifications": "^1.4.3",
     "react-redux": "^7.1.0",
-    "react-slideshow-image": "^1.4.2",
+    "react-slideshow-image": "^1.5.3",
     "redux": "^4.0.1",
     "symfony-ts-router": "^1.0.6"
   },
@@ -46,7 +46,7 @@
     "@prettier/plugin-php": "^0.11.2",
     "babel-loader": "^8.0.6",
     "cross-env": "^5.2.0",
-    "css-loader": "^2.1.1",
+    "css-loader": "^6.8.1",
     "electron": "^18.3.7",
     "electron-builder": "^23.6.0",
     "electron-icon-builder": "^1.0.2",
